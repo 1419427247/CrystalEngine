@@ -37,12 +37,15 @@ namespace CrystalEngine
 		void update();
 
 		std::string getName();
-
+		
 		bool setParten(GameObject* _gameObject);
-		bool addChild(GameObject* _gameObject);
+		GameObject* getParten();
 
+
+		bool addChild(GameObject* _gameObject);
+		
 		bool removeChild(GameObject* _gameObject);
-		bool cleanChild();
+		bool cleanChildren();
 		
 
 		bool newGameObject(std::string _gameObjectName);

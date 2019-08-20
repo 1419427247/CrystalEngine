@@ -89,6 +89,10 @@ bool GameObject::setParten(GameObject *_gameObject)
 	return true;
 }
 
+GameObject* GameObject::getParten(){
+	return parent;
+}
+
 bool GameObject::addChild(GameObject *_gameObject)
 {
 	if (_gameObject == this)
@@ -112,7 +116,7 @@ bool GameObject::removeChild(GameObject* _gameObject){
 		}
 	return false;
 }
-bool GameObject::cleanChild(){
+bool GameObject::cleanChildren(){
 	for (GameObject *var : *children){
 		var->parent=NULL;
 	}
