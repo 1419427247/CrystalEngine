@@ -11,7 +11,7 @@ GameObject::GameObject(std::string _name)
 	components = new std::list<Component *>();
 	scene = nullptr;
 	parent = nullptr;
-	child = new std::list<GameObject *>();
+	children = new std::list<GameObject *>();
 }
 
 GameObject::~GameObject()
@@ -22,7 +22,7 @@ GameObject::~GameObject()
 		components->pop_back();
 	}
 	delete components;
-	delete child;
+	delete children;
 }
 
 void GameObject::start()
@@ -63,7 +63,7 @@ void GameObject::update()
 	}
 }
 
-std::string GameObject::getGameObjectName()
+std::string GameObject::getName()
 {
 	return name;
 }
@@ -72,18 +72,19 @@ bool GameObject::setParten(GameObject *_gameObject)
 {
 	if(_gameObject == NULL)
 	{
+		parent->removeChild(this);
 		parent=NULL;
 	}
 	if (_gameObject == this)
 		return false;
-	for (GameObject *var : *(_gameObject->child))
+	for (GameObject *var : *(_gameObject->children))
 	{
-		if (var->name == name)
+		if (var->name == _gameObject->name)
 			return false;
 	}
 	if (parent != NULL)
-		parent->child->remove(this);
-	_gameObject->child->push_back(this);
+		parent->children->remove(this);
+	_gameObject->children->push_back(this);
 	parent = _gameObject;
 	return true;
 }
@@ -92,30 +93,30 @@ bool GameObject::addChild(GameObject *_gameObject)
 {
 	if (_gameObject == this)
 		return false;
-	for (GameObject *var : *child)
-		if (var->name == name)
+	for (GameObject *var : *children)
+		if (var->name == _gameObject->name)
 			return false;
 	if (_gameObject->parent != NULL)
-		_gameObject->parent->child->remove(_gameObject);
-	child->push_back(_gameObject);
+		_gameObject->parent->children->remove(_gameObject);
+	children->push_back(_gameObject);
 	_gameObject->parent = this;
 	return true;
 }
 
 bool GameObject::removeChild(GameObject* _gameObject){
-	for (GameObject *var : *child)
-		if (var->name == name){
+	for (GameObject *var : *children)
+		if (var->name == _gameObject->name){
 			var->parent = NULL;
-			child->remove(var);
+			children->remove(var);
 			return true;
 		}
 	return false;
 }
 bool GameObject::cleanChild(){
-	for (GameObject *var : *child){
+	for (GameObject *var : *children){
 		var->parent=NULL;
 	}
-	child->clear();
+	children->clear();
 	return true;
 }
 

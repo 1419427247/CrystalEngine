@@ -26,7 +26,7 @@ namespace CrystalEngine
 		//父物体
 		GameObject* parent;
 		//子物体
-		std::list<GameObject*>* child;
+		std::list<GameObject*>* children;
 	public:
 		
 
@@ -36,7 +36,7 @@ namespace CrystalEngine
 		void start();
 		void update();
 
-		std::string getGameObjectName();
+		std::string getName();
 
 		bool setParten(GameObject* _gameObject);
 		bool addChild(GameObject* _gameObject);
