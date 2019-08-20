@@ -77,7 +77,7 @@ std::string GameObject::getName()
 
 bool GameObject::setParten(GameObject *_gameObject)
 {
-	if (_gameObject == NULL)
+	if (_gameObject == nullptr)
 	{
 		parent->removeChild(this);
 		parent = NULL;
@@ -103,6 +103,8 @@ GameObject *GameObject::getParten()
 
 bool GameObject::addChild(GameObject *_gameObject)
 {
+	if(_gameObject==nullptr)
+		return false;
 	if (_gameObject == this)
 		return false;
 	for (GameObject *var : *children)
@@ -129,6 +131,8 @@ int GameObject::getChildrenCount()
 
 bool GameObject::removeChild(GameObject *_gameObject)
 {
+	if(_gameObject==nullptr)
+		return false;
 	for (GameObject *var : *children)
 		if (var->name == _gameObject->name)
 		{
