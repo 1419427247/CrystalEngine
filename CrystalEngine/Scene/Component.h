@@ -13,7 +13,7 @@ class Component
 public:
 	GameObject *gameObject;
 	Component(std::string _name);
-	~Component();
+	virtual ~Component();
 
 	virtual void start();
 	virtual void update();
