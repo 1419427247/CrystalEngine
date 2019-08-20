@@ -21,6 +21,13 @@ GameObject::~GameObject()
 		delete components->back();
 		components->pop_back();
 	}
+	while (!newComponents->empty())
+	{
+		delete newComponents->back();
+		newComponents->pop_back();
+	}
+	delete newComponents;
+	delete deleteComponents;
 	delete components;
 	delete children;
 }
@@ -70,10 +77,10 @@ std::string GameObject::getName()
 
 bool GameObject::setParten(GameObject *_gameObject)
 {
-	if(_gameObject == NULL)
+	if (_gameObject == NULL)
 	{
 		parent->removeChild(this);
-		parent=NULL;
+		parent = NULL;
 	}
 	if (_gameObject == this)
 		return false;
@@ -89,7 +96,8 @@ bool GameObject::setParten(GameObject *_gameObject)
 	return true;
 }
 
-GameObject* GameObject::getParten(){
+GameObject *GameObject::getParten()
+{
 	return parent;
 }
 
@@ -107,18 +115,34 @@ bool GameObject::addChild(GameObject *_gameObject)
 	return true;
 }
 
-bool GameObject::removeChild(GameObject* _gameObject){
+std::vector<GameObject *> GameObject::getChildren()
+{
+	std::vector<GameObject *> result;
 	for (GameObject *var : *children)
-		if (var->name == _gameObject->name){
+		result.push_back(var);
+	return result;
+}
+int GameObject::getChildrenCount()
+{
+	return children->size();
+}
+
+bool GameObject::removeChild(GameObject *_gameObject)
+{
+	for (GameObject *var : *children)
+		if (var->name == _gameObject->name)
+		{
 			var->parent = NULL;
 			children->remove(var);
 			return true;
 		}
 	return false;
 }
-bool GameObject::cleanChildren(){
-	for (GameObject *var : *children){
-		var->parent=NULL;
+bool GameObject::cleanChildren()
+{
+	for (GameObject *var : *children)
+	{
+		var->parent = NULL;
 	}
 	children->clear();
 	return true;
