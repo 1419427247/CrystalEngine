@@ -41,7 +41,6 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Sc
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: ../CrystalEngine/Scene/Time.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: ../CrystalEngine/Scene/Time.cpp
 
-CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: ../CrystalEngine/Tool/Test.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Component/Camera.h

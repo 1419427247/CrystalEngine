@@ -15,6 +15,8 @@ CrystalEngine/Scene/Component.h
 ../CrystalEngine/Component/CrystalEngine/Scene/Component.h
 
 ../CrystalEngine/Component/Vector.h
+math.h
+-
 
 ../CrystalEngine/Scene/Component.h
 vector
@@ -45,8 +47,6 @@ chrono
 -
 
 ../CrystalEngine/Tool/Test.h
-iostream
--
 
 D:/CrystalEngine-master/CrystalEngine/CrystalEngine.h
 CrystalEngine/Scene/Component.h
@@ -69,4 +69,6 @@ D:/CrystalEngine-master/CrystalEngine/CrystalEngine/Tool/Test.h
 D:/CrystalEngine-master/CrystalEngine/main.cpp
 CrystalEngine.h
 D:/CrystalEngine-master/CrystalEngine/CrystalEngine.h
+iostream
+-
 

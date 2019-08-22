@@ -1,5 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+#include <math.h>
 namespace CrystalEngine
 {
 class Vector
