@@ -6,8 +6,8 @@ public:
 	TestGameObject() : Test("TestGameObject")
 	{
 	}
-	~TestGameObject(){
-
+	~TestGameObject()
+	{
 	}
 	void run()
 	{
@@ -15,28 +15,32 @@ public:
 		CrystalEngine::GameObject *obj2 = new CrystalEngine::GameObject("G2");
 		CrystalEngine::GameObject *obj3 = new CrystalEngine::GameObject("G3");
 
-		std::cout<<"qwq";
+		std::cout << "qwq";
 
 		Comparison(obj1->addChild(obj2), true)
-		Comparison(obj1->addChild(obj3), true)
+			Comparison(obj1->addChild(obj3), true)
 
-		Comparison(obj1->addChild(obj2), true)
-		Comparison(obj1->addChild(obj3), false)
+				Comparison(obj1->addChild(obj2), false)
+					Comparison(obj1->addChild(obj3), false)
 
-		Comparison(obj2->getParten(), obj1)
-		Comparison(obj3->getParten(), obj1)
+						Comparison(obj2->getParten(), obj1)
+							Comparison(obj3->getParten(), obj1)
 
-		Comparison(obj1->getChildrenCount(), 2)
-		Comparison(obj1->getChildren().size(), 2)
+								Comparison(obj1->getChildrenCount(), 2)
+									Comparison(obj1->getChildren().size(), 2)
 
-		delete obj1;
+										delete obj1;
 		delete obj2;
 		delete obj3;
 	}
-}*testGameObject=new TestGameObject();
+};
 
 int main()
 {
-	std::cout<<instance->size();
-    //start();
+	while (true)
+	{
+		new TestGameObject();
+		start();
+		dispose();
+	}
 }
