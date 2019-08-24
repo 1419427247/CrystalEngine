@@ -1,5 +1,6 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+
 #include "CrystalEngine/Tool/Test.h"
 #include <list>
 #include <vector>
