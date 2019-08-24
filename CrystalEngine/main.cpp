@@ -15,7 +15,7 @@ public:
 		CrystalEngine::GameObject *obj2 = new CrystalEngine::GameObject("G2");
 		CrystalEngine::GameObject *obj3 = new CrystalEngine::GameObject("G3");
 
-
+		std::cout<<"qwq";
 
 		Comparison(obj1->addChild(obj2), true)
 		Comparison(obj1->addChild(obj3), true)
@@ -33,12 +33,10 @@ public:
 		delete obj2;
 		delete obj3;
 	}
-}*testGameObject = new TestGameObject();
+}*testGameObject=new TestGameObject();
 
 int main()
 {
-    // CrystalEngine::Test::start();
-    // CrystalEngine::Test::dispose();
-
-    std::cout<<CrystalEngine::Test::error_count++;
+	std::cout<<instance->size();
+    //start();
 }
