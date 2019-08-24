@@ -1,13 +1,10 @@
 #include "CrystalEngine/Tool/Test.h"
 
-static int error_count = 0;
-static std::vector<CrystalEngine::Test *> instance;
-
 namespace CrystalEngine
 {
 void Test::start()
 {
-    for (Test *var : instance)
+    for (Test *var : *Test::instance)
     {
         var->run();
     }
@@ -16,14 +13,14 @@ void Test::start()
 }
 void Test::dispose()
 {
-    while (!instance.empty())
+    // while (!Test::instance->empty())
+    // {
+    //     delete Test::instance->back();
+    //     Test::instance->pop_back();
+    // }
+    for (size_t i = 0; i < Test::instance->size(); i++)
     {
-        delete instance.back();
-        instance.pop_back();
-    }
-    for (size_t i = 0; i < instance.size(); i++)
-    {
-        delete instance[i];
+        delete (*Test::instance)[i];
     }
 }
 
