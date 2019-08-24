@@ -11,19 +11,36 @@ class Test
     std::string name;
 
 public:
-    static int error_count;
-    static std::vector<Test *>* instance;
-
-    static void start();
-    static void dispose();
-
     Test(std::string _name);
     virtual ~Test();
     virtual void run();
 };
-int CrystalEngine::Test::error_count = 0;
-std::vector<Test *>* CrystalEngine::Test::instance = new std::vector<Test *>();
 } // namespace CrystalEngine
+
+static int error_count = 0;
+static std::vector<CrystalEngine::Test *> *instance = new std::vector<CrystalEngine::Test *>();
+
+static void start()
+{
+    for (CrystalEngine::Test *var : *instance)
+    {
+        var->run();
+    }
+    std::cout << "Test the function to stop running." << std::endl
+              << "The number of errors is " << error_count << std::endl;
+}
+static void dispose()
+{
+    // while (!Test::instance->empty())
+    // {
+    //     delete Test::instance->back();
+    //     Test::instance->pop_back();
+    // }
+    for (size_t i = 0; i < instance->size(); i++)
+    {
+        delete (*instance)[i];
+    }
+}
 
 #define Comparison(T1, T2)                                                                                                 \
     {                                                                                                                      \
@@ -31,7 +48,7 @@ std::vector<Test *>* CrystalEngine::Test::instance = new std::vector<Test *>();
         if (var != T2)                                                                                                     \
         {                                                                                                                  \
             std::cout << "The result is wrong : " << #T1 << " == " << var << " And " << #T1 << " != " << #T2 << std::endl; \
-            CrystalEngine::Test::error_count++;                                                                            \
+            error_count++;                                                                                                 \
         }                                                                                                                  \
     };
 
