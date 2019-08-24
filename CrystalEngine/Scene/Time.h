@@ -1,8 +1,10 @@
 #ifndef TIME_H
 #define TIME_H
+
 #include <thread>
 #include <ctime>
 #include <chrono>
+
 namespace CrystalEngine
 {
 class Time
