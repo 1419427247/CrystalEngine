@@ -24,7 +24,7 @@ void Test::run()
 
 int error_count = 0;
 std::vector<CrystalEngine::Test *> *instance = new std::vector<CrystalEngine::Test *>();
-int start()
+int testBegin()
 {
     for (CrystalEngine::Test *var : *instance)
     {
@@ -35,7 +35,7 @@ int start()
     return error_count;
 }
 
-void dispose()
+void testDispose()
 {
     while (!instance->empty())
     {

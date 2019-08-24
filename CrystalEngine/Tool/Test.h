@@ -20,8 +20,8 @@ public:
 extern int error_count;
 extern std::vector<CrystalEngine::Test *> *instance;
 
-extern int start();
-extern void dispose();
+extern int testBegin();
+extern void testDispose();
 
 #define Comparison(T1, T2)                                                                                                 \
     {                                                                                                                      \

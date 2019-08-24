@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "CrystalEngine/Tool/Test.h"
 #include <unordered_map>
 #include <vector>
 

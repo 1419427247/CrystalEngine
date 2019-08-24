@@ -1,9 +1,10 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
-
+#include "CrystalEngine/Tool/Test.h"
 #include <list>
 #include <vector>
 #include <string>
+
 
 namespace CrystalEngine
 {
@@ -59,6 +60,15 @@ public:
 	Component *getComponent(std::string _name);
 	void destoryComponent(std::string _name);
 };
+
+class TestGameObject : public CrystalEngine::Test
+{
+public:
+	TestGameObject();
+	~TestGameObject();
+	void run();
+};
+
 } // namespace CrystalEngine
 
 #endif

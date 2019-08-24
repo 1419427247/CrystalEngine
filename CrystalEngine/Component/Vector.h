@@ -1,6 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include "CrystalEngine/Tool/Test.h"
 #include <cmath>
 
 namespace CrystalEngine

@@ -27,16 +27,19 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj
  ../CrystalEngine/Scene/Component.h
  ../CrystalEngine/Scene/GameObject.h
  ../CrystalEngine/Scene/Scene.h
+ ../CrystalEngine/Tool/Test.h
  D:/CrystalEngine-master/CrystalEngine/Scene/Component.cpp
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj
  ../CrystalEngine/Scene/Component.h
  ../CrystalEngine/Scene/GameObject.h
  ../CrystalEngine/Scene/Scene.h
+ ../CrystalEngine/Tool/Test.h
  D:/CrystalEngine-master/CrystalEngine/Scene/GameObject.cpp
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj
  ../CrystalEngine/Scene/Component.h
  ../CrystalEngine/Scene/GameObject.h
  ../CrystalEngine/Scene/Scene.h
+ ../CrystalEngine/Tool/Test.h
  D:/CrystalEngine-master/CrystalEngine/Scene/Scene.cpp
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj
  ../CrystalEngine/Scene/Time.h

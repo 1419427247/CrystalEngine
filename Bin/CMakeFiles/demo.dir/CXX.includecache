@@ -6,36 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../CrystalEngine/Application.h
-CrystalEngine/Scene/Component.h
-../CrystalEngine/CrystalEngine/Scene/Component.h
-CrystalEngine/Scene/GameObject.h
-../CrystalEngine/CrystalEngine/Scene/GameObject.h
-CrystalEngine/Scene/Scene.h
-../CrystalEngine/CrystalEngine/Scene/Scene.h
-CrystalEngine/Scene/Time.h
-../CrystalEngine/CrystalEngine/Scene/Time.h
-CrystalEngine/Component/Transform.h
-../CrystalEngine/CrystalEngine/Component/Transform.h
-CrystalEngine/Component/Vector.h
-../CrystalEngine/CrystalEngine/Component/Vector.h
-CrystalEngine/Component/Camera.h
-../CrystalEngine/CrystalEngine/Component/Camera.h
-CrystalEngine/Tool/Test.h
-../CrystalEngine/CrystalEngine/Tool/Test.h
-
-../CrystalEngine/Component/Camera.h
-CrystalEngine/Scene/Component.h
-../CrystalEngine/Component/CrystalEngine/Scene/Component.h
-
-../CrystalEngine/Component/Transform.h
-CrystalEngine/Scene/Component.h
-../CrystalEngine/Component/CrystalEngine/Scene/Component.h
-
-../CrystalEngine/Component/Vector.h
-cmath
--
-
 ../CrystalEngine/Scene/Component.h
 vector
 -
@@ -49,19 +19,13 @@ vector
 -
 string
 -
+CrystalEngine/Tool/Test.h
+../CrystalEngine/Scene/CrystalEngine/Tool/Test.h
 
 ../CrystalEngine/Scene/Scene.h
 unordered_map
 -
 vector
--
-
-../CrystalEngine/Scene/Time.h
-thread
--
-ctime
--
-chrono
 -
 
 ../CrystalEngine/Tool/Test.h
@@ -72,7 +36,11 @@ string
 vector
 -
 
-D:/CrystalEngine-master/CrystalEngine/main.cpp
-CrystalEngine/Application.h
-D:/CrystalEngine-master/CrystalEngine/CrystalEngine/Application.h
+D:/CrystalEngine-master/CrystalEngine/Scene/GameObject.cpp
+CrystalEngine/Scene/Scene.h
+D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Scene.h
+CrystalEngine/Scene/GameObject.h
+D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/GameObject.h
+CrystalEngine/Scene/Component.h
+D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Component.h
 

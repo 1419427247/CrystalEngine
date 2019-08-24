@@ -26,16 +26,19 @@ CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj: ../CrystalEngine/Com
 CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj: ../CrystalEngine/Scene/Component.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj: ../CrystalEngine/Scene/GameObject.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj: ../CrystalEngine/Scene/Scene.h
+CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj: ../CrystalEngine/Scene/Component.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Scene/Component.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Scene/GameObject.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Scene/Scene.h
+CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Scene/GameObject.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Component.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/GameObject.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Scene.h
+CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Scene.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: ../CrystalEngine/Scene/Time.h

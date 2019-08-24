@@ -1,5 +1,6 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
+#include "CrystalEngine/Tool/Test.h"
 #include "CrystalEngine/Scene/Component.h"
 namespace CrystalEngine
 {
