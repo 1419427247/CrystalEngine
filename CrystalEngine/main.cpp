@@ -2,9 +2,10 @@
 
 int main()
 {
-	do
-	{
-		testDispose();
-		new CrystalEngine::TestGameObject();
-	} while (!testBegin());
+
+	// do
+	// {
+	// 	testDispose();
+	// 	new CrystalEngine::TestGameObject();
+	// } while (!testBegin());
 }
