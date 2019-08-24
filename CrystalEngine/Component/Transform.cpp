@@ -2,13 +2,11 @@
 
 namespace CrystalEngine
 {
-	Transform::Transform() :Component("Transform")
-	{
-
-	}
-
-	Transform::~Transform()
-	{
-
-	}
+Transform::Transform() : Component("Transform")
+{
 }
+
+Transform::~Transform()
+{
+}
+} // namespace CrystalEngine

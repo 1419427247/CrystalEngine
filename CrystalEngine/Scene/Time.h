@@ -13,8 +13,8 @@ private:
 public:
 	Time();
 	~Time();
-	void run(bool (*_fun)(),int _millisecond);
-	void loop(bool (*_fun)(),int _millisecond);
+	void run(bool (*_fun)(), int _millisecond);
+	void loop(bool (*_fun)(), int _millisecond);
 	static void sleep(int _millisecond);
 };
 } // namespace CrystalEngine

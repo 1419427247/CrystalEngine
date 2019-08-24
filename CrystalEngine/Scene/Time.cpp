@@ -3,12 +3,11 @@ namespace CrystalEngine
 {
 Time::Time()
 {
-    
 }
 Time::~Time()
 {
 }
-void Time::run(bool (*_fun)(),int _millisecond)
+void Time::run(bool (*_fun)(), int _millisecond)
 {
     thread = std::thread([_fun, _millisecond]() {
         std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
@@ -16,13 +15,13 @@ void Time::run(bool (*_fun)(),int _millisecond)
     });
     thread.detach();
 }
-void Time::loop(bool (*_fun)(),int _millisecond)
+void Time::loop(bool (*_fun)(), int _millisecond)
 {
     thread = std::thread([_fun, _millisecond]() {
         do
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
-        }while(_fun());
+        } while (_fun());
     });
     thread.detach();
 }

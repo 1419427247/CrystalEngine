@@ -122,6 +122,33 @@ demo/fast:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
+CrystalEngine/Application.obj: CrystalEngine/Application.cpp.obj
+
+.PHONY : CrystalEngine/Application.obj
+
+# target to build an object file
+CrystalEngine/Application.cpp.obj:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj
+.PHONY : CrystalEngine/Application.cpp.obj
+
+CrystalEngine/Application.i: CrystalEngine/Application.cpp.i
+
+.PHONY : CrystalEngine/Application.i
+
+# target to preprocess a source file
+CrystalEngine/Application.cpp.i:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Application.cpp.i
+.PHONY : CrystalEngine/Application.cpp.i
+
+CrystalEngine/Application.s: CrystalEngine/Application.cpp.s
+
+.PHONY : CrystalEngine/Application.s
+
+# target to generate assembly for a file
+CrystalEngine/Application.cpp.s:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Application.cpp.s
+.PHONY : CrystalEngine/Application.cpp.s
+
 CrystalEngine/Component/Camera.obj: CrystalEngine/Component/Camera.cpp.obj
 
 .PHONY : CrystalEngine/Component/Camera.obj
@@ -202,33 +229,6 @@ CrystalEngine/Component/Vector.s: CrystalEngine/Component/Vector.cpp.s
 CrystalEngine/Component/Vector.cpp.s:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.s
 .PHONY : CrystalEngine/Component/Vector.cpp.s
-
-CrystalEngine/CrystalEngine.obj: CrystalEngine/CrystalEngine.cpp.obj
-
-.PHONY : CrystalEngine/CrystalEngine.obj
-
-# target to build an object file
-CrystalEngine/CrystalEngine.cpp.obj:
-	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj
-.PHONY : CrystalEngine/CrystalEngine.cpp.obj
-
-CrystalEngine/CrystalEngine.i: CrystalEngine/CrystalEngine.cpp.i
-
-.PHONY : CrystalEngine/CrystalEngine.i
-
-# target to preprocess a source file
-CrystalEngine/CrystalEngine.cpp.i:
-	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.i
-.PHONY : CrystalEngine/CrystalEngine.cpp.i
-
-CrystalEngine/CrystalEngine.s: CrystalEngine/CrystalEngine.cpp.s
-
-.PHONY : CrystalEngine/CrystalEngine.s
-
-# target to generate assembly for a file
-CrystalEngine/CrystalEngine.cpp.s:
-	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.s
-.PHONY : CrystalEngine/CrystalEngine.cpp.s
 
 CrystalEngine/Scene/Component.obj: CrystalEngine/Scene/Component.cpp.obj
 
@@ -401,6 +401,9 @@ help:
 	@echo ... demo
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... CrystalEngine/Application.obj
+	@echo ... CrystalEngine/Application.i
+	@echo ... CrystalEngine/Application.s
 	@echo ... CrystalEngine/Component/Camera.obj
 	@echo ... CrystalEngine/Component/Camera.i
 	@echo ... CrystalEngine/Component/Camera.s
@@ -410,9 +413,6 @@ help:
 	@echo ... CrystalEngine/Component/Vector.obj
 	@echo ... CrystalEngine/Component/Vector.i
 	@echo ... CrystalEngine/Component/Vector.s
-	@echo ... CrystalEngine/CrystalEngine.obj
-	@echo ... CrystalEngine/CrystalEngine.i
-	@echo ... CrystalEngine/CrystalEngine.s
 	@echo ... CrystalEngine/Scene/Component.obj
 	@echo ... CrystalEngine/Scene/Component.i
 	@echo ... CrystalEngine/Scene/Component.s

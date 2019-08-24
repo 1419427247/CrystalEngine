@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "D:/CrystalEngine-master/CrystalEngine/Application.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Camera.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Camera.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Transform.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Transform.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Vector.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj"
-  "D:/CrystalEngine-master/CrystalEngine/CrystalEngine.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Component.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/GameObject.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Scene.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj"

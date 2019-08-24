@@ -4,6 +4,7 @@
 #include <list>
 #include <vector>
 #include <string>
+
 namespace CrystalEngine
 {
 class Component;
@@ -59,6 +60,5 @@ public:
 	void destoryComponent(std::string _name);
 };
 } // namespace CrystalEngine
-
 
 #endif

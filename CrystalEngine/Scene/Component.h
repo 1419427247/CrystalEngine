@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+
 namespace CrystalEngine
 {
 class GameObject;
@@ -10,6 +11,7 @@ class Component
 {
 	friend class GameObject;
 	std::string name;
+
 public:
 	GameObject *gameObject;
 	Component(std::string _name);

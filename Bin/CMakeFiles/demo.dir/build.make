@@ -56,19 +56,19 @@ include CMakeFiles/demo.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/demo.dir/flags.make
 
-CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj: CMakeFiles/demo.dir/flags.make
-CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
-CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj: ../CrystalEngine/CrystalEngine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj"
-	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\CrystalEngine.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\CrystalEngine.cpp
+CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
+CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj: ../CrystalEngine/Application.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj"
+	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\Application.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\Application.cpp
 
-CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.i"
-	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CrystalEngine-master\CrystalEngine\CrystalEngine.cpp > CMakeFiles\demo.dir\CrystalEngine\CrystalEngine.cpp.i
+CMakeFiles/demo.dir/CrystalEngine/Application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/CrystalEngine/Application.cpp.i"
+	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CrystalEngine-master\CrystalEngine\Application.cpp > CMakeFiles\demo.dir\CrystalEngine\Application.cpp.i
 
-CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.s"
-	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrystalEngine-master\CrystalEngine\CrystalEngine.cpp -o CMakeFiles\demo.dir\CrystalEngine\CrystalEngine.cpp.s
+CMakeFiles/demo.dir/CrystalEngine/Application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/CrystalEngine/Application.cpp.s"
+	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrystalEngine-master\CrystalEngine\Application.cpp -o CMakeFiles\demo.dir\CrystalEngine\Application.cpp.s
 
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
@@ -198,7 +198,7 @@ CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.s: cmake_force
 
 # Object files for target demo
 demo_OBJECTS = \
-"CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj" \
+"CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Component/Camera.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Component/Transform.cpp.obj" \
@@ -212,7 +212,7 @@ demo_OBJECTS = \
 # External object files for target demo
 demo_EXTERNAL_OBJECTS =
 
-demo.exe: CMakeFiles/demo.dir/CrystalEngine/CrystalEngine.cpp.obj
+demo.exe: CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Component/Camera.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Component/Transform.cpp.obj

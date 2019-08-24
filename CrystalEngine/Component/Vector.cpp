@@ -1,5 +1,6 @@
 #include "CrystalEngine/Component/Vector.h"
 
+#include <math.h>
 namespace CrystalEngine
 {
 

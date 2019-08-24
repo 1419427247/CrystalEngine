@@ -1,6 +1,7 @@
 #include "CrystalEngine/Scene/Scene.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"
+
 namespace CrystalEngine
 {
 GameObject::GameObject(std::string _name)
@@ -103,7 +104,7 @@ GameObject *GameObject::getParten()
 
 bool GameObject::addChild(GameObject *_gameObject)
 {
-	if(_gameObject==nullptr)
+	if (_gameObject == nullptr)
 		return false;
 	if (_gameObject == this)
 		return false;
@@ -131,7 +132,7 @@ int GameObject::getChildrenCount()
 
 bool GameObject::removeChild(GameObject *_gameObject)
 {
-	if(_gameObject==nullptr)
+	if (_gameObject == nullptr)
 		return false;
 	for (GameObject *var : *children)
 		if (var->name == _gameObject->name)
