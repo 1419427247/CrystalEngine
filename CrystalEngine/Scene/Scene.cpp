@@ -81,7 +81,7 @@ void Scene::destoryComponent(std::string _gameObjectName, std::string _name)
 	(*gameObjects)[_gameObjectName]->destoryComponent(_name);
 }
 
-void Scene::start()
+void Scene::begin()
 {
 	isAlive = true;
 
