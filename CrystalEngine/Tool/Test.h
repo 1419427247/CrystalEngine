@@ -17,30 +17,11 @@ public:
 };
 } // namespace CrystalEngine
 
-static int error_count = 0;
-static std::vector<CrystalEngine::Test *> *instance = new std::vector<CrystalEngine::Test *>();
+extern int error_count;
+extern std::vector<CrystalEngine::Test *> *instance;
 
-static void start()
-{
-    for (CrystalEngine::Test *var : *instance)
-    {
-        var->run();
-    }
-    std::cout << "Test the function to stop running." << std::endl
-              << "The number of errors is " << error_count << std::endl;
-}
-static void dispose()
-{
-    // while (!Test::instance->empty())
-    // {
-    //     delete Test::instance->back();
-    //     Test::instance->pop_back();
-    // }
-    for (size_t i = 0; i < instance->size(); i++)
-    {
-        delete (*instance)[i];
-    }
-}
+extern void start();
+extern void dispose();
 
 #define Comparison(T1, T2)                                                                                                 \
     {                                                                                                                      \
