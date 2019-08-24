@@ -24,7 +24,7 @@ public:
 	Scene();
 	~Scene();
 
-	void start();
+	void begin();
 	void finish();
 
 	bool newGameObject(std::string _gameObjectName);
