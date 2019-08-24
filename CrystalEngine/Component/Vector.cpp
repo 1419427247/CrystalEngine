@@ -14,6 +14,11 @@ Vector::Vector()
 	y = 0;
 }
 
+Vector::Vector(Vector& _v){
+	x=_v.x;
+	y=_v.y;
+}
+
 Vector::Vector(double _x, double _y)
 {
 	x = _x;
