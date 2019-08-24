@@ -20,7 +20,7 @@ public:
 extern int error_count;
 extern std::vector<CrystalEngine::Test *> *instance;
 
-extern void start();
+extern int start();
 extern void dispose();
 
 #define Comparison(T1, T2)                                                                                                 \
@@ -31,6 +31,6 @@ extern void dispose();
             std::cout << "The result is wrong : " << #T1 << " == " << var << " And " << #T1 << " != " << #T2 << std::endl; \
             error_count++;                                                                                                 \
         }                                                                                                                  \
-    };
+    }
 
 #endif
