@@ -1,3 +1,6 @@
 D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir
 D:/CrystalEngine-master/Bin/CMakeFiles/edit_cache.dir
 D:/CrystalEngine-master/Bin/CMakeFiles/rebuild_cache.dir
+D:/CrystalEngine-master/Bin/Library/Box2D-master/CMakeFiles/Box2D.dir
+D:/CrystalEngine-master/Bin/Library/Box2D-master/CMakeFiles/edit_cache.dir
+D:/CrystalEngine-master/Bin/Library/Box2D-master/CMakeFiles/rebuild_cache.dir

@@ -122,6 +122,19 @@ demo/fast:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/build
 .PHONY : demo/fast
 
+#=============================================================================
+# Target rules for targets named Box2D
+
+# Build rule for target.
+Box2D: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 Box2D
+.PHONY : Box2D
+
+# fast build rule for target.
+Box2D/fast:
+	$(MAKE) -f Library\Box2D-master\CMakeFiles\Box2D.dir\build.make Library/Box2D-master/CMakeFiles/Box2D.dir/build
+.PHONY : Box2D/fast
+
 CrystalEngine/Application.obj: CrystalEngine/Application.cpp.obj
 
 .PHONY : CrystalEngine/Application.obj
@@ -175,6 +188,60 @@ CrystalEngine/Component/Camera.s: CrystalEngine/Component/Camera.cpp.s
 CrystalEngine/Component/Camera.cpp.s:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/Camera.cpp.s
 .PHONY : CrystalEngine/Component/Camera.cpp.s
+
+CrystalEngine/Component/Collision.obj: CrystalEngine/Component/Collision.cpp.obj
+
+.PHONY : CrystalEngine/Component/Collision.obj
+
+# target to build an object file
+CrystalEngine/Component/Collision.cpp.obj:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.obj
+.PHONY : CrystalEngine/Component/Collision.cpp.obj
+
+CrystalEngine/Component/Collision.i: CrystalEngine/Component/Collision.cpp.i
+
+.PHONY : CrystalEngine/Component/Collision.i
+
+# target to preprocess a source file
+CrystalEngine/Component/Collision.cpp.i:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.i
+.PHONY : CrystalEngine/Component/Collision.cpp.i
+
+CrystalEngine/Component/Collision.s: CrystalEngine/Component/Collision.cpp.s
+
+.PHONY : CrystalEngine/Component/Collision.s
+
+# target to generate assembly for a file
+CrystalEngine/Component/Collision.cpp.s:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.s
+.PHONY : CrystalEngine/Component/Collision.cpp.s
+
+CrystalEngine/Component/RigidBody.obj: CrystalEngine/Component/RigidBody.cpp.obj
+
+.PHONY : CrystalEngine/Component/RigidBody.obj
+
+# target to build an object file
+CrystalEngine/Component/RigidBody.cpp.obj:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj
+.PHONY : CrystalEngine/Component/RigidBody.cpp.obj
+
+CrystalEngine/Component/RigidBody.i: CrystalEngine/Component/RigidBody.cpp.i
+
+.PHONY : CrystalEngine/Component/RigidBody.i
+
+# target to preprocess a source file
+CrystalEngine/Component/RigidBody.cpp.i:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.i
+.PHONY : CrystalEngine/Component/RigidBody.cpp.i
+
+CrystalEngine/Component/RigidBody.s: CrystalEngine/Component/RigidBody.cpp.s
+
+.PHONY : CrystalEngine/Component/RigidBody.s
+
+# target to generate assembly for a file
+CrystalEngine/Component/RigidBody.cpp.s:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.s
+.PHONY : CrystalEngine/Component/RigidBody.cpp.s
 
 CrystalEngine/Component/Transform.obj: CrystalEngine/Component/Transform.cpp.obj
 
@@ -401,12 +468,19 @@ help:
 	@echo ... demo
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Box2D
 	@echo ... CrystalEngine/Application.obj
 	@echo ... CrystalEngine/Application.i
 	@echo ... CrystalEngine/Application.s
 	@echo ... CrystalEngine/Component/Camera.obj
 	@echo ... CrystalEngine/Component/Camera.i
 	@echo ... CrystalEngine/Component/Camera.s
+	@echo ... CrystalEngine/Component/Collision.obj
+	@echo ... CrystalEngine/Component/Collision.i
+	@echo ... CrystalEngine/Component/Collision.s
+	@echo ... CrystalEngine/Component/RigidBody.obj
+	@echo ... CrystalEngine/Component/RigidBody.i
+	@echo ... CrystalEngine/Component/RigidBody.s
 	@echo ... CrystalEngine/Component/Transform.obj
 	@echo ... CrystalEngine/Component/Transform.i
 	@echo ... CrystalEngine/Component/Transform.s

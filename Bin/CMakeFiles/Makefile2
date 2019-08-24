@@ -53,16 +53,18 @@ CMAKE_BINARY_DIR = D:\CrystalEngine-master\Bin
 
 # The main recursive "all" target.
 all: CMakeFiles/demo.dir/all
+all: Library/Box2D-master/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/demo.dir/clean
+clean: Library/Box2D-master/clean
 
 .PHONY : clean
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: Library/Box2D-master/preinstall
 
 .PHONY : preinstall
 
@@ -70,15 +72,15 @@ preinstall:
 # Target rules for target CMakeFiles/demo.dir
 
 # All Build rule for target.
-CMakeFiles/demo.dir/all:
+CMakeFiles/demo.dir/all: Library/Box2D-master/CMakeFiles/Box2D.dir/all
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/depend
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=48,49,50,51,52,53,54,55,56,57,58,59,60 "Built target demo"
 .PHONY : CMakeFiles/demo.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/demo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\CrystalEngine-master\Bin\CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CrystalEngine-master\Bin\CMakeFiles 60
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/demo.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\CrystalEngine-master\Bin\CMakeFiles 0
 .PHONY : CMakeFiles/demo.dir/rule
@@ -92,6 +94,51 @@ demo: CMakeFiles/demo.dir/rule
 CMakeFiles/demo.dir/clean:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/clean
 .PHONY : CMakeFiles/demo.dir/clean
+
+#=============================================================================
+# Directory level rules for directory Library/Box2D-master
+
+# Recursive "all" directory target.
+Library/Box2D-master/all: Library/Box2D-master/CMakeFiles/Box2D.dir/all
+
+.PHONY : Library/Box2D-master/all
+
+# Recursive "clean" directory target.
+Library/Box2D-master/clean: Library/Box2D-master/CMakeFiles/Box2D.dir/clean
+
+.PHONY : Library/Box2D-master/clean
+
+# Recursive "preinstall" directory target.
+Library/Box2D-master/preinstall:
+
+.PHONY : Library/Box2D-master/preinstall
+
+#=============================================================================
+# Target rules for target Library/Box2D-master/CMakeFiles/Box2D.dir
+
+# All Build rule for target.
+Library/Box2D-master/CMakeFiles/Box2D.dir/all:
+	$(MAKE) -f Library\Box2D-master\CMakeFiles\Box2D.dir\build.make Library/Box2D-master/CMakeFiles/Box2D.dir/depend
+	$(MAKE) -f Library\Box2D-master\CMakeFiles\Box2D.dir\build.make Library/Box2D-master/CMakeFiles/Box2D.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47 "Built target Box2D"
+.PHONY : Library/Box2D-master/CMakeFiles/Box2D.dir/all
+
+# Build rule for subdir invocation for target.
+Library/Box2D-master/CMakeFiles/Box2D.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CrystalEngine-master\Bin\CMakeFiles 47
+	$(MAKE) -f CMakeFiles\Makefile2 Library/Box2D-master/CMakeFiles/Box2D.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\CrystalEngine-master\Bin\CMakeFiles 0
+.PHONY : Library/Box2D-master/CMakeFiles/Box2D.dir/rule
+
+# Convenience name for target.
+Box2D: Library/Box2D-master/CMakeFiles/Box2D.dir/rule
+
+.PHONY : Box2D
+
+# clean rule for target.
+Library/Box2D-master/CMakeFiles/Box2D.dir/clean:
+	$(MAKE) -f Library\Box2D-master\CMakeFiles\Box2D.dir\build.make Library/Box2D-master/CMakeFiles/Box2D.dir/clean
+.PHONY : Library/Box2D-master/CMakeFiles/Box2D.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

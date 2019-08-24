@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = @CMakeFiles/demo.dir/includes_CXX.rsp
+CXX_INCLUDES = @CMakeFiles/Box2D.dir/includes_CXX.rsp
 

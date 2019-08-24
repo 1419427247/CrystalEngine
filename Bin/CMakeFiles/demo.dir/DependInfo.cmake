@@ -6,6 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "D:/CrystalEngine-master/CrystalEngine/Application.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Application.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Camera.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Camera.cpp.obj"
+  "D:/CrystalEngine-master/CrystalEngine/Component/Collision.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.obj"
+  "D:/CrystalEngine-master/CrystalEngine/Component/RigidBody.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Transform.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Transform.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Component/Vector.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Component.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj"
@@ -20,10 +22,12 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."
+  ".././Library/Box2D-master"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "D:/CrystalEngine-master/Bin/Library/Box2D-master/CMakeFiles/Box2D.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
