@@ -12,7 +12,7 @@ class Test
 
 public:
     static int error_count;
-    static std::vector<Test *> instance;
+    static std::vector<Test *>* instance;
 
     static void start();
     static void dispose();
@@ -22,7 +22,7 @@ public:
     virtual void run();
 };
 int CrystalEngine::Test::error_count = 0;
-std::vector<Test *> instance;
+std::vector<Test *>* CrystalEngine::Test::instance = new std::vector<Test *>();
 } // namespace CrystalEngine
 
 #define Comparison(T1, T2)                                                                                                 \
