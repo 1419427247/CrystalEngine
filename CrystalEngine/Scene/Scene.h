@@ -9,24 +9,25 @@ namespace CrystalEngine
 {
 class GameObject;
 class Component;
-
+class PhysicalManager;
 class Scene
 {
 	friend class GameObject;
-
 private:
 	bool isAlive;
 	std::vector<std::string> *newGameObjects;
 	std::vector<std::string> *deleteGameObjects;
-	std::unordered_map<std::string, GameObject *> *gameObjects;
 
+	std::unordered_map<std::string, GameObject *> *gameObjects;
+	PhysicalManager* physicalManager; 
 	
 
 public:
 	Scene();
+	Scene(PhysicalManager* _physicalManager);
 	~Scene();
 
-	void begin();
+	void run();
 	void finish();
 
 	bool newGameObject(std::string _gameObjectName);
