@@ -24,11 +24,11 @@ public:
 	void finish();
 
 	bool newGameObject(std::string _gameObjectName);
-	GameObject *getGameObject(std::string _gameObjectName);
+	GameObject *getGameObject(std::string _gameObjectName) const;
 	void destoryGameObject(std::string _name);
 
 	void newComponent(Component *_component);
-	Component *getComponent(std::string _name);
+	Component *getComponent(std::string _name) const;
 	void destoryComponent(std::string _name);
 };
 } // namespace CrystalEngine
