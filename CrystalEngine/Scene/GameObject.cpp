@@ -212,7 +212,7 @@ void GameObject::destoryComponent(std::string _name)
 
 
 
-TestGameObject::TestGameObject() : Test("")
+TestGameObject::TestGameObject() : Test("TestGameObject")
 {
 }
 
