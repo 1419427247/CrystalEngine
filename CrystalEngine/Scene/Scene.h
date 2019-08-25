@@ -20,6 +20,8 @@ private:
 	std::vector<std::string> *deleteGameObjects;
 	std::unordered_map<std::string, GameObject *> *gameObjects;
 
+	
+
 public:
 	Scene();
 	~Scene();
