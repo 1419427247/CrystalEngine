@@ -19,15 +19,13 @@ public:
 	Vector(double _x, double _y);
 	~Vector();
 
-	double getX();
-	double getY();
-	void normalized();
-	double length();
+	double getX() const;
+	double getY() const;
+	double length() const;
 
-	bool operator==(Vector _v)
-	{
-		return x == _v.x && y == _v.y;
-	}
+	void normalized();
+
+	bool operator==(Vector _v) const;
 };
 #define VECTOR_UP CrystalEngine::Vector(0, 1)
 #define VECTOR_DOWN CrystalEngine::Vector(0, -1)
