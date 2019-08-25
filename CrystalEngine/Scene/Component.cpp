@@ -31,7 +31,7 @@ bool Component::newGameObject(std::string _gameObjectName)
 	return gameObject->newGameObject(_gameObjectName);
 }
 
-GameObject *Component::getGameObject(std::string _gameObjectName)
+GameObject *Component::getGameObject(std::string _gameObjectName) const
 {
 	return gameObject->getGameObject(_gameObjectName);
 }
@@ -41,7 +41,7 @@ void Component::newComponent(Component *_component)
 	gameObject->newComponent(_component);
 }
 
-Component *Component::getComponent(std::string _name)
+Component *Component::getComponent(std::string _name) const
 {
 	return gameObject->getComponent(_name);
 }
