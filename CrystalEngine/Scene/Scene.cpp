@@ -11,6 +11,14 @@ Scene::Scene()
 	deleteGameObjects = new std::vector<std::string>();
 	gameObjects = new std::unordered_map<std::string, GameObject *>();
 }
+Scene::Scene(PhysicalManager* _physicalManager)
+{
+	isAlive = false;
+	newGameObjects = new std::vector<std::string>();
+	deleteGameObjects = new std::vector<std::string>();
+	gameObjects = new std::unordered_map<std::string, GameObject *>();
+	physicalManager = _physicalManager;
+}
 
 Scene::~Scene()
 {
@@ -23,10 +31,12 @@ Scene::~Scene()
 
 bool Scene::newGameObject(std::string _gameObjectName)
 {
-	if (gameObjects->count(_gameObjectName))
-		return false;
-	newGameObjects->push_back(_gameObjectName);
-	return true;
+	if (!gameObjects->count(_gameObjectName))
+	{
+		newGameObjects->push_back(_gameObjectName);
+		return true;
+	}
+	return false;
 }
 
 bool Scene::creatGameObject(std::string _gameObjectName)
@@ -81,7 +91,7 @@ void Scene::destoryComponent(std::string _gameObjectName, std::string _name)
 	(*gameObjects)[_gameObjectName]->destoryComponent(_name);
 }
 
-void Scene::begin()
+void Scene::run()
 {
 	isAlive = true;
 
@@ -94,8 +104,11 @@ void Scene::begin()
 	{
 		for (std::string var : *deleteGameObjects)
 		{
-			delete (*gameObjects)[var];
-			gameObjects->erase(var);
+			if (gameObjects->count(var))
+			{
+				delete (*gameObjects)[var];
+				gameObjects->erase(var);
+			}
 		}
 		deleteGameObjects->clear();
 
@@ -105,6 +118,7 @@ void Scene::begin()
 			{
 				(*gameObjects)[var] = new GameObject(var);
 				(*gameObjects)[var]->scene = this;
+				(*gameObjects)[var]->start();
 			}
 		}
 		newGameObjects->clear();
