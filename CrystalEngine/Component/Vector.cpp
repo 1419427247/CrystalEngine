@@ -14,9 +14,10 @@ Vector::Vector()
 	y = 0;
 }
 
-Vector::Vector(Vector& _v){
-	x=_v.x;
-	y=_v.y;
+Vector::Vector(Vector &_v)
+{
+	x = _v.x;
+	y = _v.y;
 }
 
 Vector::Vector(double _x, double _y)
@@ -29,16 +30,16 @@ Vector::~Vector()
 {
 }
 
-double Vector::getX()
+double Vector::getX() const
 {
 	return x;
 }
-double Vector::getY()
+double Vector::getY() const
 {
 	return y;
 }
 
-double Vector::length()
+double Vector::length() const
 {
 	return std::sqrt(x * x + y * y);
 }
@@ -57,6 +58,11 @@ void Vector::normalized()
 		y = y / x;
 		x = 1;
 	}
+}
+
+bool Vector::operator==(Vector _v) const
+{
+	return x == _v.x && y == _v.y;
 }
 
 } // namespace CrystalEngine
