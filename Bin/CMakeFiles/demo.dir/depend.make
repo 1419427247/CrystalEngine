@@ -23,6 +23,7 @@ CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.obj: ../CrystalEngine/
 CMakeFiles/demo.dir/CrystalEngine/Component/Collision.cpp.obj: ../CrystalEngine/Component/Collision.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj: ../CrystalEngine/Component/RigidBody.h
+CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj: ../CrystalEngine/Component/Vector.h
 CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj: ../CrystalEngine/Scene/Component.h
 CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Component/RigidBody.cpp.obj: ../CrystalEngine/Component/RigidBody.cpp
@@ -49,6 +50,9 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Sce
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj: ../CrystalEngine/Scene/GameObject.cpp
 
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj: ../CrystalEngine/Scene/PhysicalManager.h
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj: ../CrystalEngine/Scene/PhysicalManager.cpp
+
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Component.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/GameObject.h
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Scene.h
@@ -62,6 +66,15 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: ../CrystalEngine/Scene/Tim
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: ../CrystalEngine/Tool/Test.cpp
 
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Application.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Component/Camera.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Component/Transform.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Component/Vector.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Scene/Component.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Scene/GameObject.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Scene/Scene.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Scene/Time.h
+CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../CrystalEngine/Tool/Test.h
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../Library/Box2D-master/Box2D/Box2D.h
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../Library/Box2D-master/Box2D/Collision/Shapes/b2ChainShape.h
 CMakeFiles/demo.dir/CrystalEngine/main.cpp.obj: ../Library/Box2D-master/Box2D/Collision/Shapes/b2CircleShape.h

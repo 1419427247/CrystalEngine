@@ -36,9 +36,14 @@ GameObject *Component::getGameObject(std::string _gameObjectName) const
 	return gameObject->getGameObject(_gameObjectName);
 }
 
-void Component::newComponent(Component *_component)
+bool Component::destoryGameObject(std::string _name)
 {
-	gameObject->newComponent(_component);
+	return gameObject->destoryGameObject(_name);
+}
+
+bool Component::newComponent(Component *_component)
+{
+	return gameObject->newComponent(_component);
 }
 
 Component *Component::getComponent(std::string _name) const
@@ -46,14 +51,9 @@ Component *Component::getComponent(std::string _name) const
 	return gameObject->getComponent(_name);
 }
 
-void Component::destoryComponent(std::string _name)
+bool Component::destoryComponent(std::string _name)
 {
-	gameObject->deleteComponents->push_back(_name);
-}
-
-void Component::destoryGameObject(std::string _name)
-{
-	gameObject->destoryGameObject(_name);
+	return gameObject->destoryComponent(_name);
 }
 
 } // namespace CrystalEngine

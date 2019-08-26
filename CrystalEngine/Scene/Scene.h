@@ -12,6 +12,7 @@ class Component;
 class PhysicalManager;
 class Scene
 {
+	friend class TestScene;
 	friend class GameObject;
 private:
 	bool isAlive;
@@ -32,13 +33,23 @@ public:
 
 	bool newGameObject(std::string _gameObjectName);
 	bool creatGameObject(std::string _gameObjectName);
-	GameObject *getGameObject(std::string _gameObjectName);
-	void destoryGameObject(std::string _name);
+	GameObject *getGameObject(std::string _gameObjectName) const;
+	bool destoryGameObject(std::string _name);
 
 	bool newComponent(std::string _gameObjectName, Component *_component);
 	bool creatComponent(std::string _gameObjectName, Component *_component);
-	Component *getComponent(std::string _gameObjectName, std::string _componentGame);
-	void destoryComponent(std::string _gameObjectName, std::string _name);
+	Component *getComponent(std::string _gameObjectName, std::string _componentGame) const;
+	bool destoryComponent(std::string _gameObjectName, std::string _name);
 };
+
+
+class TestScene : public CrystalEngine::Test
+{
+public:
+	TestScene();
+	~TestScene();
+	void run() override;
+};
+
 } // namespace CrystalEngine
 #endif

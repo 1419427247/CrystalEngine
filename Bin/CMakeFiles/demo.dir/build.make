@@ -182,10 +182,24 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.s"
 	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrystalEngine-master\CrystalEngine\Scene\GameObject.cpp -o CMakeFiles\demo.dir\CrystalEngine\Scene\GameObject.cpp.s
 
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj: CMakeFiles/demo.dir/flags.make
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj: ../CrystalEngine/Scene/PhysicalManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj"
+	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\Scene\PhysicalManager.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\Scene\PhysicalManager.cpp
+
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.i"
+	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CrystalEngine-master\CrystalEngine\Scene\PhysicalManager.cpp > CMakeFiles\demo.dir\CrystalEngine\Scene\PhysicalManager.cpp.i
+
+CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.s"
+	C:\TDM-GCC-64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrystalEngine-master\CrystalEngine\Scene\PhysicalManager.cpp -o CMakeFiles\demo.dir\CrystalEngine\Scene\PhysicalManager.cpp.s
+
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj: ../CrystalEngine/Scene/Scene.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj"
 	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\Scene\Scene.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\Scene\Scene.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.i: cmake_force
@@ -199,7 +213,7 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.s: cmake_force
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj: ../CrystalEngine/Scene/Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj"
 	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\Scene\Time.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\Scene\Time.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.i: cmake_force
@@ -213,7 +227,7 @@ CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.s: cmake_force
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: CMakeFiles/demo.dir/flags.make
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: CMakeFiles/demo.dir/includes_CXX.rsp
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj: ../CrystalEngine/Tool/Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj"
 	C:\TDM-GCC-64\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\demo.dir\CrystalEngine\Tool\Test.cpp.obj -c D:\CrystalEngine-master\CrystalEngine\Tool\Test.cpp
 
 CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.i: cmake_force
@@ -235,6 +249,7 @@ demo_OBJECTS = \
 "CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj" \
+"CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj" \
 "CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj"
@@ -251,6 +266,7 @@ demo.exe: CMakeFiles/demo.dir/CrystalEngine/Component/Transform.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj
+demo.exe: CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj
 demo.exe: CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj
@@ -259,7 +275,7 @@ demo.exe: Library/Box2D-master/libBox2D.a
 demo.exe: CMakeFiles/demo.dir/linklibs.rsp
 demo.exe: CMakeFiles/demo.dir/objects1.rsp
 demo.exe: CMakeFiles/demo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable demo.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\CrystalEngine-master\Bin\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable demo.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\demo.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

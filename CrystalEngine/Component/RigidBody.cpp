@@ -7,4 +7,7 @@ RigidBody::RigidBody() : Component("RigidBody")
 RigidBody::~RigidBody()
 {
 }
+void RigidBody::update(){
+
+}
 } // namespace CrystalEngine

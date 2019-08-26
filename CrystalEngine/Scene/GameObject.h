@@ -40,26 +40,26 @@ public:
 	void start();
 	void update();
 
-	std::string getName();
+	std::string getName() const;
 
 	bool setParten(GameObject *_gameObject);
-	GameObject *getParten();
+	GameObject *getParten() const;
 
 	bool addChild(GameObject *_gameObject);
-	std::vector<GameObject *> getChildren();
-	int getChildrenCount();
+	std::vector<GameObject *> getChildren() const;
+	int getChildrenCount() const;
 	bool removeChild(GameObject *_gameObject);
 	bool cleanChildren();
-
-	bool newGameObject(std::string _gameObjectName);
+	
 	bool creatGameObject(std::string _gameObjectName);
-	GameObject *getGameObject(std::string _gameObjectName);
-	void destoryGameObject(std::string _name);
+	bool newGameObject(std::string _gameObjectName);
+	GameObject *getGameObject(std::string _gameObjectName) const;
+	bool destoryGameObject(std::string _name);
 
 	bool creatComponent(Component *_component);
 	bool newComponent(Component *_component);
-	Component *getComponent(std::string _name);
-	void destoryComponent(std::string _name);
+	Component *getComponent(std::string _name) const;
+	bool destoryComponent(std::string _name);
 };
 
 class TestGameObject : public CrystalEngine::Test
@@ -67,7 +67,7 @@ class TestGameObject : public CrystalEngine::Test
 public:
 	TestGameObject();
 	~TestGameObject();
-	void run();
+	void run() override;
 };
 
 } // namespace CrystalEngine

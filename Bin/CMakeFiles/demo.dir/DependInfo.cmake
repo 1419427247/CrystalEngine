@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "D:/CrystalEngine-master/CrystalEngine/Component/Vector.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Component.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/GameObject.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj"
+  "D:/CrystalEngine-master/CrystalEngine/Scene/PhysicalManager.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Scene.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Scene/Time.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj"
   "D:/CrystalEngine-master/CrystalEngine/Tool/Test.cpp" "D:/CrystalEngine-master/Bin/CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj"

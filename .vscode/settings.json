@@ -43,6 +43,12 @@
         "xiosbase": "cpp",
         "xlocale": "cpp",
         "xlocinfo": "cpp",
-        "xlocnum": "cpp"
+        "xlocnum": "cpp",
+        "algorithm": "cpp",
+        "cstdarg": "cpp",
+        "deque": "cpp",
+        "set": "cpp",
+        "sstream": "cpp",
+        "xtree": "cpp"
     }
 }

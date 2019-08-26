@@ -30,7 +30,7 @@ public:
     RigidBody();
     ~RigidBody();
     
-    void update();
+    void update() override;
 };
 } // namespace
 #endif

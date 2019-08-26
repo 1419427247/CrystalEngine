@@ -2,7 +2,7 @@
 #define VECTOR_H
 
 #include "CrystalEngine/Tool/Test.h"
-#include <cmath>
+#include <math.h>
 
 namespace CrystalEngine
 {

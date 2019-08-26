@@ -351,6 +351,33 @@ CrystalEngine/Scene/GameObject.cpp.s:
 	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.s
 .PHONY : CrystalEngine/Scene/GameObject.cpp.s
 
+CrystalEngine/Scene/PhysicalManager.obj: CrystalEngine/Scene/PhysicalManager.cpp.obj
+
+.PHONY : CrystalEngine/Scene/PhysicalManager.obj
+
+# target to build an object file
+CrystalEngine/Scene/PhysicalManager.cpp.obj:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj
+.PHONY : CrystalEngine/Scene/PhysicalManager.cpp.obj
+
+CrystalEngine/Scene/PhysicalManager.i: CrystalEngine/Scene/PhysicalManager.cpp.i
+
+.PHONY : CrystalEngine/Scene/PhysicalManager.i
+
+# target to preprocess a source file
+CrystalEngine/Scene/PhysicalManager.cpp.i:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.i
+.PHONY : CrystalEngine/Scene/PhysicalManager.cpp.i
+
+CrystalEngine/Scene/PhysicalManager.s: CrystalEngine/Scene/PhysicalManager.cpp.s
+
+.PHONY : CrystalEngine/Scene/PhysicalManager.s
+
+# target to generate assembly for a file
+CrystalEngine/Scene/PhysicalManager.cpp.s:
+	$(MAKE) -f CMakeFiles\demo.dir\build.make CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.s
+.PHONY : CrystalEngine/Scene/PhysicalManager.cpp.s
+
 CrystalEngine/Scene/Scene.obj: CrystalEngine/Scene/Scene.cpp.obj
 
 .PHONY : CrystalEngine/Scene/Scene.obj
@@ -493,6 +520,9 @@ help:
 	@echo ... CrystalEngine/Scene/GameObject.obj
 	@echo ... CrystalEngine/Scene/GameObject.i
 	@echo ... CrystalEngine/Scene/GameObject.s
+	@echo ... CrystalEngine/Scene/PhysicalManager.obj
+	@echo ... CrystalEngine/Scene/PhysicalManager.i
+	@echo ... CrystalEngine/Scene/PhysicalManager.s
 	@echo ... CrystalEngine/Scene/Scene.obj
 	@echo ... CrystalEngine/Scene/Scene.i
 	@echo ... CrystalEngine/Scene/Scene.s

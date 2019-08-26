@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/demo.dir/CrystalEngine/Component/Vector.cpp.obj"
   "CMakeFiles/demo.dir/CrystalEngine/Scene/Component.cpp.obj"
   "CMakeFiles/demo.dir/CrystalEngine/Scene/GameObject.cpp.obj"
+  "CMakeFiles/demo.dir/CrystalEngine/Scene/PhysicalManager.cpp.obj"
   "CMakeFiles/demo.dir/CrystalEngine/Scene/Scene.cpp.obj"
   "CMakeFiles/demo.dir/CrystalEngine/Scene/Time.cpp.obj"
   "CMakeFiles/demo.dir/CrystalEngine/Tool/Test.cpp.obj"

@@ -1,11 +1,10 @@
 #include "CrystalEngine/Component/Vector.h"
-
 namespace CrystalEngine
 {
 
 double Vector::distance(Vector *_v1, Vector *_v2)
 {
-	return std::sqrt(fabs((_v1->x - _v2->x) * (_v1->y - _v2->y)));
+	return sqrt(fabs((_v1->x - _v2->x) * (_v1->y - _v2->y)));
 }
 
 Vector::Vector()
@@ -41,7 +40,7 @@ double Vector::getY() const
 
 double Vector::length() const
 {
-	return std::sqrt(x * x + y * y);
+	return sqrt(x * x + y * y);
 }
 
 void Vector::normalized()

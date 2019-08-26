@@ -71,7 +71,7 @@ void GameObject::update()
 	}
 }
 
-std::string GameObject::getName()
+std::string GameObject::getName() const
 {
 	return name;
 }
@@ -97,7 +97,7 @@ bool GameObject::setParten(GameObject *_gameObject)
 	return true;
 }
 
-GameObject *GameObject::getParten()
+GameObject *GameObject::getParten() const
 {
 	return parent;
 }
@@ -118,14 +118,14 @@ bool GameObject::addChild(GameObject *_gameObject)
 	return true;
 }
 
-std::vector<GameObject *> GameObject::getChildren()
+std::vector<GameObject *> GameObject::getChildren() const
 {
 	std::vector<GameObject *> result;
 	for (GameObject *var : *children)
 		result.push_back(var);
 	return result;
 }
-int GameObject::getChildrenCount()
+int GameObject::getChildrenCount() const
 {
 	return children->size();
 }
@@ -163,15 +163,15 @@ bool GameObject::creatGameObject(std::string _gameObjectName)
 	return scene->creatGameObject(_gameObjectName);
 }
 
-GameObject *GameObject::getGameObject(std::string _gameObjectName)
+GameObject *GameObject::getGameObject(std::string _gameObjectName) const
 {
 	return scene->getGameObject(_gameObjectName);
 	;
 }
 
-void GameObject::destoryGameObject(std::string _name)
+bool GameObject::destoryGameObject(std::string _name)
 {
-	scene->destoryGameObject(_name);
+	return scene->destoryGameObject(_name);
 }
 
 bool GameObject::creatComponent(Component *_component)
@@ -187,11 +187,21 @@ bool GameObject::newComponent(Component *_component)
 {
 	if (_component == nullptr)
 		return false;
+	for (Component *var : *components)
+	{
+		if (var->name == _component->name)
+			return false;
+	}
+	for (Component *var : *newComponents)
+	{
+		if (var->name == _component->name)
+			return false;
+	}
 	newComponents->push_back(_component);
 	return true;
 }
 
-Component *GameObject::getComponent(std::string _name)
+Component *GameObject::getComponent(std::string _name) const
 {
 	for (Component *var : *components)
 	{
@@ -203,14 +213,28 @@ Component *GameObject::getComponent(std::string _name)
 	return nullptr;
 }
 
-void GameObject::destoryComponent(std::string _name)
+bool GameObject::destoryComponent(std::string _name)
 {
+	bool temp = false;
+	for (Component *var : *components)
+	{
+		if (var->name == _name)
+		{
+			temp = true;
+			break;
+		}
+	}
+	if (temp == false)
+		return false;
+
+	for (std::string var : *deleteComponents)
+	{
+		if (var == _name)
+			return false;
+	}
 	deleteComponents->push_back(_name);
+	return true;
 }
-
-
-
-
 
 TestGameObject::TestGameObject() : Test("TestGameObject")
 {

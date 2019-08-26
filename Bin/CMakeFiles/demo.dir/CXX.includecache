@@ -30,14 +30,6 @@ CrystalEngine/Tool/Test.h
 CrystalEngine/Scene/Component.h
 ../CrystalEngine/Component/CrystalEngine/Scene/Component.h
 
-../CrystalEngine/Component/Collision.h
-CrystalEngine/Scene/Component.h
-../CrystalEngine/Component/CrystalEngine/Scene/Component.h
-
-../CrystalEngine/Component/RigidBody.h
-CrystalEngine/Scene/Component.h
-../CrystalEngine/Component/CrystalEngine/Scene/Component.h
-
 ../CrystalEngine/Component/Transform.h
 CrystalEngine/Tool/Test.h
 ../CrystalEngine/Component/CrystalEngine/Tool/Test.h
@@ -49,7 +41,7 @@ CrystalEngine/Component/Vector.h
 ../CrystalEngine/Component/Vector.h
 CrystalEngine/Tool/Test.h
 ../CrystalEngine/Component/CrystalEngine/Tool/Test.h
-cmath
+math.h
 -
 
 ../CrystalEngine/Scene/Component.h
@@ -346,46 +338,6 @@ Box2D/Dynamics/b2TimeStep.h
 Box2D/Common/b2Settings.h
 ../Library/Box2D-master/Box2D/Dynamics/Box2D/Common/b2Settings.h
 
-D:/CrystalEngine-master/CrystalEngine/Application.cpp
-CrystalEngine/Application.h
-D:/CrystalEngine-master/CrystalEngine/CrystalEngine/Application.h
-
-D:/CrystalEngine-master/CrystalEngine/Component/Camera.cpp
-CrystalEngine/Component/Camera.h
-D:/CrystalEngine-master/CrystalEngine/Component/CrystalEngine/Component/Camera.h
-
-D:/CrystalEngine-master/CrystalEngine/Component/Collision.cpp
-CrystalEngine/Component/Collision.h
-D:/CrystalEngine-master/CrystalEngine/Component/CrystalEngine/Component/Collision.h
-
-D:/CrystalEngine-master/CrystalEngine/Component/RigidBody.cpp
-CrystalEngine/Component/RigidBody.h
-D:/CrystalEngine-master/CrystalEngine/Component/CrystalEngine/Component/RigidBody.h
-
-D:/CrystalEngine-master/CrystalEngine/Component/Transform.cpp
-CrystalEngine/Component/Transform.h
-D:/CrystalEngine-master/CrystalEngine/Component/CrystalEngine/Component/Transform.h
-
-D:/CrystalEngine-master/CrystalEngine/Component/Vector.cpp
-CrystalEngine/Component/Vector.h
-D:/CrystalEngine-master/CrystalEngine/Component/CrystalEngine/Component/Vector.h
-
-D:/CrystalEngine-master/CrystalEngine/Scene/Component.cpp
-CrystalEngine/Scene/Component.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Component.h
-CrystalEngine/Scene/GameObject.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/GameObject.h
-CrystalEngine/Scene/Scene.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Scene.h
-
-D:/CrystalEngine-master/CrystalEngine/Scene/GameObject.cpp
-CrystalEngine/Scene/Scene.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Scene.h
-CrystalEngine/Scene/GameObject.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/GameObject.h
-CrystalEngine/Scene/Component.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Component.h
-
 D:/CrystalEngine-master/CrystalEngine/Scene/Scene.cpp
 CrystalEngine/Scene/Scene.h
 D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Scene.h
@@ -394,17 +346,9 @@ D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/GameObject.h
 CrystalEngine/Scene/Component.h
 D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Component.h
 
-D:/CrystalEngine-master/CrystalEngine/Scene/Time.cpp
-CrystalEngine/Scene/Time.h
-D:/CrystalEngine-master/CrystalEngine/Scene/CrystalEngine/Scene/Time.h
-
-D:/CrystalEngine-master/CrystalEngine/Tool/Test.cpp
-CrystalEngine/Tool/Test.h
-D:/CrystalEngine-master/CrystalEngine/Tool/CrystalEngine/Tool/Test.h
-
 D:/CrystalEngine-master/CrystalEngine/main.cpp
+CrystalEngine/Application.h
+D:/CrystalEngine-master/CrystalEngine/CrystalEngine/Application.h
 Box2D/Box2D.h
 D:/CrystalEngine-master/CrystalEngine/Box2D/Box2D.h
-stdio.h
--
 

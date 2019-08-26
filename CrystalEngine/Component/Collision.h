@@ -3,6 +3,9 @@
 #include "CrystalEngine/Scene/Component.h"
 namespace CrystalEngine
 {
+// enum CollisionTye{
+
+// }
 class Collision : public Component
 {
 public:
