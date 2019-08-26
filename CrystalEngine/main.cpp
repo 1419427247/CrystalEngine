@@ -7,4 +7,5 @@ int main()
 		testDispose();
 		new CrystalEngine::TestScene();
 	} while (!testBegin());
+	
 }
