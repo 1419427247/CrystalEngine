@@ -2,6 +2,7 @@
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"
 
+#include "CrystalEngine/Scene/PhysicalManager.h"
 namespace CrystalEngine
 {
 Scene::Scene()
