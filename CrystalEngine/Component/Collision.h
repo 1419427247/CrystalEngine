@@ -11,6 +11,10 @@ class Collision : public Component
 public:
     Collision();
     ~Collision();
+
+    void start() override;
+    void update() override;
+	void destory() override;
 };
 } // namespace CrystalEngine
 #endif
