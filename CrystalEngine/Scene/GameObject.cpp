@@ -49,6 +49,7 @@ void GameObject::update()
 		{
 			if (component->name == var)
 			{
+				component->destory();
 				components->remove(component);
 				delete component;
 				break;
