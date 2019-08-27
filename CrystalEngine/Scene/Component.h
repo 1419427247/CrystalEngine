@@ -8,9 +8,11 @@
 namespace CrystalEngine
 {
 class GameObject;
+class RigidBody;
 class Component
 {
 	friend class GameObject;
+	friend class RigidBody;
 	std::string name;
 
 public:
@@ -20,6 +22,7 @@ public:
 
 	virtual void start();
 	virtual void update();
+	virtual void destory();
 
 	void finish();
 
