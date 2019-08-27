@@ -24,13 +24,15 @@ class RigidBody : public Component
 	bool awake;
 	bool fixedRotation;
 	bool bullet;
-	bool type;
+	BodyType type;
 	bool active;
 public:
     RigidBody();
     ~RigidBody();
     
+	void start() override;
     void update() override;
+	void destory() override;
 };
 } // namespace
 #endif
