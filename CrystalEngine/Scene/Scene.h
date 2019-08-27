@@ -9,11 +9,15 @@ namespace CrystalEngine
 {
 class GameObject;
 class Component;
+class RigidBody;
+class Collision;
 class PhysicalManager;
 class Scene
 {
 	friend class TestScene;
 	friend class GameObject;
+	friend class RigidBody;
+	friend class Collision;
 private:
 	bool isAlive;
 	std::vector<std::string> *newGameObjects;
