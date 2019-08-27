@@ -6,17 +6,18 @@
 #include <vector>
 #include <string>
 
-
 namespace CrystalEngine
 {
 class Component;
 class Scene;
-
+class RigidBody;
+class Collision;
 class GameObject
 {
 	friend class Scene;
 	friend class Component;
-
+	friend class RigidBody;
+	friend class Collision;
 private:
 	//物体当前所在的的场景
 	Scene *scene;
@@ -50,7 +51,7 @@ public:
 	int getChildrenCount() const;
 	bool removeChild(GameObject *_gameObject);
 	bool cleanChildren();
-	
+
 	bool creatGameObject(std::string _gameObjectName);
 	bool newGameObject(std::string _gameObjectName);
 	GameObject *getGameObject(std::string _gameObjectName) const;
