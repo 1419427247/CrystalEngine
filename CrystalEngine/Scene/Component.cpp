@@ -21,6 +21,10 @@ void Component::update()
 {
 }
 
+void Component::destory()
+{
+}
+
 void Component::finish()
 {
 	gameObject->scene->finish();
