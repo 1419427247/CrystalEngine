@@ -126,6 +126,7 @@ void Scene::run()
 		{
 			if (gameObjects->count(var))
 			{
+				(*gameObjects)[var]->destory();
 				delete (*gameObjects)[var];
 				gameObjects->erase(var);
 			}
