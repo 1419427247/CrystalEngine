@@ -17,18 +17,22 @@ void PhysicalManager::finish()
 {
 }
 
-void PhysicalManager::newRigidBody(GameObject *_gameObject)
+void PhysicalManager::newRigidBody(RigidBody *_rigidBody)
 {
+    
 }
-void PhysicalManager::destoryRigidBody(GameObject *_gameObject)
+void PhysicalManager::destoryRigidBody(RigidBody *_rigidBody)
 {
+
 }
 
-void PhysicalManager::newCollision(GameObject *_gameObject)
+void PhysicalManager::newCollision(Collision *_collision)
 {
+
 }
-void PhysicalManager::destoryCollision(GameObject *_gameObject)
+void PhysicalManager::destoryCollision(Collision *_collision)
 {
+
 }
 
 } // namespace CrystalEngine
