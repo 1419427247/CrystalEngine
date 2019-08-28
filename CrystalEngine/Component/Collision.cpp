@@ -15,7 +15,7 @@ Collision::~Collision()
 void Collision::start()
 {
     if (gameObject->scene->physicalManager)
-        gameObject->scene->physicalManager->newRigidBody(this->gameObject);
+        gameObject->scene->physicalManager->newRigidBody(this);
 }
 void Collision::update()
 {
@@ -23,7 +23,7 @@ void Collision::update()
 void Collision::destory()
 {
     if (gameObject->scene->physicalManager)
-        gameObject->scene->physicalManager->destoryRigidBody(this->gameObject);
+        gameObject->scene->physicalManager->destoryRigidBody(this);
 }
 
 } // namespace CrystalEngine
