@@ -15,5 +15,7 @@ Transform::Transform(Transform& _t): Component("Transform"){
 
 Transform::~Transform()
 {
+    delete position;
+    delete rotate;
 }
 } // namespace CrystalEngine
