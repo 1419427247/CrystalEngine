@@ -1,19 +1,28 @@
 #ifndef TIME_H
 #define TIME_H
 
-#include <thread>
-#include <ctime>
-#include <chrono>
 #include "CrystalEngine/Tool/Test.h"
 
 namespace CrystalEngine
 {
-class Runnable;
+	
+struct Date
+{
+	int year;
+	int month;
+	int day;
+	int hour;
+	int minute;
+	int second;
+};
 
+class Runnable;
 class Time
 {
 private:
 public:
+	static Date now();
+
 	static void run(Runnable *_runable, int _millisecond);
 	static void start(Runnable *_runable, int _millisecond);
 
