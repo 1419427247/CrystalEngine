@@ -14,7 +14,7 @@ RigidBody::~RigidBody()
 void RigidBody::start()
 {
     if (gameObject->scene->physicalManager)
-        gameObject->scene->physicalManager->newRigidBody(this->gameObject);
+        gameObject->scene->physicalManager->newRigidBody(this);
 }
 void RigidBody::update()
 {
@@ -22,6 +22,6 @@ void RigidBody::update()
 void RigidBody::destory()
 {
     if (gameObject->scene->physicalManager)
-        gameObject->scene->physicalManager->destoryRigidBody(this->gameObject);
+        gameObject->scene->physicalManager->destoryRigidBody(this);
 }
 } // namespace CrystalEngine
