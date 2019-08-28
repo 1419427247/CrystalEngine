@@ -75,6 +75,13 @@ void GameObject::update()
 	}
 }
 
+void GameObject::destory(){
+	for (Component *var : *components)
+	{
+		var->destory();
+	}
+}
+
 std::string GameObject::getName() const
 {
 	return name;
