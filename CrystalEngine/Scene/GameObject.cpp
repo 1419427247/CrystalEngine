@@ -2,6 +2,7 @@
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"
 
+#include "CrystalEngine/Component/Transform.h"
 namespace CrystalEngine
 {
 GameObject::GameObject(std::string _name)
@@ -13,6 +14,7 @@ GameObject::GameObject(std::string _name)
 	scene = nullptr;
 	parent = nullptr;
 	children = new std::list<GameObject *>();
+	transform = new Transform();
 }
 
 GameObject::~GameObject()
@@ -35,6 +37,7 @@ GameObject::~GameObject()
 
 void GameObject::start()
 {
+	components->push_front(transform);
 	for (Component *var : *components)
 	{
 		var->start();
