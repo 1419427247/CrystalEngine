@@ -10,6 +10,7 @@ namespace CrystalEngine
 {
 class Component;
 class Scene;
+class Transform;
 class RigidBody;
 class Collision;
 class GameObject
@@ -34,6 +35,7 @@ private:
 	//子物体
 	std::list<GameObject *> *children;
 
+	Transform* transform;
 public:
 	GameObject(std::string _name);
 	~GameObject();
