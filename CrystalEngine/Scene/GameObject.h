@@ -42,6 +42,7 @@ public:
 
 	void start();
 	void update();
+	void destory();
 
 	std::string getName() const;
 
