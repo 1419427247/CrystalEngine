@@ -27,12 +27,13 @@ private:
 	PhysicalManager* physicalManager; 
 	
 public:
-	Scene();
 	Scene(PhysicalManager* _physicalManager);
 	~Scene();
 
-	void run();
-	void finish();
+
+	void start();
+	bool update();
+	void destory();
 
 	bool newGameObject(std::string _gameObjectName);
 	bool creatGameObject(std::string _gameObjectName);
