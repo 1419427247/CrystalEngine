@@ -8,9 +8,17 @@ Runnable::Runnable()
 }
 Runnable::~Runnable()
 {
-
 }
-void Runnable::run(){
+void Runnable::run()
+{
+}
 
+bool Runnable::isAlive()
+{
+    return alive;
+}
+void Runnable::exit()
+{
+    alive = false;
 }
 } // namespace CrystalEngine
