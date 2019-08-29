@@ -7,9 +7,10 @@ class Scene;
 class GameObjct;
 class PhysicalManager
 {
+    friend class Scene;
     Scene* scene;
 public:
-    PhysicalManager(Scene* _scene);
+    PhysicalManager();
     virtual ~PhysicalManager();
 
     virtual void newRigidBody(RigidBody* _rigidBody);
@@ -18,8 +19,12 @@ public:
     virtual void newCollision(Collision* _collision);
     virtual void destoryCollision(Collision* _collision);
 
-    virtual void run();
-	virtual void finish();
+    virtual void start();
+
+    virtual void update();
+
+    virtual void destory();
+    
 };
 } // namespace CrystalEngine
 #endif
