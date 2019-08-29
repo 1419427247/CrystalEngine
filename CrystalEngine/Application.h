@@ -1,5 +1,5 @@
-#ifndef APPPLICATION_H
-#define APPPLICATION_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include "CrystalEngine/Scene/Component.h"
 #include "CrystalEngine/Scene/GameObject.h"
@@ -12,19 +12,21 @@
 #include "CrystalEngine/Component/RigidBody.h"
 #include "CrystalEngine/Component/Collision.h"
 
-
 #include "CrystalEngine/Tool/Test.h"
 #include "CrystalEngine/Tool/Runnable.h"
 #include "CrystalEngine/Tool/Timer.h"
-
 
 namespace CrystalEngine
 {
 class Application
 {
+private:
+	Scene *scene;
 public:
-	Application();
+	Application(Scene *_scene);
 	~Application();
+
+	void run();
 };
 } // namespace CrystalEngine
 
