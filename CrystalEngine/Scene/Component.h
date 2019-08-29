@@ -24,8 +24,6 @@ public:
 	virtual void update();
 	virtual void destory();
 
-	void finish();
-
 	bool newGameObject(std::string _gameObjectName);
 	GameObject *getGameObject(std::string _gameObjectName) const;
 	bool destoryGameObject(std::string _name);
