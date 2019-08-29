@@ -26,7 +26,6 @@ private:
 	std::unordered_map<std::string, GameObject *> *gameObjects;
 	PhysicalManager* physicalManager; 
 	
-
 public:
 	Scene();
 	Scene(PhysicalManager* _physicalManager);
