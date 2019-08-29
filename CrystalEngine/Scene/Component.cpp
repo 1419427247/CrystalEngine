@@ -25,11 +25,6 @@ void Component::destory()
 {
 }
 
-void Component::finish()
-{
-	gameObject->scene->finish();
-}
-
 bool Component::newGameObject(std::string _gameObjectName)
 {
 	return gameObject->newGameObject(_gameObjectName);
