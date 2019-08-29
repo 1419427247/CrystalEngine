@@ -74,12 +74,13 @@ void Timer::startLoop(Runnable *_runable, int _millisecond)
     thread.detach();
 }
 
-void Timer::run(bool (*_runable)(), int _millisecond)
+void Timer::run(std::function<bool()> _runable, int _millisecond)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
     _runable();
 }
-void Timer::start(bool (*_runable)(), int _millisecond)
+
+void Timer::start(std::function<bool()> _runable, int _millisecond)
 {
     std::thread thread = std::thread([_runable, _millisecond]() {
         std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
@@ -88,14 +89,14 @@ void Timer::start(bool (*_runable)(), int _millisecond)
     thread.detach();
 }
 
-void Timer::runLoop(bool (*_runable)(), int _millisecond)
+void Timer::runLoop(std::function<bool()> _runable, int _millisecond)
 {
     while (_runable())
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
     }
 }
-void Timer::startLoop(bool (*_runable)(), int _millisecond)
+void Timer::startLoop(std::function<bool()> _runable, int _millisecond)
 {
     std::thread thread = std::thread([_runable, _millisecond]() {
         while (_runable())
