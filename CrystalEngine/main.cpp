@@ -1,27 +1,38 @@
 #include "CrystalEngine/Application.h"
 
-class Temp 
+class Temp : public CrystalEngine::Component
 {
 public:
-	bool update()
+	Temp():Component("Temp"){
+
+	}
+	void start()
 	{
+		std::cout << "Hi";
+	}
+	int i = 0;
+	void update()
+	{
+		if(i++<10)
 		std::cout << "QAQ";
+		else
+		destoryGameObject("qwq");
+	}
+	void destory(){
+		std::cout << "By!";
 	}
 };
 
 int main()
 {
-	// CrystalEngine::Scene* scene = new CrystalEngine::Scene(new CrystalEngine::PhysicalManager());
+	CrystalEngine::Scene* scene = new CrystalEngine::Scene(new CrystalEngine::PhysicalManager());
 
-	// scene->creatGameObject("qwq");
-	// scene->creatComponent("qwq",new Temp());
+	scene->creatGameObject("qwq");
+	scene->creatComponent("qwq",new Temp());
 
-	// CrystalEngine::Application* application = new CrystalEngine::Application(scene);
+	CrystalEngine::Application* application = new CrystalEngine::Application(scene);
 
-	// application->run();
+	application->run();
 
-	// return 1;
-	
-	//CrystalEngine::Timer::run<Temp>(new Temp(),&Temp::update,100);
-	CrystalEngine::Timer::runLoop<Temp>(new Temp(),&Temp::update,100);
+	return 1;
 }
