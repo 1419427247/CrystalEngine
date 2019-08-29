@@ -15,7 +15,7 @@
 
 #include "CrystalEngine/Tool/Test.h"
 #include "CrystalEngine/Tool/Runnable.h"
-#include "CrystalEngine/Tool/Time.h"
+#include "CrystalEngine/Tool/Timer.h"
 
 
 namespace CrystalEngine
