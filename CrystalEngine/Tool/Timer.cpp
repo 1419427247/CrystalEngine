@@ -8,10 +8,10 @@
 namespace CrystalEngine
 {
 
-
-Date Timer::now(){
+Date Timer::now()
+{
     time_t _t = time(NULL);
-    tm* _tm = localtime(&_t);
+    tm *_tm = localtime(&_t);
     return Date{
         _tm->tm_year + 1900,
         _tm->tm_mon + 1,
@@ -24,7 +24,7 @@ Date Timer::now(){
 
 void Timer::run(Runnable *_runable, int _millisecond)
 {
-    if(_runable->isAlive())
+    if (_runable->isAlive())
         return;
     _runable->alive = true;
     std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
@@ -34,7 +34,7 @@ void Timer::run(Runnable *_runable, int _millisecond)
 
 void Timer::start(Runnable *_runable, int _millisecond)
 {
-    if(_runable->isAlive())
+    if (_runable->isAlive())
         return;
     _runable->alive = true;
     std::thread thread = std::thread([_runable, _millisecond]() {
@@ -47,7 +47,7 @@ void Timer::start(Runnable *_runable, int _millisecond)
 
 void Timer::runLoop(Runnable *_runable, int _millisecond)
 {
-    if(_runable->isAlive())
+    if (_runable->isAlive())
         return;
     _runable->alive = true;
     while (_runable->alive)
@@ -60,7 +60,7 @@ void Timer::runLoop(Runnable *_runable, int _millisecond)
 
 void Timer::startLoop(Runnable *_runable, int _millisecond)
 {
-    if(_runable->isAlive())
+    if (_runable->isAlive())
         return;
     _runable->alive = true;
     std::thread thread = std::thread([_runable, _millisecond]() {
@@ -70,6 +70,38 @@ void Timer::startLoop(Runnable *_runable, int _millisecond)
             std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
         }
         _runable->alive = false;
+    });
+    thread.detach();
+}
+
+void Timer::run(bool (*_runable)(), int _millisecond)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
+    _runable();
+}
+void Timer::start(bool (*_runable)(), int _millisecond)
+{
+    std::thread thread = std::thread([_runable, _millisecond]() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
+        _runable();
+    });
+    thread.detach();
+}
+
+void Timer::runLoop(bool (*_runable)(), int _millisecond)
+{
+    while (_runable())
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
+    }
+}
+void Timer::startLoop(bool (*_runable)(), int _millisecond)
+{
+    std::thread thread = std::thread([_runable, _millisecond]() {
+        while (_runable())
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
+        }
     });
     thread.detach();
 }
