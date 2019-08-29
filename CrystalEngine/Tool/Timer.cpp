@@ -1,7 +1,3 @@
-#include <thread>
-#include <ctime>
-#include <chrono>
-
 #include "CrystalEngine/Tool/Timer.h"
 #include "CrystalEngine/Tool/Runnable.h"
 
@@ -110,5 +106,9 @@ void Timer::startLoop(std::function<bool()> _runable, int _millisecond)
 void Timer::sleep(int _millisecond)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(_millisecond));
+}
+
+void Timer::yield(){
+    std::this_thread::yield();
 }
 } // namespace CrystalEngine
