@@ -3,6 +3,8 @@
 #include "CrystalEngine/Scene/Component.h"
 
 #include "CrystalEngine/Scene/PhysicalManager.h"
+
+#include "CrystalEngine/Tool/Timer.h"
 namespace CrystalEngine
 {
 Scene::Scene()
