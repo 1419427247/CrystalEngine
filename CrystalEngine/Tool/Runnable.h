@@ -13,8 +13,6 @@ public:
     virtual void run();
 
     bool isAlive();
-
-
     void exit();
     
 };
