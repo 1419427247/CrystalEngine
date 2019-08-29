@@ -28,25 +28,15 @@ class Temp : public CrystalEngine::Component{
 	}
 	void update()
 	{
-		
+
 	}
 	void destory(){
 
 	}
 };
 
-int main()
-{
-	// do
-	// {
-	// 	testDispose();
-	// 	new CrystalEngine::TestScene();
-	// } while (!testBegin());
-	//CrystalEngine::Scene* scene = new CrystalEngine::Scene();
-	CrystalEngine::Runnable *r = new a();
-	CrystalEngine::Time t;
-	t.startLoop(r, 1000);
 
-	while (r->isAlive())
-		;
+int main()
+{                                      // -1
+    return 1;
 }
