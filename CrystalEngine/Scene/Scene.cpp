@@ -7,14 +7,6 @@
 #include "CrystalEngine/Tool/Timer.h"
 namespace CrystalEngine
 {
-Scene::Scene()
-{
-	isAlive = false;
-	newGameObjects = new std::vector<std::string>();
-	deleteGameObjects = new std::vector<std::string>();
-	gameObjects = new std::unordered_map<std::string, GameObject *>();
-	physicalManager = nullptr;
-}
 Scene::Scene(PhysicalManager *_physicalManager)
 {
 	isAlive = false;
@@ -22,6 +14,7 @@ Scene::Scene(PhysicalManager *_physicalManager)
 	deleteGameObjects = new std::vector<std::string>();
 	gameObjects = new std::unordered_map<std::string, GameObject *>();
 	physicalManager = _physicalManager;
+	physicalManager->scene = this;
 }
 
 Scene::~Scene()
@@ -35,6 +28,54 @@ Scene::~Scene()
 	delete deleteGameObjects;
 	if (physicalManager != nullptr)
 		delete physicalManager;
+}
+
+void Scene::start()
+{
+	isAlive = true;
+
+	for (std::pair<std::string, GameObject *> var : *gameObjects)
+	{
+		var.second->start();
+	}
+
+	physicalManager->start();
+}
+bool Scene::update()
+{
+		for (std::string var : *deleteGameObjects)
+		{
+			if (gameObjects->count(var))
+			{
+				(*gameObjects)[var]->destory();
+				delete (*gameObjects)[var];
+				gameObjects->erase(var);
+			}
+		}
+		deleteGameObjects->clear();
+
+		for (std::string var : *newGameObjects)
+		{
+			if (!gameObjects->count(var))
+			{
+				(*gameObjects)[var] = new GameObject(var);
+				(*gameObjects)[var]->scene = this;
+				(*gameObjects)[var]->start();
+			}
+		}
+		newGameObjects->clear();
+
+		for (std::pair<std::string, GameObject *> var : *gameObjects)
+		{
+			var.second->update();
+		}
+
+		physicalManager->update();
+	return isAlive;
+}
+void Scene::destory()
+{
+	physicalManager->destory();
 }
 
 bool Scene::newGameObject(std::string _gameObjectName)
@@ -113,50 +154,6 @@ bool Scene::destoryComponent(std::string _gameObjectName, std::string _name)
 	return (*gameObjects)[_gameObjectName]->destoryComponent(_name);
 }
 
-void Scene::run()
-{
-	isAlive = true;
-
-	for (std::pair<std::string, GameObject *> var : *gameObjects)
-	{
-		var.second->start();
-	}
-
-	while (isAlive)
-	{
-		for (std::string var : *deleteGameObjects)
-		{
-			if (gameObjects->count(var))
-			{
-				(*gameObjects)[var]->destory();
-				delete (*gameObjects)[var];
-				gameObjects->erase(var);
-			}
-		}
-		deleteGameObjects->clear();
-
-		for (std::string var : *newGameObjects)
-		{
-			if (!gameObjects->count(var))
-			{
-				(*gameObjects)[var] = new GameObject(var);
-				(*gameObjects)[var]->scene = this;
-				(*gameObjects)[var]->start();
-			}
-		}
-		newGameObjects->clear();
-
-		for (std::pair<std::string, GameObject *> var : *gameObjects)
-		{
-			var.second->update();
-		}
-	}
-}
-void Scene::finish()
-{
-	isAlive = false;
-}
-
 TestScene::TestScene() : Test("TestScene")
 {
 }
@@ -165,22 +162,22 @@ TestScene::~TestScene()
 }
 void TestScene::run()
 {
-	Scene *s1 = new Scene();
-	Comparison(s1->creatGameObject("g1"), true);
-	Comparison(s1->creatGameObject("g2"), true);
+	// Scene *s1 = new Scene();
+	// Comparison(s1->creatGameObject("g1"), true);
+	// Comparison(s1->creatGameObject("g2"), true);
 
-	Comparison(s1->creatGameObject("g1"), false);
+	// Comparison(s1->creatGameObject("g1"), false);
 
-	Comparison(s1->getGameObject("g1")->getName(),"g1");
+	// Comparison(s1->getGameObject("g1")->getName(), "g1");
 
-	Comparison(s1->creatComponent("g1",nullptr),false);
+	// Comparison(s1->creatComponent("g1", nullptr), false);
 
-	Comparison(s1->destoryGameObject("g2"),true);
-	Comparison(s1->destoryGameObject("g2"),false);
+	// Comparison(s1->destoryGameObject("g2"), true);
+	// Comparison(s1->destoryGameObject("g2"), false);
 
-	Comparison(s1->deleteGameObjects->at(0),"g2");
+	// Comparison(s1->deleteGameObjects->at(0), "g2");
 
-	delete s1;
+	// delete s1;
 }
 
 } // namespace CrystalEngine
