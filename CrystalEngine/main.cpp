@@ -3,8 +3,8 @@
 class Temp : public CrystalEngine::Component
 {
 public:
-	Temp():Component("Temp"){
-
+	Temp() : Component("Temp")
+	{
 	}
 	void start()
 	{
@@ -13,24 +13,25 @@ public:
 	int i = 0;
 	void update()
 	{
-		if(i++<10)
-		std::cout << "QAQ";
-		else
-		destoryGameObject("qwq");
+		std::cout << gameObject->transform->position->getX() << "," << gameObject->transform->position->getY() << std::endl;
+		gameObject->transform->position->set(0,0);
+			// destoryGameObject("qwq");
 	}
-	void destory(){
+	void destory()
+	{
 		std::cout << "By!";
 	}
 };
 
 int main()
 {
-	CrystalEngine::Scene* scene = new CrystalEngine::Scene(new CrystalEngine::PhysicalManager());
+	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
 	scene->creatGameObject("qwq");
-	scene->creatComponent("qwq",new Temp());
+	scene->creatComponent("qwq", new CrystalEngine::RigidBody());
+	scene->creatComponent("qwq", new Temp());
 
-	CrystalEngine::Application* application = new CrystalEngine::Application(scene);
+	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
 
 	application->run();
 
