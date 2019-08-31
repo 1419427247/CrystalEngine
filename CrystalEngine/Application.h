@@ -13,6 +13,7 @@
 #include "CrystalEngine/Component/Collision.h"
 
 #include "CrystalEngine/Tool/Test.h"
+#include "CrystalEngine/Tool/Box2dPhysical.h"
 #include "CrystalEngine/Tool/Runnable.h"
 #include "CrystalEngine/Tool/Timer.h"
 
