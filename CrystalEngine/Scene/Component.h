@@ -13,8 +13,8 @@ class Component
 {
 	friend class GameObject;
 	friend class RigidBody;
+protected:
 	std::string name;
-
 public:
 	GameObject *gameObject;
 	Component(std::string _name);
