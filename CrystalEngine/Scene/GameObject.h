@@ -13,12 +13,14 @@ class Scene;
 class Transform;
 class RigidBody;
 class Collision;
+
 class GameObject
 {
 	friend class Scene;
 	friend class Component;
 	friend class RigidBody;
 	friend class Collision;
+
 private:
 	//物体当前所在的的场景
 	Scene *scene;
@@ -35,8 +37,10 @@ private:
 	//子物体
 	std::list<GameObject *> *children;
 
-	Transform* transform;
 public:
+
+	Transform *transform;
+
 	GameObject(std::string _name);
 	~GameObject();
 
