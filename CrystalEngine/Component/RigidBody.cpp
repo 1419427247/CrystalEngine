@@ -7,6 +7,17 @@ namespace CrystalEngine
 {
 RigidBody::RigidBody() : Component("RigidBody")
 {
+    linearVelocity = new Vector();
+    angularVelocity = new Vector(0,1);
+    linearDamping = 0.0f;
+    angularDamping = 0.0f;
+    allowSleep = true;
+    awake = true;
+    fixedRotation = false;
+    bullet = false;
+    type = BodyType::dynamicBody;
+    active = true;
+    gravityScale = 1.0f;
 }
 RigidBody::~RigidBody()
 {
