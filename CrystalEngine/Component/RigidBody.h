@@ -13,8 +13,9 @@ enum BodyType
 
 class RigidBody : public Component
 {
-	Vector linearVelocity;
-	Vector angularVelocity;
+public:
+	Vector* linearVelocity;
+	Vector* angularVelocity;
 
 	double linearDamping;
 	double angularDamping;
@@ -26,10 +27,13 @@ class RigidBody : public Component
 	bool bullet;
 	BodyType type;
 	bool active;
-public:
+
     RigidBody();
     ~RigidBody();
     
+	void setPosition();
+	void setRotate();
+
 	void start() override;
     void update() override;
 	void destory() override;
