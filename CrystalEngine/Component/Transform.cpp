@@ -5,7 +5,7 @@ namespace CrystalEngine
 Transform::Transform() : Component("Transform")
 {
     position = new Vector();
-    rotate = new Vector();
+    rotate = new Vector(1,0);
 }
 
 Transform::Transform(Transform& _t): Component("Transform"){
@@ -18,4 +18,9 @@ Transform::~Transform()
     delete position;
     delete rotate;
 }
+
+double Transform::getAngle(){
+    return atan(rotate->getY()/rotate->getX());
+}
+
 } // namespace CrystalEngine
