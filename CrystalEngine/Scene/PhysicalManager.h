@@ -4,10 +4,13 @@
 namespace CrystalEngine
 {
 class Scene;
-class GameObjct;
+class RigidBody;
+class Collision;
+
 class PhysicalManager
 {
     friend class Scene;
+protected:
     Scene* scene;
 public:
     PhysicalManager();
