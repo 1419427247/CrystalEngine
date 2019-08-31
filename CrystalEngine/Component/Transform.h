@@ -14,6 +14,8 @@ public:
 	Transform();
 	Transform(Transform& _t);
 	~Transform();
+
+	double getAngle();
 };
 } // namespace CrystalEngine
 #endif
