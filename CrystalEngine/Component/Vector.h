@@ -19,8 +19,11 @@ public:
 	Vector(double _x, double _y);
 	~Vector();
 
+	void set(double _x, double _y);
+
 	double getX() const;
 	double getY() const;
+
 	double length() const;
 
 	void normalized();
