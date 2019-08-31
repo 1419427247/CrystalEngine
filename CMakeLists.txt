@@ -14,7 +14,6 @@ aux_source_directory(./CrystalEngine/Tool CrystalEngine_SRC_LIST)
 
 add_compile_options(-std=c++11)
 
-
 include_directories(./Library/Box2D-master)
 
 add_subdirectory(./Library/Box2D-master)
