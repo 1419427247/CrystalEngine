@@ -75,7 +75,8 @@ void GameObject::update()
 	}
 }
 
-void GameObject::destory(){
+void GameObject::destory()
+{
 	for (Component *var : *components)
 	{
 		var->destory();
