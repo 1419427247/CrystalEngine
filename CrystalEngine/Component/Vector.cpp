@@ -29,6 +29,11 @@ Vector::~Vector()
 {
 }
 
+void Vector::set(double _x, double _y){
+x = _x;
+y = _y;
+}
+
 double Vector::getX() const
 {
 	return x;
