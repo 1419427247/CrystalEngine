@@ -19,18 +19,20 @@ void PhysicalManager::destoryRigidBody(RigidBody *_rigidBody)
 {
 }
 
-// Vector* PhysicalManager::getPosition(const RigidBody *_rigidBody) const
-// {
-//     return  nullptr;
-// }
+Vector PhysicalManager::getPosition( RigidBody *_rigidBody) 
+{
+    Vector t;
+    return  t;
+}
 double PhysicalManager::getRotate(RigidBody *_rigidBody)
 {
     return 0;
 }
-// Vector* PhysicalManager::getLinearVelocity(const RigidBody *_rigidBody) const
-// {
-//     return  nullptr;
-// }
+Vector PhysicalManager::getLinearVelocity( RigidBody *_rigidBody) 
+{
+    Vector t;
+    return  t;
+}
 double PhysicalManager::getAngularVelocity(RigidBody *_rigidBody)
 {
     return 0;
