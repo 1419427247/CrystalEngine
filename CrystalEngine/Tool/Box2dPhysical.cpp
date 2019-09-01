@@ -5,7 +5,7 @@
 #include "CrystalEngine/Component/RigidBody.h"
 #include "CrystalEngine/Component/Collision.h"
 #include "CrystalEngine/Component/Transform.h"
-#include "CrystalEngine/Component/Vector.h"
+#include "CrystalEngine/Tool/Vector.h"
 
 #include "Box2D/Box2D.h"
 
