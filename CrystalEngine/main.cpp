@@ -1,21 +1,24 @@
 #include "CrystalEngine/Application.h"
-
+#include "Box2D/Box2D.h"
 class Temp : public CrystalEngine::Component
 {
 public:
 	Temp() : Component("Temp")
 	{
 	}
+	CrystalEngine::RigidBody *r;
 	void start()
 	{
-		std::cout << "Hi";
+		r = (CrystalEngine::RigidBody *)getComponent("Temp");
+		r->setType(CrystalEngine::BodyType::dynamicBody);
+		std::cout << "Hi" << std::endl;
 	}
-	int i = 0;
 	void update()
 	{
+		CrystalEngine::Vector v(0, 0);
+		if (gameObject->transform->position->getY() < -30)
+			r->setTransform(v, 0);
 		std::cout << gameObject->transform->position->getX() << "," << gameObject->transform->position->getY() << std::endl;
-		gameObject->transform->position->set(0,0);
-			// destoryGameObject("qwq");
 	}
 	void destory()
 	{
@@ -23,17 +26,29 @@ public:
 	}
 };
 
+using namespace CrystalEngine;
+
+Vector& getv()
+{
+	Vector v;
+	return v;
+}
+
 int main()
 {
-	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
-	scene->creatGameObject("qwq");
-	scene->creatComponent("qwq", new CrystalEngine::RigidBody());
-	scene->creatComponent("qwq", new Temp());
+	Vector v = getv();
 
-	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
+	std::cout<<v.getY();
+	// CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
-	application->run();
+	// scene->creatGameObject("qwq");
+	// scene->creatComponent("qwq", new CrystalEngine::RigidBody());
+	// scene->creatComponent("qwq", new Temp());
+
+	// CrystalEngine::Application *application = new CrystalEngine::Application(scene);
+
+	// application->run();
 
 	return 1;
 }
