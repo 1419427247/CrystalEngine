@@ -13,7 +13,13 @@ Vector::Vector()
 	y = 0;
 }
 
-Vector::Vector(Vector &_v)
+Vector::Vector(const Vector* _v)
+{
+	x = _v->x;
+	y = _v->y;
+}
+
+Vector::Vector(const Vector &_v)
 {
 	x = _v.x;
 	y = _v.y;
