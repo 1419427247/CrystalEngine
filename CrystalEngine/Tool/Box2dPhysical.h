@@ -24,9 +24,9 @@ public:
     void newRigidBody(RigidBody *_rigidBody);
     void destoryRigidBody(RigidBody *_rigidBody);
 
-   // Vector* getPosition(const RigidBody *_rigidBody)const;
+    Vector getPosition( RigidBody *_rigidBody);
 	double getRotate(RigidBody *_rigidBody);
-	//Vector* getLinearVelocity(const RigidBody *_rigidBody)const;
+	Vector getLinearVelocity( RigidBody *_rigidBody);
 	double getAngularVelocity(RigidBody *_rigidBody);
 	double getLinearDamping(RigidBody *_rigidBody);
 	double getAngularDamping(RigidBody *_rigidBody);
