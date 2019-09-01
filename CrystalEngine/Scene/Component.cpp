@@ -13,18 +13,6 @@ Component::~Component()
 {
 }
 
-void Component::start()
-{
-}
-
-void Component::update()
-{
-}
-
-void Component::destory()
-{
-}
-
 bool Component::newGameObject(std::string _gameObjectName)
 {
 	return gameObject->newGameObject(_gameObjectName);
