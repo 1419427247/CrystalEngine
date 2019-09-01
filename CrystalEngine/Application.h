@@ -7,7 +7,6 @@
 #include "CrystalEngine/Scene/PhysicalManager.h"
 
 #include "CrystalEngine/Component/Transform.h"
-#include "CrystalEngine/Component/Vector.h"
 #include "CrystalEngine/Component/Camera.h"
 #include "CrystalEngine/Component/RigidBody.h"
 #include "CrystalEngine/Component/Collision.h"
@@ -16,6 +15,7 @@
 #include "CrystalEngine/Tool/Box2dPhysical.h"
 #include "CrystalEngine/Tool/Runnable.h"
 #include "CrystalEngine/Tool/Timer.h"
+#include "CrystalEngine/Tool/Vector.h"
 
 namespace CrystalEngine
 {
