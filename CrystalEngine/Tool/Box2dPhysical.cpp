@@ -36,21 +36,21 @@ void Box2dPhysical::destoryRigidBody(RigidBody *_rigidBody)
 	world->DestroyBody((*bodies)[_rigidBody->gameObject->getName()]);
 }
 
-// Vector* Box2dPhysical::getPosition(const RigidBody *_rigidBody)const
-// {
-// 	return _rigidBody->gameObject->transform->position;
-// }
+Vector Box2dPhysical::getPosition( RigidBody *_rigidBody)
+{
+	return *_rigidBody->gameObject->transform->position;
+}
 double Box2dPhysical::getRotate(RigidBody *_rigidBody)
 {
 	float t = (*bodies)[_rigidBody->gameObject->getName()]->GetAngle();
 	return t;
 }
-// Vector* Box2dPhysical::getLinearVelocity(const RigidBody *_rigidBody) const
-// {
-// 	b2Vec2 t = (*bodies)[_rigidBody->gameObject->getName()]->GetLinearVelocity();
-// 	Vector _v(t.x, t.y);
-// 	return &_v;
-// }
+Vector Box2dPhysical::getLinearVelocity( RigidBody *_rigidBody)
+{
+	b2Vec2 t = (*bodies)[_rigidBody->gameObject->getName()]->GetLinearVelocity();
+	Vector _v(t.x, t.y);
+	return _v;
+}
 double Box2dPhysical::getAngularVelocity(RigidBody *_rigidBody)
 {
 	double t = (*bodies)[_rigidBody->gameObject->getName()]->GetAngularVelocity();
