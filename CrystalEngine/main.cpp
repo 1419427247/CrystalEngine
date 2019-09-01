@@ -26,29 +26,17 @@ public:
 	}
 };
 
-using namespace CrystalEngine;
-
-Vector& getv()
-{
-	Vector v;
-	return v;
-}
-
 int main()
 {
+	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
-	Vector v = getv();
+	scene->creatGameObject("qwq");
+	scene->creatComponent("qwq", new CrystalEngine::RigidBody());
+	scene->creatComponent("qwq", new Temp());
 
-	std::cout<<v.getY();
-	// CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
+	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
 
-	// scene->creatGameObject("qwq");
-	// scene->creatComponent("qwq", new CrystalEngine::RigidBody());
-	// scene->creatComponent("qwq", new Temp());
-
-	// CrystalEngine::Application *application = new CrystalEngine::Application(scene);
-
-	// application->run();
+	application->run();
 
 	return 1;
 }
