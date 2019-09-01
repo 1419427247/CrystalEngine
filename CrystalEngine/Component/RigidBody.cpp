@@ -14,19 +14,19 @@ RigidBody::~RigidBody()
 {
 }
 
-// Vector* RigidBody::getPosition() const
-// {
-//     return gameObject->scene->physicalManager->getPosition(this);
-// }
+Vector RigidBody::getPosition()
+{
+    return gameObject->scene->physicalManager->getPosition(this);
+}
 double RigidBody::getRotate()
 {
     return gameObject->scene->physicalManager->getRotate(this);
 }
 
-// Vector* RigidBody::getLinearVelocity() const
-// {
-//     return gameObject->scene->physicalManager->getLinearVelocity(this);
-// }
+Vector RigidBody::getLinearVelocity()
+{
+    return gameObject->scene->physicalManager->getLinearVelocity(this);
+}
 double RigidBody::getAngularVelocity()
 {
     return gameObject->scene->physicalManager->getAngularVelocity(this);
