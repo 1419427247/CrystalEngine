@@ -22,9 +22,9 @@ public:
 	virtual void newRigidBody(RigidBody *_rigidBody);
 	virtual void destoryRigidBody(RigidBody *_rigidBody);
 
-	//virtual Vector* getPosition(const RigidBody *_rigidBody) const;
+	virtual Vector getPosition(RigidBody *_rigidBody);
 	virtual double getRotate(RigidBody *_rigidBody);
-	//virtual Vector* getLinearVelocity(const RigidBody *_rigidBody)const;
+	virtual Vector getLinearVelocity(RigidBody *_rigidBody);
 	virtual double getAngularVelocity(RigidBody *_rigidBody);
 	virtual double getLinearDamping(RigidBody *_rigidBody);
 	virtual double getAngularDamping(RigidBody *_rigidBody);
