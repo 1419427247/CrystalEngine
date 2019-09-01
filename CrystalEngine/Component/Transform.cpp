@@ -1,5 +1,5 @@
 #include "CrystalEngine/Component/Transform.h"
-#include "CrystalEngine/Component/Vector.h"
+#include "CrystalEngine/Tool/Vector.h"
 
 namespace CrystalEngine
 {
