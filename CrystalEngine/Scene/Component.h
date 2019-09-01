@@ -20,9 +20,9 @@ public:
 	Component(std::string _name);
 	virtual ~Component();
 
-	virtual void start()=0;
-	virtual void update()=0;
-	virtual void destory()=0;
+	virtual void start();
+	virtual void update();
+	virtual void destory();
 
 	bool newGameObject(std::string _gameObjectName);
 	GameObject *getGameObject(std::string _gameObjectName) const;
