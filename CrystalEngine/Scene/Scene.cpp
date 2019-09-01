@@ -34,12 +34,12 @@ void Scene::start()
 {
 	isAlive = true;
 
+	physicalManager->start();
+
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
 		var.second->start();
 	}
-
-	physicalManager->start();
 }
 bool Scene::update()
 {
