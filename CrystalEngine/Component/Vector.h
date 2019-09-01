@@ -15,7 +15,8 @@ public:
 	static double distance(Vector *_v1, Vector *_v2);
 
 	Vector();
-	Vector(Vector& _v);
+	Vector(const Vector* _v);
+	Vector(const Vector& _v);
 	Vector(double _x, double _y);
 	~Vector();
 
