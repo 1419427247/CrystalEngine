@@ -3,7 +3,7 @@
 #include "CrystalEngine/Scene/PhysicalManager.h"
 
 #include "CrystalEngine/Component/RigidBody.h"
-#include "CrystalEngine/Component/Vector.h"
+#include "CrystalEngine/Tool/Vector.h"
 
 namespace CrystalEngine
 {
