@@ -21,10 +21,10 @@ public:
 
 	void* getBodyData();
 
-	//Vector* getPosition() const;
+	Vector getPosition() ;
 	double getRotate();
 
-	// Vector* getLinearVelocity() const;
+	Vector getLinearVelocity() ;
 	double getAngularVelocity();
 
 	double getLinearDamping();
