@@ -8,12 +8,12 @@ Test::Test(){
 Test::Test(std::string _name)
 {
     name = _name;
-    for (Test *var : *instance)
+    for (Test *var : instance)
     {
         if (var->name == _name)
-            throw this;
+            throw;
     }
-    instance->push_back(this);
+    instance.push_back(this);
 }
 Test::~Test()
 {
@@ -22,13 +22,15 @@ Test::~Test()
 void Test::run()
 {
 }
-} // namespace CrystalEngine
 
-int error_count = 0;
-std::vector<CrystalEngine::Test *> *instance = new std::vector<CrystalEngine::Test *>();
-int testBegin()
+
+int Test::error_count = 0;
+
+std::vector<CrystalEngine::Test *> Test::instance;
+
+int Test::testBegin()
 {
-    for (CrystalEngine::Test *var : *instance)
+    for (CrystalEngine::Test *var : instance)
     {
         var->run();
     }
@@ -37,12 +39,14 @@ int testBegin()
     return error_count;
 }
 
-void testDispose()
+void Test::testDispose()
 {
-    while (!instance->empty())
+    while (!instance.empty())
     {
-        delete instance->back();
-        instance->pop_back();
+        delete instance.back();
+        instance.pop_back();
     }
     error_count = 0;
 }
+
+} // namespace CrystalEngine
