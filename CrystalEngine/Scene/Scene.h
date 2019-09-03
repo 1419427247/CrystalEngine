@@ -53,6 +53,7 @@ public:
 class TestScene : public CrystalEngine::Test
 {
 public:
+	OBJECT(TestScene)
 	TestScene();
 	~TestScene();
 	void run() override;
