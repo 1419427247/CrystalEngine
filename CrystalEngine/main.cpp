@@ -30,16 +30,18 @@ int main()
 {
 	// CrystalEngine::Vector v(2,3);
 
+	new CrystalEngine::TestGameObject();
+	CrystalEngine::Test::testBegin();
 
 	// int& i = v.;
 	// i =100;
 	// std::cout<< a ;
 
-	REGISTER(Temp)
+	// REGISTER(Temp)
 
-	Temp* t = (Temp*)CrystalEngine::Object::instantiation("Temp");
+	// Temp* t = (Temp*)CrystalEngine::Object::instantiation("Temp");
 
-	std::cout<< t->toString()<<std::endl;
+	// std::cout<< t->toString()<<std::endl;
 	// CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
 	// scene->creatGameObject("qwq");
