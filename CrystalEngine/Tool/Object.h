@@ -38,6 +38,13 @@ public:
     {
     }
 
+    template<class T>
+    static T *instantiation(std::string _string)
+    {
+        return (T*)objects[_string]();
+    }
+
+
     static Object *instantiation(std::string _string)
     {
         return objects[_string]();
