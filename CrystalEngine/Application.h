@@ -16,14 +16,18 @@
 #include "CrystalEngine/Tool/Runnable.h"
 #include "CrystalEngine/Tool/Timer.h"
 #include "CrystalEngine/Tool/Vector.h"
+#include "CrystalEngine/Tool/Object.h"
 
 namespace CrystalEngine
 {
-class Application
+class Application : public Object
 {
 private:
 	Scene *scene;
 public:
+	OBJECT(Application)
+
+	Application();
 	Application(Scene *_scene);
 	~Application();
 

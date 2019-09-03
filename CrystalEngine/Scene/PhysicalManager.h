@@ -1,6 +1,8 @@
 #ifndef PHYSICALMANAGER_H
 #define PHYSICALMANAGER_H
 
+#include "CrystalEngine/Tool/Object.h"
+
 namespace CrystalEngine
 {
 class Scene;
@@ -8,7 +10,7 @@ class Vector;
 class RigidBody;
 class Collision;
 enum class BodyType; 
-class PhysicalManager
+class PhysicalManager : public Object
 {
 	friend class Scene;
 
@@ -16,47 +18,49 @@ protected:
 	Scene *scene;
 
 public:
+	OBJECT(PhysicalManager)
+
 	PhysicalManager();
 	virtual ~PhysicalManager();
 
-	virtual void newRigidBody(RigidBody *_rigidBody) = 0;
-	virtual void destoryRigidBody(RigidBody *_rigidBody) = 0;
+	virtual void newRigidBody(RigidBody *_rigidBody);
+	virtual void destoryRigidBody(RigidBody *_rigidBody);
 
-	virtual Vector getPosition(RigidBody *_rigidBody) = 0;
-	virtual double getRotate(RigidBody *_rigidBody) = 0;
-	virtual Vector getLinearVelocity(RigidBody *_rigidBody) = 0;
-	virtual double getAngularVelocity(RigidBody *_rigidBody) = 0;
-	virtual double getLinearDamping(RigidBody *_rigidBody) = 0;
-	virtual double getAngularDamping(RigidBody *_rigidBody) = 0;
-	virtual double getGravityScale(RigidBody *_rigidBody) = 0;
-	virtual bool isSleepingAllowed(RigidBody *_rigidBody) = 0;
-	virtual bool isAwake(RigidBody *_rigidBody) = 0;
-	virtual bool isFixedRotation(RigidBody *_rigidBody) = 0;
-	virtual bool isBullet(RigidBody *_rigidBody) = 0;
-	virtual BodyType getType(RigidBody *_rigidBody) = 0;
-	virtual bool isActive(RigidBody *_rigidBody) = 0;
+	virtual Vector getPosition(RigidBody *_rigidBody);
+	virtual double getRotate(RigidBody *_rigidBody);
+	virtual Vector getLinearVelocity(RigidBody *_rigidBody);
+	virtual double getAngularVelocity(RigidBody *_rigidBody);
+	virtual double getLinearDamping(RigidBody *_rigidBody);
+	virtual double getAngularDamping(RigidBody *_rigidBody);
+	virtual double getGravityScale(RigidBody *_rigidBody);
+	virtual bool isSleepingAllowed(RigidBody *_rigidBody);
+	virtual bool isAwake(RigidBody *_rigidBody);
+	virtual bool isFixedRotation(RigidBody *_rigidBody);
+	virtual bool isBullet(RigidBody *_rigidBody);
+	virtual BodyType getType(RigidBody *_rigidBody);
+	virtual bool isActive(RigidBody *_rigidBody);
 
-    virtual void setTransform(RigidBody *_rigidBody, Vector _vector,double _angle) = 0;
-	virtual void setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity) = 0;
-	virtual void setAngularVelocity(RigidBody *_rigidBody, double _angularVelocity) = 0;
-	virtual void setLinearDamping(RigidBody *_rigidBody, double _linearDamping) = 0;
-	virtual void setAngularDamping(RigidBody *_rigidBody, double _angularDamping) = 0;
-	virtual void setGravityScale(RigidBody *_rigidBody, double _gravityScale) = 0;
-	virtual void setSleepingAllowed(RigidBody *_rigidBody, bool _allowSleep) = 0;
-	virtual void setAwake(RigidBody *_rigidBody, bool _awake) = 0;
-	virtual void setFixedRotation(RigidBody *_rigidBody, float _fixedRotation) = 0;
-	virtual void setBullet(RigidBody *_rigidBody, bool _bullet) = 0;
-	virtual void setType(RigidBody *_rigidBody, BodyType _bodyType) = 0;
-	virtual void setActive(RigidBody *_rigidBody, bool _active) = 0;
+    virtual void setTransform(RigidBody *_rigidBody, Vector _vector,double _angle);
+	virtual void setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity);
+	virtual void setAngularVelocity(RigidBody *_rigidBody, double _angularVelocity);
+	virtual void setLinearDamping(RigidBody *_rigidBody, double _linearDamping);
+	virtual void setAngularDamping(RigidBody *_rigidBody, double _angularDamping);
+	virtual void setGravityScale(RigidBody *_rigidBody, double _gravityScale);
+	virtual void setSleepingAllowed(RigidBody *_rigidBody, bool _allowSleep);
+	virtual void setAwake(RigidBody *_rigidBody, bool _awake);
+	virtual void setFixedRotation(RigidBody *_rigidBody, float _fixedRotation);
+	virtual void setBullet(RigidBody *_rigidBody, bool _bullet);
+	virtual void setType(RigidBody *_rigidBody, BodyType _bodyType);
+	virtual void setActive(RigidBody *_rigidBody, bool _active);
 
-	virtual void newCollision(Collision *_collision) = 0;
-	virtual void destoryCollision(Collision *_collision) = 0;
+	virtual void newCollision(Collision *_collision);
+	virtual void destoryCollision(Collision *_collision);
 
-	virtual void start() = 0;
+	virtual void start();
 
-	virtual void update() = 0;
+	virtual void update();
 
-	virtual void destory() = 0;
+	virtual void destory();
 };
 } // namespace CrystalEngine
 #endif

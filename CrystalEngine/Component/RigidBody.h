@@ -16,6 +16,8 @@ enum class BodyType
 class RigidBody : public Component
 {
 public:
+	OBJECT(RigidBody)
+	
 	RigidBody();
 	~RigidBody();
 

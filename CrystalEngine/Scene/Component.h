@@ -1,6 +1,7 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
+#include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 #include <vector>
 #include <string>
@@ -9,15 +10,17 @@ namespace CrystalEngine
 {
 class GameObject;
 class RigidBody;
-class Component
+class Component : public Object
 {
 	friend class GameObject;
 	friend class RigidBody;
-protected:
-	std::string name;
 public:
+	OBJECT(Component)
+
 	GameObject *gameObject;
-	Component(std::string _name);
+
+	Component();
+	
 	virtual ~Component();
 
 	virtual void start();

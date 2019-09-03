@@ -1,21 +1,21 @@
 #include "CrystalEngine/Application.h"
 #include "Box2D/Box2D.h"
-class Temp : public CrystalEngine::Component
+using namespace CrystalEngine;
+
+class Temp : public Component
 {
 public:
-	Temp() : Component("Temp")
-	{
-	}
-	CrystalEngine::RigidBody *r;
+	OBJECT(Temp)
+	RigidBody *r;
 	void start()
 	{
-		r = (CrystalEngine::RigidBody *)getComponent("Temp");
-		r->setType(CrystalEngine::BodyType::dynamicBody);
+		r = (RigidBody *)getComponent("Temp");
+		r->setType(BodyType::dynamicBody);
 		std::cout << "Hi" << std::endl;
 	}
 	void update()
 	{
-		CrystalEngine::Vector v(0, 0);
+		Vector v(0, 0);
 		if (gameObject->transform->position->getY() < -30)
 			r->setTransform(v, 0);
 		std::cout << gameObject->transform->position->getX() << "," << gameObject->transform->position->getY() << std::endl;

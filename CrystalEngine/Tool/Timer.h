@@ -6,6 +6,7 @@
 #include <chrono>
 #include <functional>
 
+#include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 
 namespace CrystalEngine
@@ -22,10 +23,12 @@ struct Date
 };
 
 class Runnable;
-class Timer
+class Timer : public Object
 {
 private:
 public:
+	OBJECT(Timer);
+	Timer();
 	static Date now();
 
 	static void run(Runnable *_runable, int _millisecond);

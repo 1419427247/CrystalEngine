@@ -3,13 +3,13 @@
 
 namespace CrystalEngine
 {
-Transform::Transform() : Component("Transform")
+Transform::Transform()
 {
     position = new Vector();
     rotate = 0;
 }
 
-Transform::Transform(Transform& _t): Component("Transform"){
+Transform::Transform(Transform& _t){
     position = new Vector(*_t.position);
     rotate = _t.rotate;
 }

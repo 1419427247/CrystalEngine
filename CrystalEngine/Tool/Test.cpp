@@ -2,7 +2,9 @@
 
 namespace CrystalEngine
 {
+Test::Test(){
 
+}
 Test::Test(std::string _name)
 {
     name = _name;

@@ -13,7 +13,7 @@ Vector::Vector()
 	y = 0;
 }
 
-Vector::Vector(const Vector* _v)
+Vector::Vector(const Vector *_v)
 {
 	x = _v->x;
 	y = _v->y;
@@ -35,9 +35,10 @@ Vector::~Vector()
 {
 }
 
-void Vector::set(double _x, double _y){
-x = _x;
-y = _y;
+void Vector::set(double _x, double _y)
+{
+	x = _x;
+	y = _y;
 }
 
 double Vector::getX() const

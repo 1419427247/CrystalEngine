@@ -18,6 +18,11 @@ Date Timer::now()
     };
 }
 
+Timer::Timer()
+{
+    
+}
+
 void Timer::run(Runnable *_runable, int _millisecond)
 {
     if (_runable->isAlive())

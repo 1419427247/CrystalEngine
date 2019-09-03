@@ -2,7 +2,7 @@
 
 namespace CrystalEngine
 {
-Camera::Camera() : Component("Camera")
+Camera::Camera()
 {
 }
 

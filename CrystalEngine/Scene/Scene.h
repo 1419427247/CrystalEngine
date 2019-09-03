@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 #include <unordered_map>
 #include <vector>
@@ -12,7 +13,7 @@ class Component;
 class RigidBody;
 class Collision;
 class PhysicalManager;
-class Scene
+class Scene : public Object
 {
 	friend class TestScene;
 	friend class GameObject;
@@ -27,6 +28,8 @@ private:
 	PhysicalManager* physicalManager; 
 	
 public:
+	OBJECT(Scene)
+	Scene();
 	Scene(PhysicalManager* _physicalManager);
 	~Scene();
 

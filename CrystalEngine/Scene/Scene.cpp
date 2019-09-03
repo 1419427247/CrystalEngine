@@ -7,6 +7,15 @@
 #include "CrystalEngine/Tool/Timer.h"
 namespace CrystalEngine
 {
+Scene::Scene()
+{
+	isAlive = false;
+	newGameObjects = new std::vector<std::string>();
+	deleteGameObjects = new std::vector<std::string>();
+	gameObjects = new std::unordered_map<std::string, GameObject *>();
+	physicalManager->scene = nullptr;
+}
+
 Scene::Scene(PhysicalManager *_physicalManager)
 {
 	isAlive = false;
@@ -34,7 +43,8 @@ void Scene::start()
 {
 	isAlive = true;
 
-	physicalManager->start();
+	if (physicalManager != nullptr)
+		physicalManager->start();
 
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
@@ -43,39 +53,40 @@ void Scene::start()
 }
 bool Scene::update()
 {
-		for (std::string var : *deleteGameObjects)
+	for (std::string var : *deleteGameObjects)
+	{
+		if (gameObjects->count(var))
 		{
-			if (gameObjects->count(var))
-			{
-				(*gameObjects)[var]->destory();
-				delete (*gameObjects)[var];
-				gameObjects->erase(var);
-			}
+			(*gameObjects)[var]->destory();
+			delete (*gameObjects)[var];
+			gameObjects->erase(var);
 		}
-		deleteGameObjects->clear();
+	}
+	deleteGameObjects->clear();
 
-		for (std::string var : *newGameObjects)
+	for (std::string var : *newGameObjects)
+	{
+		if (!gameObjects->count(var))
 		{
-			if (!gameObjects->count(var))
-			{
-				(*gameObjects)[var] = new GameObject(var);
-				(*gameObjects)[var]->scene = this;
-				(*gameObjects)[var]->start();
-			}
+			(*gameObjects)[var] = new GameObject(var);
+			(*gameObjects)[var]->scene = this;
+			(*gameObjects)[var]->start();
 		}
-		newGameObjects->clear();
+	}
+	newGameObjects->clear();
 
-		for (std::pair<std::string, GameObject *> var : *gameObjects)
-		{
-			var.second->update();
-		}
-
+	for (std::pair<std::string, GameObject *> var : *gameObjects)
+	{
+		var.second->update();
+	}
+	if (physicalManager != nullptr)
 		physicalManager->update();
 	return isAlive;
 }
 void Scene::destory()
 {
-	physicalManager->destory();
+	if (physicalManager != nullptr)
+		physicalManager->destory();
 }
 
 bool Scene::newGameObject(std::string _gameObjectName)

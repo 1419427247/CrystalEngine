@@ -50,6 +50,7 @@
         "set": "cpp",
         "sstream": "cpp",
         "xtree": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "unordered_set": "cpp"
     }
 }

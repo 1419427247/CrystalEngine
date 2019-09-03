@@ -7,7 +7,7 @@
 
 namespace CrystalEngine
 {
-RigidBody::RigidBody() : Component("RigidBody")
+RigidBody::RigidBody()
 {
 }
 RigidBody::~RigidBody()

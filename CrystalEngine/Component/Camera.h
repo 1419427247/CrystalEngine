@@ -12,6 +12,8 @@ private:
     float size;
 
 public:
+    OBJECT(Camera)
+
     Camera();
     ~Camera();
 };

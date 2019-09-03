@@ -1,6 +1,7 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 #include <list>
 #include <vector>
@@ -14,7 +15,7 @@ class Transform;
 class RigidBody;
 class Collision;
 
-class GameObject
+class GameObject : public Object
 {
 	friend class Scene;
 	friend class Component;
@@ -38,9 +39,11 @@ private:
 	std::list<GameObject *> *children;
 
 public:
+	OBJECT(GameObject)
 
 	Transform *transform;
 
+	GameObject();
 	GameObject(std::string _name);
 	~GameObject();
 

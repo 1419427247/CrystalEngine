@@ -4,13 +4,16 @@
 #include <string>
 #include <vector>
 
+#include "CrystalEngine/Tool/Object.h"
+
 namespace CrystalEngine
 {
-class Test
+class Test : public Object
 {
     std::string name;
-
+    
 public:
+    Test();
     Test(std::string _name);
     virtual ~Test();
     virtual void run();

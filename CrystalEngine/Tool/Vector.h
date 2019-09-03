@@ -1,17 +1,20 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 #include <math.h>
 
 namespace CrystalEngine
 {
-class Vector
+class Vector : public Object
 {
 	double x;
 	double y;
 
 public:
+	OBJECT(Vector)
+
 	static double distance(Vector *_v1, Vector *_v2);
 
 	Vector();

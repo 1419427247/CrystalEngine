@@ -5,6 +5,16 @@
 #include "CrystalEngine/Component/Transform.h"
 namespace CrystalEngine
 {
+GameObject::GameObject()
+{
+	newComponents = new std::vector<Component *>();
+	deleteComponents = new std::vector<std::string>();
+	components = new std::list<Component *>();
+	scene = nullptr;
+	parent = nullptr;
+	children = new std::list<GameObject *>();
+	transform = new Transform();
+}
 GameObject::GameObject(std::string _name)
 {
 	name = _name;
@@ -50,7 +60,7 @@ void GameObject::update()
 	{
 		for (Component *component : *components)
 		{
-			if (component->name == var)
+			if (component->getClassName() == var)
 			{
 				component->destory();
 				components->remove(component);
@@ -201,12 +211,12 @@ bool GameObject::newComponent(Component *_component)
 		return false;
 	for (Component *var : *components)
 	{
-		if (var->name == _component->name)
+		if (var->getClassName() == _component->getClassName())
 			return false;
 	}
 	for (Component *var : *newComponents)
 	{
-		if (var->name == _component->name)
+		if (var->getClassName() == _component->getClassName())
 			return false;
 	}
 	newComponents->push_back(_component);
@@ -217,7 +227,7 @@ Component *GameObject::getComponent(std::string _name) const
 {
 	for (Component *var : *components)
 	{
-		if (var->name == _name)
+		if (var->getClassName() == _name)
 		{
 			return var;
 		}
@@ -230,7 +240,7 @@ bool GameObject::destoryComponent(std::string _name)
 	bool temp = false;
 	for (Component *var : *components)
 	{
-		if (var->name == _name)
+		if (var->getClassName() == _name)
 		{
 			temp = true;
 			break;

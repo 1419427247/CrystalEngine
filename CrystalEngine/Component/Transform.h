@@ -9,11 +9,14 @@ class Vector;
 class Transform : public Component
 {
 public:
+	OBJECT(Transform)
+
 	Vector *position;
 	double rotate;
 	Transform();
 	Transform(Transform &_t);
 	~Transform();
+
 };
 } // namespace CrystalEngine
 #endif

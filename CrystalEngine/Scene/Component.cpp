@@ -3,9 +3,8 @@
 #include "CrystalEngine/Scene/Scene.h"
 namespace CrystalEngine
 {
-Component::Component(std::string _name)
+Component::Component()
 {
-	name = _name;
 	gameObject = nullptr;
 }
 

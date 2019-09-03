@@ -9,6 +9,7 @@ namespace CrystalEngine
 class Collision : public Component
 {
 public:
+    OBJECT(Collision)
     Collision();
     ~Collision();
 
