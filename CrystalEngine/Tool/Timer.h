@@ -25,7 +25,6 @@ struct Date
 class Runnable;
 class Timer : public Object
 {
-private:
 public:
 	OBJECT(Timer);
 	Timer();
