@@ -163,7 +163,7 @@ bool Scene::destoryComponent(std::string _gameObjectName, std::string _name)
 	return (*gameObjects)[_gameObjectName]->destoryComponent(_name);
 }
 
-TestScene::TestScene() : Test("TestScene")
+TestScene::TestScene()
 {
 }
 TestScene::~TestScene()
