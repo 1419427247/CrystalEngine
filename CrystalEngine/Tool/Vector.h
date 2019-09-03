@@ -3,7 +3,6 @@
 
 #include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
-#include <math.h>
 
 namespace CrystalEngine
 {
