@@ -3,18 +3,14 @@
 namespace CrystalEngine
 {
 Test::Test(){
-
-}
-Test::Test(std::string _name)
-{
-    name = _name;
     for (Test *var : instance)
     {
-        if (var->name == _name)
+        if (var->getClassName() == getClassName())
             throw;
     }
     instance.push_back(this);
 }
+
 Test::~Test()
 {
 }
