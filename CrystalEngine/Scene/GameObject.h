@@ -76,6 +76,7 @@ public:
 class TestGameObject : public CrystalEngine::Test
 {
 public:
+	OBJECT(TestGameObject)
 	TestGameObject();
 	~TestGameObject();
 	void run() override;
