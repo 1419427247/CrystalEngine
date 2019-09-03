@@ -11,7 +11,7 @@
         auto var = T1;                                                                                                     \
         if (var != T2)                                                                                                     \
         {                                                                                                                  \
-            std::cout << "The result is wrong : " << #T1 << " == " << var << " And " << #T1 << " != " << #T2 << std::endl; \
+            std::cout << __FILE__ << "-" << __LINE__ << ":\n" << "The result is wrong : " << #T1 << " == " << var << " And " << #T1 << " != " << #T2 << std::endl; \
             error_count++;                                                                                                 \
         }                                                                                                                  \
     }
@@ -20,11 +20,9 @@ namespace CrystalEngine
 {
 class Test : public Object
 {
-    std::string name;
-    
 public:
+    OBJECT(Test)
     Test();
-    Test(std::string _name);
     virtual ~Test();
     virtual void run();
 
