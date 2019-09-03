@@ -258,7 +258,8 @@ bool GameObject::destoryComponent(std::string _name)
 	return true;
 }
 
-TestGameObject::TestGameObject() : Test("TestGameObject")
+
+TestGameObject::TestGameObject()
 {
 }
 
@@ -273,7 +274,7 @@ void TestGameObject::run()
 	CrystalEngine::GameObject *obj3 = new CrystalEngine::GameObject("G3");
 
 	Comparison(obj1->addChild(obj2), true);
-	Comparison(obj1->addChild(obj3), true);
+	Comparison(obj1->addChild(obj3), false);
 
 	Comparison(obj1->addChild(obj2), false);
 	Comparison(obj1->addChild(obj3), false);
