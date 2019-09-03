@@ -13,6 +13,7 @@ Scene::Scene()
 	newGameObjects = new std::vector<std::string>();
 	deleteGameObjects = new std::vector<std::string>();
 	gameObjects = new std::unordered_map<std::string, GameObject *>();
+	physicalManager = new PhysicalManager();
 	physicalManager->scene = nullptr;
 }
 
@@ -35,16 +36,14 @@ Scene::~Scene()
 	delete gameObjects;
 	delete newGameObjects;
 	delete deleteGameObjects;
-	if (physicalManager != nullptr)
-		delete physicalManager;
+	delete physicalManager;
 }
 
 void Scene::start()
 {
 	isAlive = true;
 
-	if (physicalManager != nullptr)
-		physicalManager->start();
+	physicalManager->start();
 
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
@@ -79,14 +78,13 @@ bool Scene::update()
 	{
 		var.second->update();
 	}
-	if (physicalManager != nullptr)
-		physicalManager->update();
+
+	physicalManager->update();
 	return isAlive;
 }
 void Scene::destory()
 {
-	if (physicalManager != nullptr)
-		physicalManager->destory();
+	physicalManager->destory();
 }
 
 bool Scene::newGameObject(std::string _gameObjectName)
