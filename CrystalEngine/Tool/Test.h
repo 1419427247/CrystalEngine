@@ -1,7 +1,6 @@
 #ifndef TEST_H
 #define TEST_H
-#include <iostream>
-#include <string>
+
 #include <vector>
 
 #include "CrystalEngine/Tool/Object.h"
