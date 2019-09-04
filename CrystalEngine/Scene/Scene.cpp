@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "CrystalEngine/Scene/Scene.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"
@@ -89,77 +91,145 @@ void Scene::destory()
 
 bool Scene::newGameObject(std::string _gameObjectName)
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
 	{
+		if (gameObjects->count(_gameObjectName))
+		{
+			throw std::runtime_error("Object name already exists");
+		}
 		for (std::string var : *newGameObjects)
 		{
 			if (var == _gameObjectName)
-				return false;
+				throw std::runtime_error("Object name already exists");
 		}
-		newGameObjects->push_back(_gameObjectName);
-		return true;
 	}
-	return false;
+	catch (const std::runtime_error &e)
+	{
+		return false;
+		std::cerr << e.what() << std::endl;
+	}
+	newGameObjects->push_back(_gameObjectName);
+	return true;
 }
 
 bool Scene::creatGameObject(std::string _gameObjectName)
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
 	{
-		(*gameObjects)[_gameObjectName] = new GameObject(_gameObjectName);
-		(*gameObjects)[_gameObjectName]->scene = this;
-		return true;
+		if (gameObjects->count(_gameObjectName))
+		{
+			throw std::runtime_error("Object name already exists");
+		}
 	}
-	return false;
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return false;
+	}
+
+	(*gameObjects)[_gameObjectName] = new GameObject(_gameObjectName);
+	(*gameObjects)[_gameObjectName]->scene = this;
+	return true;
 }
 
 GameObject *Scene::getGameObject(std::string _gameObjectName) const
 {
-	if (gameObjects->count(_gameObjectName))
-		return (*gameObjects)[_gameObjectName];
-	return nullptr;
+	try
+	{
+		if (!gameObjects->count(_gameObjectName))
+		{
+			throw std::runtime_error("Object not found");
+		}
+	}
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return nullptr;
+	}
+
+	return (*gameObjects)[_gameObjectName];
 }
 
 bool Scene::destoryGameObject(std::string _name)
 {
-	if (gameObjects->count(_name))
+	try
 	{
+		if (!gameObjects->count(_name))
+		{
+			throw std::runtime_error("Object not found");
+		}
 		for (std::string var : *deleteGameObjects)
 		{
 			if (var == _name)
-				return false;
+				throw std::runtime_error("Object not found");
 		}
-		deleteGameObjects->push_back(_name);
-		return true;
 	}
-	return false;
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return false;
+	}
+	deleteGameObjects->push_back(_name);
+	return true;
 }
 
 bool Scene::newComponent(std::string _gameObjectName, Component *_component)
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
+	{
+		if (!gameObjects->count(_gameObjectName))
+			throw std::runtime_error("Object not found");
+	}
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
 		return false;
+	}
 	return (*gameObjects)[_gameObjectName]->newComponent(_component);
 }
 
 bool Scene::creatComponent(std::string _gameObjectName, Component *_component)
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
+	{
+		if (!gameObjects->count(_gameObjectName))
+			throw std::runtime_error("Object not found");
+	}
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
 		return false;
+	}
 	return (*gameObjects)[_gameObjectName]->creatComponent(_component);
 }
 
 Component *Scene::getComponent(std::string _gameObjectName, std::string _componentGame) const
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
+	{
+		if (!gameObjects->count(_gameObjectName))
+			throw std::runtime_error("Object not found");
+	}
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
 		return nullptr;
+	}
 	return (*gameObjects)[_gameObjectName]->getComponent(_componentGame);
 }
 
 bool Scene::destoryComponent(std::string _gameObjectName, std::string _name)
 {
-	if (!gameObjects->count(_gameObjectName))
+	try
+	{
+		if (!gameObjects->count(_gameObjectName))
+			throw std::runtime_error("Object not found");
+	}
+	catch (const std::runtime_error &e)
+	{
+		std::cerr << e.what() << std::endl;
 		return false;
+	}
 	return (*gameObjects)[_gameObjectName]->destoryComponent(_name);
 }
 
