@@ -1,3 +1,5 @@
+#include<stdexcept>
+
 #include "CrystalEngine/Tool/Vector.h"
 
 #include "CrystalEngine/Component/RigidBody.h"
@@ -15,8 +17,12 @@ PhysicalManager::~PhysicalManager()
 {
 }
 
-void PhysicalManager::newRigidBody(RigidBody *_rigidBody) {}
-void PhysicalManager::destoryRigidBody(RigidBody *_rigidBody) {}
+void PhysicalManager::newRigidBody(RigidBody *_rigidBody) {
+
+}
+void PhysicalManager::destoryRigidBody(RigidBody *_rigidBody) {
+    
+}
 
 Vector PhysicalManager::getPosition(RigidBody *_rigidBody)
 {
@@ -28,47 +34,47 @@ double PhysicalManager::getRotate(RigidBody *_rigidBody)
 }
 Vector PhysicalManager::getLinearVelocity(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 double PhysicalManager::getAngularVelocity(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 double PhysicalManager::getLinearDamping(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 double PhysicalManager::getAngularDamping(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 double PhysicalManager::getGravityScale(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 bool PhysicalManager::isSleepingAllowed(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 bool PhysicalManager::isAwake(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 bool PhysicalManager::isFixedRotation(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 bool PhysicalManager::isBullet(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 BodyType PhysicalManager::getType(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 bool PhysicalManager::isActive(RigidBody *_rigidBody)
 {
-    throw;
+    throw std::runtime_error("Unimplemented method");
 }
 
 void PhysicalManager::setTransform(RigidBody *_rigidBody, Vector _vector, double _angle) {
