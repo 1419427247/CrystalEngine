@@ -1,3 +1,5 @@
+#include<iostream>
+
 #include "CrystalEngine/Application.h"
 #include "Box2D/Box2D.h"
 
@@ -30,8 +32,8 @@ int main()
 {
 	// CrystalEngine::Vector v(2,3);
 
-	new CrystalEngine::TestGameObject();
-	CrystalEngine::Test::testBegin();
+	// new CrystalEngine::TestGameObject();
+	// CrystalEngine::Test::testBegin();
 
 	// int& i = v.;
 	// i =100;
@@ -42,15 +44,15 @@ int main()
 	// Temp* t = (Temp*)CrystalEngine::Object::instantiation("Temp");
 
 	// std::cout<< t->toString()<<std::endl;
-	// CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
+	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
-	// scene->creatGameObject("qwq");
-	// scene->creatComponent("qwq", new CrystalEngine::RigidBody());
-	// scene->creatComponent("qwq", new Temp());
+	scene->creatGameObject("qwq");
+	scene->creatComponent("qwq", new CrystalEngine::RigidBody());
+	scene->creatComponent("qwq", new Temp());
 
-	// CrystalEngine::Application *application = new CrystalEngine::Application(scene);
+	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
 
-	// application->run();
+	application->run();
 
 	return 1;
 }
