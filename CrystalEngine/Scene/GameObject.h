@@ -57,10 +57,10 @@ public:
 	GameObject *getParten() const;
 
 	bool addChild(GameObject *_gameObject);
-	std::vector<GameObject *> getChildren() const;
+	const std::list<GameObject *>& getChildren() const;
 	int getChildrenCount() const;
 	bool removeChild(GameObject *_gameObject);
-	bool cleanChildren();
+	void cleanChildren();
 
 	bool creatGameObject(std::string _gameObjectName);
 	bool newGameObject(std::string _gameObjectName);
