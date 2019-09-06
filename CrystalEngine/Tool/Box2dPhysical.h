@@ -24,8 +24,8 @@ public:
     void newRigidBody(RigidBody *_rigidBody);
     void destoryRigidBody(RigidBody *_rigidBody);
 
-    Vector getPosition( RigidBody *_rigidBody);
-	double getRotate(RigidBody *_rigidBody);
+    const Vector& getPosition( RigidBody *_rigidBody);
+	const Vector& getRotate(RigidBody *_rigidBody);
 	Vector getLinearVelocity( RigidBody *_rigidBody);
 	double getAngularVelocity(RigidBody *_rigidBody);
 	double getLinearDamping(RigidBody *_rigidBody);
@@ -38,7 +38,7 @@ public:
 	BodyType getType(RigidBody *_rigidBody);
 	bool isActive(RigidBody *_rigidBody);
 
-    void setTransform(RigidBody *_rigidBody, Vector _vector,double _angle);
+    void setTransform(RigidBody *_rigidBody,const Vector& _vector,const Vector&  _angle);
 	void setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity);
 	void setAngularVelocity(RigidBody *_rigidBody, double _angularVelocity);
 	void setLinearDamping(RigidBody *_rigidBody, double _linearDamping);
