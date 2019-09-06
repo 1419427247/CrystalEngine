@@ -24,13 +24,13 @@ void PhysicalManager::destoryRigidBody(RigidBody *_rigidBody) {
     
 }
 
-Vector PhysicalManager::getPosition(RigidBody *_rigidBody)
+const Vector& PhysicalManager::getPosition(RigidBody *_rigidBody)
 {
-    return *_rigidBody->gameObject->transform->position;
+    return _rigidBody->gameObject->transform->getPosition();
 }
-double PhysicalManager::getRotate(RigidBody *_rigidBody)
+const Vector& PhysicalManager::getRotate(RigidBody *_rigidBody)
 {
-    return _rigidBody->gameObject->transform->rotate;
+    return _rigidBody->gameObject->transform->getRotate();
 }
 Vector PhysicalManager::getLinearVelocity(RigidBody *_rigidBody)
 {
@@ -77,10 +77,10 @@ bool PhysicalManager::isActive(RigidBody *_rigidBody)
     throw std::runtime_error("Unimplemented method");
 }
 
-void PhysicalManager::setTransform(RigidBody *_rigidBody, Vector _vector, double _angle) {
+void PhysicalManager::setTransform(RigidBody *_rigidBody,const Vector& _vector,const Vector& _angle) {
 
 }
-void PhysicalManager::setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity) {
+void PhysicalManager::setLinearVelocity(RigidBody *_rigidBody,const Vector& _linearVelocity) {
 
 }
 void PhysicalManager::setAngularVelocity(RigidBody *_rigidBody, double _angularVelocity) {
