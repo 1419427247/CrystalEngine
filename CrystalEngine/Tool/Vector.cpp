@@ -1,6 +1,7 @@
+#include "CrystalEngine/Tool/Vector.h"
+
 #include <math.h>
 
-#include "CrystalEngine/Tool/Vector.h"
 namespace CrystalEngine
 {
 
@@ -13,12 +14,6 @@ Vector::Vector()
 {
 	x = 0;
 	y = 0;
-}
-
-Vector::Vector(const Vector *_v)
-{
-	x = _v->x;
-	y = _v->y;
 }
 
 Vector::Vector(const Vector &_v)
@@ -35,6 +30,12 @@ Vector::Vector(double _x, double _y)
 
 Vector::~Vector()
 {
+}
+
+void Vector::set(const Vector &_v)
+{
+	x = _v.x;
+	y = _v.y;
 }
 
 void Vector::set(double _x, double _y)
@@ -73,7 +74,17 @@ void Vector::normalized()
 	}
 }
 
-bool Vector::operator==(Vector _v) const
+Vector Vector::operator+(const Vector &_v)
+{
+	return Vector(this->x + _v.x, this->y + _v.y);
+}
+
+Vector Vector::operator-(const Vector &_v) 
+{
+	return Vector(this->x - _v.x, this->y - _v.y);
+}
+
+bool Vector::operator==(const Vector &_v)
 {
 	return x == _v.x && y == _v.y;
 }
