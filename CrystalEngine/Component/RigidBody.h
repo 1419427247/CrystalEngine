@@ -23,8 +23,8 @@ public:
 
 	void* getBodyData();
 
-	Vector getPosition() ;
-	double getRotate();
+	const Vector& getPosition() ;
+	const Vector& getRotate();
 
 	Vector getLinearVelocity() ;
 	double getAngularVelocity();
@@ -42,9 +42,9 @@ public:
 
 	void setBodyData(void* _bodyData);
 
-    void setTransform(Vector _vector,double _angle);
+    void setTransform(const Vector&  _vector,const Vector&  _angle);
 
-	void setLinearVelocity(Vector _linearVelocity);
+	void setLinearVelocity(const Vector&  _linearVelocity);
 	void setAngularVelocity(double _angularVelocity);
 
 	void setLinearDamping(double _linearDamping);
