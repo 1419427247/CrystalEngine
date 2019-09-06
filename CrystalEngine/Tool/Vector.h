@@ -17,11 +17,11 @@ public:
 	static double distance(Vector *_v1, Vector *_v2);
 
 	Vector();
-	Vector(const Vector* _v);
 	Vector(const Vector& _v);
 	Vector(double _x, double _y);
 	~Vector();
 
+	void set(const Vector& _v);
 	void set(double _x, double _y);
 
 	double getX() const;
@@ -31,7 +31,9 @@ public:
 
 	void normalized();
 
-	bool operator==(Vector _v) const;
+	Vector operator+(const Vector& _v) ;
+	Vector operator-(const Vector& _v) ;
+	bool operator==(const Vector& _v) ;
 };
 #define VECTOR_UP CrystalEngine::Vector(0, 1)
 #define VECTOR_DOWN CrystalEngine::Vector(0, -1)
