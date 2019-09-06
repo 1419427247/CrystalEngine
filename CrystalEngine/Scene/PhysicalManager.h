@@ -26,8 +26,8 @@ public:
 	virtual void newRigidBody(RigidBody *_rigidBody);
 	virtual void destoryRigidBody(RigidBody *_rigidBody);
 
-	virtual Vector getPosition(RigidBody *_rigidBody);
-	virtual double getRotate(RigidBody *_rigidBody);
+	virtual const Vector& getPosition(RigidBody *_rigidBody);
+	virtual const Vector& getRotate(RigidBody *_rigidBody);
 	virtual Vector getLinearVelocity(RigidBody *_rigidBody);
 	virtual double getAngularVelocity(RigidBody *_rigidBody);
 	virtual double getLinearDamping(RigidBody *_rigidBody);
@@ -40,8 +40,8 @@ public:
 	virtual BodyType getType(RigidBody *_rigidBody);
 	virtual bool isActive(RigidBody *_rigidBody);
 
-    virtual void setTransform(RigidBody *_rigidBody, Vector _vector,double _angle);
-	virtual void setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity);
+    virtual void setTransform(RigidBody *_rigidBody,const Vector& _vector,const Vector& _angle);
+	virtual void setLinearVelocity(RigidBody *_rigidBody,const Vector& _linearVelocity);
 	virtual void setAngularVelocity(RigidBody *_rigidBody, double _angularVelocity);
 	virtual void setLinearDamping(RigidBody *_rigidBody, double _linearDamping);
 	virtual void setAngularDamping(RigidBody *_rigidBody, double _angularDamping);
