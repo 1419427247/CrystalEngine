@@ -14,11 +14,11 @@ RigidBody::~RigidBody()
 {
 }
 
-Vector RigidBody::getPosition()
+const Vector& RigidBody::getPosition()
 {
     return gameObject->scene->physicalManager->getPosition(this);
 }
-double RigidBody::getRotate()
+const Vector& RigidBody::getRotate()
 {
     return gameObject->scene->physicalManager->getRotate(this);
 }
@@ -70,12 +70,12 @@ bool RigidBody::isActive()
     return gameObject->scene->physicalManager->isActive(this);
 }
 
-void RigidBody::setTransform(Vector _vector, double _angle)
+void RigidBody::setTransform(const Vector&  _vector, const Vector&  _angle)
 {
     gameObject->scene->physicalManager->setTransform(this, _vector, _angle);
 }
 
-void RigidBody::setLinearVelocity(Vector _linearVelocity)
+void RigidBody::setLinearVelocity(const Vector&  _linearVelocity)
 {
     gameObject->scene->physicalManager->setLinearVelocity(this, _linearVelocity);
 }
