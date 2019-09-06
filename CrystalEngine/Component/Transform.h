@@ -31,6 +31,8 @@ public:
 
 	void setPosition( Vector& _v);
 	void setRotate( Vector& _v);
+
+	std::string toString();
 };
 } // namespace CrystalEngine
 #endif
