@@ -31,6 +31,8 @@ public:
 
 	void normalized();
 
+	double toAngle() const;
+
 	Vector operator+(const Vector& _v) ;
 	Vector operator-(const Vector& _v) ;
 	bool operator==(const Vector& _v) ;
