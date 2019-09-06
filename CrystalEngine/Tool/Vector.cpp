@@ -1,13 +1,15 @@
 #include "CrystalEngine/Tool/Vector.h"
+#include<stdexcept>
+#include <cmath>
 
-#include <math.h>
+#define PI acos(-1)
 
 namespace CrystalEngine
 {
 
 double Vector::distance(Vector *_v1, Vector *_v2)
 {
-	return sqrt(fabs((_v1->x - _v2->x) * (_v1->y - _v2->y)));
+	return sqrt(std::fabs((_v1->x - _v2->x) * (_v1->y - _v2->y)));
 }
 
 Vector::Vector()
@@ -55,7 +57,7 @@ double Vector::getY() const
 
 double Vector::length() const
 {
-	return sqrt(x * x + y * y);
+	return std::sqrt(x * x + y * y);
 }
 
 void Vector::normalized()
@@ -72,6 +74,20 @@ void Vector::normalized()
 		y = y / x;
 		x = 1;
 	}
+}
+
+double Vector::toAngle() const{
+	try{
+		if(x==0 && y == 0){
+			throw std::runtime_error("Invalid angle");
+		}
+	}catch(const std::runtime_error& e){
+		return 0;
+	}
+	if(x==0){
+		return y>0?PI/2.0:2.0*PI/3.0;
+	}
+	return std::tan(y/x);
 }
 
 Vector Vector::operator+(const Vector &_v)
