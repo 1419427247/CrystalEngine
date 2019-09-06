@@ -101,6 +101,14 @@ std::string GameObject::getName() const
 	return name;
 }
 
+Scene& GameObject::getScene(){
+	return *scene;
+}
+
+std::list<Component *>& GameObject::getComponents(){
+	return *components;
+}
+
 bool GameObject::setParten(GameObject *_gameObject)
 {
 	if (_gameObject == nullptr)
@@ -142,7 +150,7 @@ bool GameObject::setParten(GameObject *_gameObject)
 	return true;
 }
 
-GameObject *GameObject::getParten() const
+GameObject* GameObject::getParten() const
 {
 	return parent;
 }
@@ -343,6 +351,10 @@ bool GameObject::destoryComponent(std::string _name)
 		std::cerr << e.what() << std::endl;
 		return false;
 	}
+}
+
+std::string GameObject::toString(){
+	return name;
 }
 
 TestGameObject::TestGameObject()
