@@ -17,6 +17,7 @@ GameObject::GameObject()
 	parent = nullptr;
 	children = new std::list<GameObject *>();
 	transform = new Transform();
+	creatComponent(transform);
 }
 GameObject::GameObject(std::string _name)
 {
@@ -28,6 +29,7 @@ GameObject::GameObject(std::string _name)
 	parent = nullptr;
 	children = new std::list<GameObject *>();
 	transform = new Transform();
+	creatComponent(transform);
 }
 
 GameObject::~GameObject()
@@ -152,7 +154,7 @@ bool GameObject::setParten(GameObject *_gameObject)
 
 GameObject* GameObject::getParten() const
 {
-	return parent;
+	return parent==nullptr?nullptr:parent;
 }
 
 bool GameObject::addChild(GameObject *_gameObject)
@@ -237,7 +239,7 @@ void GameObject::cleanChildren()
 {
 	for (GameObject *var : *children)
 	{
-		var->parent = NULL;
+		var->parent = nullptr;
 	}
 	children->clear();
 }
