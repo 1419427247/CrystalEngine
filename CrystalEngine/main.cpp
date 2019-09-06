@@ -18,9 +18,9 @@ public:
 	void update()
 	{
 		CrystalEngine::Vector v(0, 0);
-		if (gameObject->transform->position->getY() < -30)
-			r->setTransform(v, 0);
-		std::cout << gameObject->transform->position->getX() << "," << gameObject->transform->position->getY() << std::endl;
+		if (gameObject->transform->getPosition().getY() < -30)
+			r->setTransform(v, VECTOR_DOWN);
+		std::cout << gameObject->transform->toString() << std::endl;
 	}
 	void destory()
 	{
@@ -30,20 +30,6 @@ public:
 
 int main()
 {
-	// CrystalEngine::Vector v(2,3);
-
-	// new CrystalEngine::TestGameObject();
-	// CrystalEngine::Test::testBegin();
-
-	// int& i = v.;
-	// i =100;
-	// std::cout<< a ;
-
-	// REGISTER(Temp)
-
-	// Temp* t = (Temp*)CrystalEngine::Object::instantiation("Temp");
-
-	// std::cout<< t->toString()<<std::endl;
 	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
 	scene->creatGameObject("qwq");
@@ -53,6 +39,5 @@ int main()
 	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
 
 	application->run();
-
 	return 1;
 }
