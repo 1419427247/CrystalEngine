@@ -26,8 +26,8 @@ void Box2dPhysical::newRigidBody(RigidBody *_rigidBody)
 {
 	b2BodyDef _b2BodyDef;
 	_b2BodyDef.userData = _rigidBody->gameObject;
-	_b2BodyDef.position.Set(_rigidBody->gameObject->transform->position->getX(), _rigidBody->gameObject->transform->position->getY());
-	_b2BodyDef.angle = _rigidBody->gameObject->transform->rotate;
+	_b2BodyDef.position.Set(_rigidBody->gameObject->transform->getPosition().getX(), _rigidBody->gameObject->transform->getPosition().getY());
+	_b2BodyDef.angle = tan(_rigidBody->gameObject->transform->getRotate().getY()/_rigidBody->gameObject->transform->getRotate().getX());
 	
 	(*bodies)[_rigidBody->gameObject->getName()] = world->CreateBody(&_b2BodyDef);
 }
@@ -36,16 +36,15 @@ void Box2dPhysical::destoryRigidBody(RigidBody *_rigidBody)
 	world->DestroyBody((*bodies)[_rigidBody->gameObject->getName()]);
 }
 
-Vector Box2dPhysical::getPosition( RigidBody *_rigidBody)
+const Vector&  Box2dPhysical::getPosition( RigidBody *_rigidBody)
 {
-	return *_rigidBody->gameObject->transform->position;
+	return _rigidBody->gameObject->transform->getPosition();
 }
-double Box2dPhysical::getRotate(RigidBody *_rigidBody)
+const Vector&  Box2dPhysical::getRotate(RigidBody *_rigidBody)
 {
-	float t = (*bodies)[_rigidBody->gameObject->getName()]->GetAngle();
-	return t;
+	return _rigidBody->gameObject->transform->getRotate();
 }
-Vector Box2dPhysical::getLinearVelocity( RigidBody *_rigidBody)
+Vector Box2dPhysical::getLinearVelocity(RigidBody *_rigidBody)
 {
 	b2Vec2 t = (*bodies)[_rigidBody->gameObject->getName()]->GetLinearVelocity();
 	Vector _v(t.x, t.y);
@@ -101,9 +100,9 @@ bool Box2dPhysical::isActive(RigidBody *_rigidBody)
 	bool t = (*bodies)[_rigidBody->gameObject->getName()]->IsActive();
 	return t;
 }
-void Box2dPhysical::setTransform(RigidBody *_rigidBody, Vector _vector, double _angle)
+void Box2dPhysical::setTransform(RigidBody *_rigidBody,const Vector& _vector, const Vector& _angle)
 {
-	(*bodies)[_rigidBody->gameObject->getName()]->SetTransform(b2Vec2(_vector.getX(), _vector.getY()), _angle);
+	(*bodies)[_rigidBody->gameObject->getName()]->SetTransform(b2Vec2(_vector.getX(), _vector.getY()), tan(_angle.getY()/_angle.getX()));
 }
 
 void Box2dPhysical::setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity)
@@ -181,8 +180,8 @@ void Box2dPhysical::update()
 	for (int i = 0; i < world->GetBodyCount(); i++)
 	{
 		GameObject *g = (GameObject *)list[i].GetUserData();
-		g->transform->position->set(list[i].GetPosition().x, list[i].GetPosition().y);
-		g->transform->rotate = list[i].GetAngle();
+		g->transform->setPosition(list[i].GetPosition().x, list[i].GetPosition().y);
+		g->transform->setRotate (1.0,atan(list[i].GetAngle()));
 	}
 }
 
