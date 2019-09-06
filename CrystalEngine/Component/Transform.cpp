@@ -1,3 +1,5 @@
+#include<string>
+#include<cmath>
 #include "CrystalEngine/Scene/GameObject.h"
 
 #include "CrystalEngine/Component/Transform.h"
@@ -75,6 +77,15 @@ void Transform::setPosition(Vector &_v)
 void Transform::setRotate(Vector &_v)
 {
     worldRotate->set(_v);
+}
+
+std::string Transform::toString(){
+   
+    return std::to_string(worldPosition->getX()) 
+    + "," 
+    + std::to_string(worldPosition->getY()) 
+    + ","
+    + std::to_string(std::tan(worldRotate->getY()/worldRotate->getX()));
 }
 
 } // namespace CrystalEngine
