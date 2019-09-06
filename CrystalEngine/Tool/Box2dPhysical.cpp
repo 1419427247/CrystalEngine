@@ -27,7 +27,7 @@ void Box2dPhysical::newRigidBody(RigidBody *_rigidBody)
 	b2BodyDef _b2BodyDef;
 	_b2BodyDef.userData = _rigidBody->gameObject;
 	_b2BodyDef.position.Set(_rigidBody->gameObject->transform->getPosition().getX(), _rigidBody->gameObject->transform->getPosition().getY());
-	_b2BodyDef.angle = tan(_rigidBody->gameObject->transform->getRotate().getY()/_rigidBody->gameObject->transform->getRotate().getX());
+	_b2BodyDef.angle = _rigidBody->gameObject->transform->getRotate().toAngle();
 	
 	(*bodies)[_rigidBody->gameObject->getName()] = world->CreateBody(&_b2BodyDef);
 }
@@ -102,7 +102,7 @@ bool Box2dPhysical::isActive(RigidBody *_rigidBody)
 }
 void Box2dPhysical::setTransform(RigidBody *_rigidBody,const Vector& _vector, const Vector& _angle)
 {
-	(*bodies)[_rigidBody->gameObject->getName()]->SetTransform(b2Vec2(_vector.getX(), _vector.getY()), tan(_angle.getY()/_angle.getX()));
+	(*bodies)[_rigidBody->gameObject->getName()]->SetTransform(b2Vec2(_vector.getX(), _vector.getY()), _angle.toAngle());
 }
 
 void Box2dPhysical::setLinearVelocity(RigidBody *_rigidBody, Vector _linearVelocity)
