@@ -52,6 +52,9 @@ public:
 	void destory();
 
 	std::string getName() const;
+	Scene& getScene();
+	std::list<Component *>& getComponents();
+
 
 	bool setParten(GameObject *_gameObject);
 	GameObject *getParten() const;
@@ -71,6 +74,8 @@ public:
 	bool newComponent(Component *_component);
 	Component *getComponent(std::string _name) const;
 	bool destoryComponent(std::string _name);
+
+	std::string toString();
 };
 
 class TestGameObject : public CrystalEngine::Test
