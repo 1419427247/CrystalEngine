@@ -1,8 +1,18 @@
+/**
+ * @file main.cpp
+ * @author iPad水晶 (1419427247@qq.com)
+ * @brief 程序的主入口
+ * @version 0.1
+ * @date 2019年09月07日
+ *
+ * @copyright Copyright (c) 2019
+ *
+ */
+
 #include<iostream>
 
 #include "CrystalEngine/Application.h"
 #include "Box2D/Box2D.h"
-
 
 class Temp : public CrystalEngine::Component
 {

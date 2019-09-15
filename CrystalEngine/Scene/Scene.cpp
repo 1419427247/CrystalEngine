@@ -1,10 +1,21 @@
+/**
+ * @file Scene.cpp
+ * @author iPad水晶 (1419427247@qq.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019年09月07日
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include<iostream>
 #include <stdexcept>
 #include "CrystalEngine/Scene/Scene.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"
 
-#include "CrystalEngine/Scene/PhysicalManager.h"
+#include "CrystalEngine/Scene/Physical.h"
 
 #include "CrystalEngine/Tool/Timer.h"
 namespace CrystalEngine
@@ -15,18 +26,18 @@ Scene::Scene()
 	newGameObjects = new std::vector<std::string>();
 	deleteGameObjects = new std::vector<std::string>();
 	gameObjects = new std::unordered_map<std::string, GameObject *>();
-	physicalManager = new PhysicalManager();
-	physicalManager->scene = nullptr;
+	physical = new Physical();
+	physical->scene = this;
 }
 
-Scene::Scene(PhysicalManager *_physicalManager)
+Scene::Scene(Physical *_physical)
 {
 	isAlive = false;
 	newGameObjects = new std::vector<std::string>();
 	deleteGameObjects = new std::vector<std::string>();
 	gameObjects = new std::unordered_map<std::string, GameObject *>();
-	physicalManager = _physicalManager;
-	physicalManager->scene = this;
+	physical = _physical;
+	physical->scene = this;
 }
 
 Scene::~Scene()
@@ -38,14 +49,14 @@ Scene::~Scene()
 	delete gameObjects;
 	delete newGameObjects;
 	delete deleteGameObjects;
-	delete physicalManager;
+	delete physical;
 }
 
 void Scene::start()
 {
 	isAlive = true;
 
-	physicalManager->start();
+	physical->start();
 
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
@@ -81,12 +92,12 @@ bool Scene::update()
 		var.second->update();
 	}
 
-	physicalManager->update();
+	physical->update();
 	return isAlive;
 }
 void Scene::destory()
 {
-	physicalManager->destory();
+	physical->destory();
 }
 
 bool Scene::newGameObject(std::string _gameObjectName)

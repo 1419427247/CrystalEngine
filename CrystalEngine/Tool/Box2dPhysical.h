@@ -1,6 +1,17 @@
+/**
+ * @file Box2dPhysical.h
+ * @author iPad水晶 (1419427247@qq.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019年09月07日
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #ifndef BOX2DPHYSICAL_H
 #define BOX2DPHYSICAL_H
-#include "CrystalEngine/Scene/PhysicalManager.h"
+#include "CrystalEngine/Scene/Physical.h"
 
 #include <unordered_map>
 
@@ -12,11 +23,26 @@ class GameObject;
 class Vector;
 class RigidBody;
 class Collision;
-class Box2dPhysical : public PhysicalManager
-{
+/**
+ * @brief 
+ * 
+ */
+class Box2dPhysical : public Physical
+{	
+	/**
+	 * @brief 
+	 * 
+	 */
     std::unordered_map<std::string,b2Body*>* bodies;
-
+	/**
+	 * @brief 
+	 * 
+	 */
     b2World* world;
+	/**
+	 * @brief 
+	 * 
+	 */
     Vector* gravity;
 public:
     Box2dPhysical();

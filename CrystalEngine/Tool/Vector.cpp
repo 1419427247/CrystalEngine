@@ -1,3 +1,14 @@
+/**
+ * @file Vector.cpp
+ * @author iPad水晶 (1419427247@qq.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019年09月07日
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include "CrystalEngine/Tool/Vector.h"
 #include<stdexcept>
 #include <cmath>
@@ -55,7 +66,7 @@ double Vector::getY() const
 	return y;
 }
 
-double Vector::length() const
+double Vector::magnitude() const
 {
 	return std::sqrt(x * x + y * y);
 }
@@ -100,9 +111,31 @@ Vector Vector::operator-(const Vector &_v)
 	return Vector(this->x - _v.x, this->y - _v.y);
 }
 
+Vector& Vector::operator+=(const Vector& _v){
+	x+=_v.x;
+	y+=_v.y;
+	return *this;
+}
+Vector& Vector::operator-=(const Vector& _v) {
+	x-=_v.x;
+	y-=_v.y;
+	return *this;
+}
+
+Vector& Vector::operator=(const Vector& _v) {
+	x=_v.x;
+	y=_v.y;
+	return *this;
+}
+
 bool Vector::operator==(const Vector &_v)
 {
 	return x == _v.x && y == _v.y;
 }
+
+	std::string Vector::toString(){
+		return "(" + std::to_string(x) + "," + std::to_string(y) + ")";
+	}
+
 
 } // namespace CrystalEngine

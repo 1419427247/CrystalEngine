@@ -1,3 +1,14 @@
+/**
+ * @file Vector.h
+ * @author iPad水晶 (1419427247@qq.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019年09月07日
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #ifndef VECTOR_H
 #define VECTOR_H
 
@@ -6,6 +17,10 @@
 
 namespace CrystalEngine
 {
+/**
+ * @brief 
+ * 
+ */
 class Vector : public Object
 {
 	double x;
@@ -27,7 +42,7 @@ public:
 	double getX() const;
 	double getY() const;
 
-	double length() const;
+	double magnitude() const;
 
 	void normalized();
 
@@ -35,8 +50,16 @@ public:
 
 	Vector operator+(const Vector& _v) ;
 	Vector operator-(const Vector& _v) ;
+
+	Vector& operator+=(const Vector& _v) ;
+	Vector& operator-=(const Vector& _v) ;
+	Vector& operator=(const Vector& _v) ;
+
 	bool operator==(const Vector& _v) ;
+
+	std::string toString();
 };
+#define VECTOR_ZERO CrystalEngine::Vector(0, 0)
 #define VECTOR_UP CrystalEngine::Vector(0, 1)
 #define VECTOR_DOWN CrystalEngine::Vector(0, -1)
 #define VECTOR_LEFT CrystalEngine::Vector(-1, 0)
