@@ -8,8 +8,6 @@
  * @copyright Copyright (c) 2019
  * 
  */
-#include<string>
-#include<cmath>
 #include "CrystalEngine/Scene/GameObject.h"
 
 #include "CrystalEngine/Component/Transform.h"

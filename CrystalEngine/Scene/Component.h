@@ -14,8 +14,6 @@
 
 #include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
-#include <vector>
-#include <string>
 
 namespace CrystalEngine
 {

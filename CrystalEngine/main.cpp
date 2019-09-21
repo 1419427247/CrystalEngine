@@ -8,11 +8,7 @@
  * @copyright Copyright (c) 2019
  *
  */
-
-#include<iostream>
-
 #include "CrystalEngine/Application.h"
-#include "Box2D/Box2D.h"
 
 class Temp : public CrystalEngine::Component
 {
@@ -49,5 +45,6 @@ int main()
 	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
 
 	application->run();
+	
 	return 1;
 }

@@ -9,8 +9,6 @@
  * 
  */
 
-#include <stdexcept>
-
 #include "CrystalEngine/Tool/Vector.h"
 
 #include "CrystalEngine/Component/RigidBody.h"

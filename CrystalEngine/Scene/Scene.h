@@ -15,8 +15,6 @@
 #include "CrystalEngine/Scene/Physical.h"
 #include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
-#include <unordered_map>
-#include <vector>
 
 namespace CrystalEngine
 {

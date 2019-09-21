@@ -12,8 +12,6 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include <vector>
-
 #include "CrystalEngine/Tool/Object.h"
 
 #define Comparison(T1, T2)                                                                                                 \

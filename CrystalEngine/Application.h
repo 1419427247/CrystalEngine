@@ -12,10 +12,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "CrystalEngine/Scene/Component.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Scene.h"
-#include "CrystalEngine/Scene/Physical.h"
 
 #include "CrystalEngine/Component/Transform.h"
 #include "CrystalEngine/Component/Camera.h"
@@ -27,7 +25,6 @@
 #include "CrystalEngine/Tool/Runnable.h"
 #include "CrystalEngine/Tool/Timer.h"
 #include "CrystalEngine/Tool/Vector.h"
-#include "CrystalEngine/Tool/Object.h"
 /**
  * @brief 
  * 

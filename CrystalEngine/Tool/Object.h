@@ -12,15 +12,12 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include <unordered_map>
-#include <string>
-
-#define REGISTER(OBJECT)                                 \
-    {                                                    \
-        using namespace CrystalEngine;                   \
-        Object::__objects[#OBJECT] = OBJECT::instantiation;\
+#define REGISTER(OBJECT)                                    \
+    {                                                       \
+        using namespace CrystalEngine;                      \
+        Object::__objects[#OBJECT] = OBJECT::instantiation; \
     }
-    
+
 #define INSTANTIATION(OBJECT_NAME) new OBJECT_NAME()
 
 #define OBJECT(OBJECT_NAME)                 \
@@ -33,6 +30,18 @@ public:                                     \
     {                                       \
         return #OBJECT_NAME;                \
     }
+
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <list>
+#include <string>
+#include <cmath>
+#include <thread>
+#include <ctime>
+#include <chrono>
+#include <functional>
+
 
 namespace CrystalEngine
 {

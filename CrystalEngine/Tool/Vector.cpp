@@ -10,8 +10,6 @@
  */
 
 #include "CrystalEngine/Tool/Vector.h"
-#include<stdexcept>
-#include <cmath>
 
 #define PI acos(-1)
 

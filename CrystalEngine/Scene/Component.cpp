@@ -12,6 +12,7 @@
 #include "CrystalEngine/Scene/Component.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Scene.h"
+
 namespace CrystalEngine
 {
 Component::Component()

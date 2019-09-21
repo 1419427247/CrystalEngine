@@ -9,6 +9,8 @@
  * 
  */
 
+#include "Box2D/Box2D.h"
+
 #include "CrystalEngine/Tool/Box2dPhysical.h"
 
 #include "CrystalEngine/Scene/GameObject.h"
@@ -17,8 +19,6 @@
 #include "CrystalEngine/Component/Collision.h"
 #include "CrystalEngine/Component/Transform.h"
 #include "CrystalEngine/Tool/Vector.h"
-
-#include "Box2D/Box2D.h"
 
 namespace CrystalEngine
 {

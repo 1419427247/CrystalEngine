@@ -9,9 +9,6 @@
  * 
  */
 
-#include<iostream>
-#include <stdexcept>
-
 #include "CrystalEngine/Scene/Scene.h"
 #include "CrystalEngine/Scene/GameObject.h"
 #include "CrystalEngine/Scene/Component.h"

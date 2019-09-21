@@ -9,9 +9,6 @@
  * 
  */
 
-#include<iostream>
-#include<string>
-
 #include "CrystalEngine/Tool/Test.h"
 
 namespace CrystalEngine

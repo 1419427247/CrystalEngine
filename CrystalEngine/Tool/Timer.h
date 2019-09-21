@@ -12,11 +12,6 @@
 #ifndef TIME_H
 #define TIME_H
 
-#include <thread>
-#include <ctime>
-#include <chrono>
-#include <functional>
-
 #include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 
