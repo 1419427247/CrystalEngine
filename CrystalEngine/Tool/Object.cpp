@@ -30,7 +30,7 @@ namespace CrystalEngine
     std::string Object::toString()
     {
         #ifdef OBJECT
-        return getClassName();
+        return __getClassName();
         #else
         throw();
         #endif

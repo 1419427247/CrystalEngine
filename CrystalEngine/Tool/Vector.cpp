@@ -86,12 +86,8 @@ void Vector::normalized()
 }
 
 double Vector::toAngle() const{
-	try{
-		if(x==0 && y == 0){
-			throw std::runtime_error("Invalid angle");
-		}
-	}catch(const std::runtime_error& e){
-		return 0;
+	if(x==0 && y == 0){
+		throw std::runtime_error("Invalid angle");
 	}
 	if(x==0){
 		return y>0?PI/2.0:2.0*PI/3.0;

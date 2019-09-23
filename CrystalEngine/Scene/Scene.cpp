@@ -30,12 +30,9 @@ Scene::Scene()
 	physical->scene = this;
 }
 
-Scene::Scene(Physical *_physical)
+Scene::Scene(Physical *_physical):Scene()
 {
-	isAlive = false;
-	newGameObjects = new std::vector<std::string>();
-	deleteGameObjects = new std::vector<std::string>();
-	gameObjects = new std::unordered_map<std::string, GameObject *>();
+	delete physical;
 	physical = _physical;
 	physical->scene = this;
 }
@@ -60,7 +57,14 @@ void Scene::start()
 
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
-		var.second->start();
+		try{
+			var.second->start();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+
 	}
 }
 bool Scene::update()
@@ -69,7 +73,15 @@ bool Scene::update()
 	{
 		if (gameObjects->count(var))
 		{
-			(*gameObjects)[var]->destory();
+			try
+			{
+				(*gameObjects)[var]->destory();
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+			
 			delete (*gameObjects)[var];
 			gameObjects->erase(var);
 		}
@@ -82,14 +94,27 @@ bool Scene::update()
 		{
 			(*gameObjects)[var] = new GameObject(var);
 			(*gameObjects)[var]->scene = this;
-			(*gameObjects)[var]->start();
+			try
+			{
+				(*gameObjects)[var]->start();
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
 		}
 	}
 	newGameObjects->clear();
 
 	for (std::pair<std::string, GameObject *> var : *gameObjects)
 	{
-		var.second->update();
+		try{
+			var.second->update();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 
 	physical->update();
@@ -97,151 +122,96 @@ bool Scene::update()
 }
 void Scene::destory()
 {
+	for (std::pair<std::string, GameObject *> var : *gameObjects)
+	{
+		
+		try{
+			var.second->destory();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+	}
 	physical->destory();
 }
 
-bool Scene::newGameObject(std::string _gameObjectName)
+void Scene::newGameObject(std::string _gameObjectName)
 {
-	try
+	if (gameObjects->count(_gameObjectName))
 	{
-		if (gameObjects->count(_gameObjectName))
-		{
-			throw std::runtime_error("Object name already exists");
-		}
-		for (std::string var : *newGameObjects)
-		{
-			if (var == _gameObjectName)
-				throw std::runtime_error("Object name already exists");
-		}
+		throw std::runtime_error("Object name : \""+ _gameObjectName +"\" already exists");
 	}
-	catch (const std::runtime_error &e)
+	for (std::string var : *newGameObjects)
 	{
-		return false;
-		std::cerr << e.what() << std::endl;
+		if (var == _gameObjectName)
+			throw std::runtime_error("Object name : \""+ _gameObjectName +"\" already exists");
 	}
 	newGameObjects->push_back(_gameObjectName);
-	return true;
 }
 
-bool Scene::creatGameObject(std::string _gameObjectName)
+void Scene::creatGameObject(std::string _gameObjectName)
 {
-	try
-	{
 		if (gameObjects->count(_gameObjectName))
 		{
-			throw std::runtime_error("Object name already exists");
+			throw std::runtime_error("Object name : \""+ _gameObjectName +"\" already exists");
 		}
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
 
 	(*gameObjects)[_gameObjectName] = new GameObject(_gameObjectName);
 	(*gameObjects)[_gameObjectName]->scene = this;
-	return true;
 }
 
 GameObject *Scene::getGameObject(std::string _gameObjectName) const
 {
-	try
-	{
-		if (!gameObjects->count(_gameObjectName))
-		{
-			throw std::runtime_error("Object not found");
-		}
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return nullptr;
-	}
-
+	if (!gameObjects->count(_gameObjectName))
+		throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 	return (*gameObjects)[_gameObjectName];
 }
 
-bool Scene::destoryGameObject(std::string _name)
+void Scene::destoryGameObject(std::string _gameObjectName)
 {
-	try
-	{
-		if (!gameObjects->count(_name))
+		if (!gameObjects->count(_gameObjectName))
 		{
-			throw std::runtime_error("Object not found");
+			throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 		}
 		for (std::string var : *deleteGameObjects)
 		{
-			if (var == _name)
-				throw std::runtime_error("Object not found");
+			if (var == _gameObjectName)
+				throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 		}
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	deleteGameObjects->push_back(_name);
-	return true;
+	deleteGameObjects->push_back(_gameObjectName);
 }
 
-bool Scene::newComponent(std::string _gameObjectName, Component *_component)
+void Scene::newComponent(std::string _gameObjectName, Component *_component)
 {
-	try
-	{
 		if (!gameObjects->count(_gameObjectName))
-			throw std::runtime_error("Object not found");
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
+			throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 	return (*gameObjects)[_gameObjectName]->newComponent(_component);
 }
 
-bool Scene::creatComponent(std::string _gameObjectName, Component *_component)
+void Scene::creatComponent(std::string _gameObjectName, Component *_component)
 {
-	try
-	{
 		if (!gameObjects->count(_gameObjectName))
-			throw std::runtime_error("Object not found");
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
+			throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 	return (*gameObjects)[_gameObjectName]->creatComponent(_component);
 }
 
 Component *Scene::getComponent(std::string _gameObjectName, std::string _componentGame) const
 {
-	try
-	{
 		if (!gameObjects->count(_gameObjectName))
-			throw std::runtime_error("Object not found");
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return nullptr;
-	}
+			throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
 	return (*gameObjects)[_gameObjectName]->getComponent(_componentGame);
 }
 
-bool Scene::destoryComponent(std::string _gameObjectName, std::string _name)
+void Scene::destoryComponent(std::string _gameObjectName, std::string _componentName)
 {
-	try
-	{
-		if (!gameObjects->count(_gameObjectName))
-			throw std::runtime_error("Object not found");
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	return (*gameObjects)[_gameObjectName]->destoryComponent(_name);
+	if (!gameObjects->count(_gameObjectName))
+		throw std::runtime_error("Object : \""+ _gameObjectName + "\" not found");
+	(*gameObjects)[_gameObjectName]->destoryComponent(_componentName);
+}
+
+void Scene::finish(){
+	isAlive = false;
 }
 
 TestScene::TestScene()
@@ -252,22 +222,24 @@ TestScene::~TestScene()
 }
 void TestScene::run()
 {
-	// Scene *s1 = new Scene();
-	// Comparison(s1->creatGameObject("g1"), true);
-	// Comparison(s1->creatGameObject("g2"), true);
+	Scene *s1 = new Scene();
 
-	// Comparison(s1->creatGameObject("g1"), false);
+	s1->creatGameObject("g1");
+	s1->creatGameObject("g2");
 
-	// Comparison(s1->getGameObject("g1")->getName(), "g1");
+	Comparison(s1->getGameObject("g1")->getName(), "g1");
+	Comparison(s1->getGameObject("g2")->getName(), "g2");
+	
+	s1->getGameObject("g2")->setParten(s1->getGameObject("g1"));
 
-	// Comparison(s1->creatComponent("g1", nullptr), false);
+	Comparison(s1->getGameObject("g1")->getChildrenCount(),1);
+	Comparison(s1->getGameObject("g2")->getParten()->getName(),"g1");
 
-	// Comparison(s1->destoryGameObject("g2"), true);
-	// Comparison(s1->destoryGameObject("g2"), false);
+	s1->getGameObject("g1")->cleanChildren();
 
-	// Comparison(s1->deleteGameObjects->at(0), "g2");
+	Comparison(s1->getGameObject("g2")->getParten(),nullptr);
 
-	// delete s1;
+	delete s1;
 }
 
 } // namespace CrystalEngine

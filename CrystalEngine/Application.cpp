@@ -17,17 +17,18 @@ Application::Application()
 {
 }
 
-Application::Application(Scene *_scene)
+Application::Application(Scene& _scene)
 {
-    scene = _scene;
+    scene = &_scene;
 }
 
 Application::~Application()
 {
 }
-void Application::run()
+void Application::run(int _millisecond)
 {
     scene->start();
-    Timer::runLoop<Scene>(scene, &Scene::update, 20);
-}
+    Timer::runLoop<Scene>(scene, &Scene::update, _millisecond);
+    scene->destory();
+}  
 } // namespace CrystalEngine

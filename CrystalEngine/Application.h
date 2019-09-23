@@ -42,7 +42,7 @@ private:
  * @brief 
  * 
  */
-	Scene *scene;
+	Scene* scene;
 public:
 	OBJECT(Application)
 	/**
@@ -55,7 +55,7 @@ public:
 	 * 
 	 * @param _scene 
 	 */
-	Application(Scene *_scene);
+	Application(Scene& _scene);
 	/**
 	 * @brief Destroy the Application object
 	 * 
@@ -65,7 +65,7 @@ public:
 	 * @brief 
 	 * 
 	 */
-	void run();
+	void run(int _millisecond);
 };
 } // namespace CrystalEngine
 

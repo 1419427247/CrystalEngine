@@ -22,11 +22,11 @@
 
 #define OBJECT(OBJECT_NAME)                 \
 public:                                     \
-    static Object *instantiation()          \
+    static Object* __instantiation()          \
     {                                       \
         return (Object *)new OBJECT_NAME(); \
     }                                       \
-    virtual std::string getClassName()      \
+    virtual std::string __getClassName()      \
     {                                       \
         return #OBJECT_NAME;                \
     }
@@ -35,6 +35,7 @@ public:                                     \
 #include <unordered_map>
 #include <vector>
 #include <list>
+#include <algorithm>
 #include <string>
 #include <cmath>
 #include <thread>
@@ -90,7 +91,7 @@ public:
      * @return T* 
      */
     template <class T>
-    static T *instantiation(std::string _string)
+    static T *__instantiation(std::string _string)
     {
         return (T *)__objects[_string]();
     }

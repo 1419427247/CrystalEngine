@@ -18,26 +18,25 @@ namespace CrystalEngine
 {
 GameObject::GameObject()
 {
-	newComponents = new std::vector<Component *>();
-	deleteComponents = new std::vector<std::string>();
-	components = new std::list<Component *>();
 	scene = nullptr;
 	parent = nullptr;
-	children = new std::list<GameObject *>();
+
+	newComponents = new std::vector<Component *>();
+	deleteComponents = new std::vector<std::string>();
+	components = new std::vector<Component *>();
+
+	children = new std::vector<GameObject *>();
 	transform = new Transform();
 	creatComponent(transform);
 }
-GameObject::GameObject(std::string _name)
+GameObject::GameObject(std::string _name) : GameObject()
 {
 	name = _name;
-	newComponents = new std::vector<Component *>();
-	deleteComponents = new std::vector<std::string>();
-	components = new std::list<Component *>();
-	scene = nullptr;
-	parent = nullptr;
-	children = new std::list<GameObject *>();
-	transform = new Transform();
-	creatComponent(transform);
+}
+
+GameObject::GameObject(std::string _name, Scene *_scene) : GameObject(_name)
+{
+	scene = _scene;
 }
 
 GameObject::~GameObject()
@@ -60,10 +59,16 @@ GameObject::~GameObject()
 
 void GameObject::start()
 {
-	components->push_front(transform);
 	for (Component *var : *components)
 	{
-		var->start();
+		try
+		{
+			var->start();
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 }
 
@@ -73,10 +78,21 @@ void GameObject::update()
 	{
 		for (Component *component : *components)
 		{
-			if (component->getClassName() == var)
+			if (component->__getClassName() == var)
 			{
-				component->destory();
-				components->remove(component);
+				try
+				{
+					component->destory();
+				}
+				catch (const std::exception &e)
+				{
+					std::cerr << e.what() << '\n';
+				}
+
+				//components->erase(std::find(components->begin(),components->end(), component));
+				std::swap(*std::find(components->begin(), components->end(), component), *components->end());
+				components->pop_back();
+
 				delete component;
 				break;
 			}
@@ -88,13 +104,28 @@ void GameObject::update()
 	{
 		components->push_back(var);
 		var->gameObject = this;
-		var->start();
+
+		try
+		{
+			var->start();
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 	newComponents->clear();
 
 	for (Component *var : *components)
 	{
-		var->update();
+		try
+		{
+			var->update();
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 }
 
@@ -102,7 +133,14 @@ void GameObject::destory()
 {
 	for (Component *var : *components)
 	{
-		var->destory();
+		try
+		{
+			var->destory();
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 }
 
@@ -111,15 +149,17 @@ std::string GameObject::getName() const
 	return name;
 }
 
-Scene& GameObject::getScene(){
+Scene &GameObject::getScene()
+{
 	return *scene;
 }
 
-std::list<Component *>& GameObject::getComponents(){
+std::vector<Component *> &GameObject::getComponents()
+{
 	return *components;
 }
 
-bool GameObject::setParten(GameObject *_gameObject)
+void GameObject::setParten(GameObject *_gameObject)
 {
 	if (_gameObject == nullptr)
 	{
@@ -128,89 +168,107 @@ bool GameObject::setParten(GameObject *_gameObject)
 			parent->removeChild(this);
 		}
 		parent = nullptr;
-		return true;
-	}
-	try
-	{
-		if (_gameObject == this)
-		{
-			throw std::logic_error("Parent object can't be yourself");
-		}
-		if (parent == _gameObject)
-		{
-			throw std::logic_error("The object is already your parten");
-		}
-	}
-	catch(const std::logic_error& e){
-		std::cerr<<e.what()<<std::endl;
-		return false;
+		return;
 	}
 
-	if(_gameObject->parent!=nullptr){
-		_gameObject->parent->children->remove(_gameObject);
+	if (_gameObject == this)
+	{
+		throw std::logic_error("Parent object can't be yourself");
+	}
+	if (parent == _gameObject)
+	{
+		throw std::logic_error("The object is already your parten");
+	}
+
+	if (_gameObject->parent != nullptr)
+	{
+		// _gameObject->parent->children->erase(
+		// 	std::find(_gameObject->parent->children->begin(),
+		// 			  _gameObject->parent->children->end(),
+		// 			  this));
+		std::swap(
+			*std::find(
+				_gameObject->parent->children->begin(),
+				_gameObject->parent->children->end(), this),
+			*_gameObject->parent->children->end());
+
+		_gameObject->parent->children->pop_back();
+
 		_gameObject->parent = nullptr;
 	}
-	if (parent != nullptr){
-		parent->children->remove(this);
+	if (parent != nullptr)
+	{
+
+		// parent->children->erase(
+		// 	std::find(parent->children->begin(),
+		// 			  parent->children->end(),
+		// 			  this));
+
+		std::swap(
+			*std::find(
+				parent->children->begin(),
+				parent->children->end(), this),
+			*parent->children->end());
+		parent->children->pop_back();
+
 		_gameObject->parent = this->parent;
 		_gameObject->parent->children->push_back(_gameObject);
 	}
 	parent = _gameObject;
-	parent ->children->push_back(this);
-	return true;
+	parent->children->push_back(this);
 }
 
-GameObject* GameObject::getParten() const
+GameObject *GameObject::getParten() const
 {
-	return parent==nullptr?nullptr:parent;
+	return parent == nullptr ? nullptr : parent;
 }
 
-bool GameObject::addChild(GameObject *_gameObject)
+void GameObject::addChild(GameObject *_gameObject)
 {
-	try
+	if (_gameObject == nullptr)
 	{
-		if (_gameObject == nullptr)
+		throw std::invalid_argument("Parameter cannot be empty");
+	}
+	if (_gameObject == this)
+	{
+		throw std::logic_error("Child object can't be yourself");
+	}
+	if (_gameObject->parent == this)
+	{
+		throw std::logic_error("The object is already your child");
+	}
+	GameObject *temp = _gameObject->parent;
+	while (temp)
+	{
+		if (temp == _gameObject)
 		{
-			throw std::invalid_argument("Parameter cannot be empty");
+			throw std::logic_error("Cannot operate on parent objects");
 		}
-		if (_gameObject == this)
+		else
 		{
-			throw std::logic_error("Child object can't be yourself");
-		}
-		if (_gameObject->parent == this){
-			throw std::logic_error("The object is already your child");
-		}
-		GameObject* temp = _gameObject->parent;
-		while (temp)
-		{
-			if(temp == _gameObject){
-				throw std::logic_error("Cannot operate on parent objects");
-			}
-			else{
-				temp=temp->parent;
-			}
+			temp = temp->parent;
 		}
 	}
-	catch (const std::invalid_argument &e)
+	if (_gameObject->parent != nullptr)
 	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	catch (const std::logic_error &e)
-	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	if(_gameObject->parent != nullptr){
-		_gameObject->parent->children->remove(_gameObject);
+
+		// _gameObject->parent->children->erase(
+		// 	std::find(
+		// 		_gameObject->parent->children->begin(),
+		// 		_gameObject->parent->children->end(),
+		// 		_gameObject));
+		std::swap(
+			*std::find(
+				_gameObject->parent->children->begin(),
+				_gameObject->parent->children->end(), this),
+			*_gameObject->parent->children->end());
+		parent->children->pop_back();
 	}
 	this->children->push_back(_gameObject);
 	_gameObject->parent = this;
-
-	return true;
 }
 
-const std::list<GameObject *>& GameObject::getChildren() const
+const std::vector<GameObject *> &GameObject::getChildren() const
 {
 	return *(this->children);
 }
@@ -219,29 +277,28 @@ int GameObject::getChildrenCount() const
 	return children->size();
 }
 
-bool GameObject::removeChild(GameObject *_gameObject)
+void GameObject::removeChild(GameObject *_gameObject)
 {
-	try{
 	if (_gameObject == nullptr)
 		throw std::invalid_argument("Parameter cannot be empty");
 	for (GameObject *var : *children)
+	{
 		if (var == _gameObject)
 		{
 			var->parent = NULL;
-			children->remove(var);
-			return true;
+			//children->erase(std::find(children->begin(),children->end(),var));
+			std::swap(
+				*std::find(
+					children->begin(),
+					children->end(), this),
+				*children->end());
+
+			children->pop_back();
+
+			return;
 		}
 		throw std::runtime_error("Did not find the object");
 	}
-	catch(const std::invalid_argument& e){
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	catch(const std::runtime_error& e){
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	return true;
 }
 void GameObject::cleanChildren()
 {
@@ -252,118 +309,83 @@ void GameObject::cleanChildren()
 	children->clear();
 }
 
-bool GameObject::newGameObject(std::string _gameObjectName)
+void GameObject::newGameObject(std::string _gameObjectName)
 {
-	return scene->newGameObject(_gameObjectName);
+	scene->newGameObject(_gameObjectName);
 }
 
-bool GameObject::creatGameObject(std::string _gameObjectName)
+void GameObject::creatGameObject(std::string _gameObjectName)
 {
-	return scene->creatGameObject(_gameObjectName);
+	scene->creatGameObject(_gameObjectName);
 }
 
 GameObject *GameObject::getGameObject(std::string _gameObjectName) const
 {
 	return scene->getGameObject(_gameObjectName);
-	;
 }
 
-bool GameObject::destoryGameObject(std::string _name)
+void GameObject::destoryGameObject(std::string _name)
 {
-	return scene->destoryGameObject(_name);
+	scene->destoryGameObject(_name);
 }
 
-bool GameObject::creatComponent(Component *_component)
+void GameObject::creatComponent(Component *_component)
 {
-	try{
-		if (_component == nullptr)
-			throw std::invalid_argument("Parameter cannot be empty");
-	}
-	catch(const std::invalid_argument& e){
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
+	if (_component == nullptr)
+		throw std::invalid_argument("Parameter cannot be empty");
 	components->push_back(_component);
 	_component->gameObject = this;
-	return true;
 }
 
-bool GameObject::newComponent(Component *_component)
+void GameObject::newComponent(Component *_component)
 {
-	try
+	if (_component == nullptr)
+		throw std::invalid_argument("Parameter cannot be empty");
+	for (Component *var : *components)
 	{
-		if (_component == nullptr)
-			throw std::invalid_argument("Parameter cannot be empty");
-		for (Component *var : *components)
-		{
-			if (var->getClassName() == _component->getClassName())
-				throw std::runtime_error("Component already exists");
-		}
-		for (Component *var : *newComponents)
-		{
-			if (var->getClassName() == _component->getClassName())
-				throw std::runtime_error("Component already exists");
-		}
+		if (var->__getClassName() == _component->__getClassName())
+			throw std::runtime_error("Component : " + _component->__getClassName() + "already exists");
 	}
-	catch (const std::invalid_argument &e)
+	for (Component *var : *newComponents)
 	{
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
-	catch (const std::runtime_error &e)
-	{
-		std::cerr << e.what() << ": class" << _component->getClassName() << std::endl;
-		return false;
+		if (var->__getClassName() == _component->__getClassName())
+			throw std::runtime_error("Component : " + _component->__getClassName() + "already exists");
 	}
 	newComponents->push_back(_component);
-	return true;
 }
 
 Component *GameObject::getComponent(std::string _name) const
 {
 	for (Component *var : *components)
 	{
-		if (var->getClassName() == _name)
+		if (var->__getClassName() == _name)
 		{
 			return var;
 		}
 	}
-	try
-	{
-		throw std::runtime_error("Component not found");
-	}
-	catch(const std::runtime_error& e)
-	{
-		std::cerr << e.what() << std::endl;
-		return nullptr;
-	}
+	throw std::runtime_error("Component : \"" + _name + "\" not found");
 }
 
-bool GameObject::destoryComponent(std::string _name)
+void GameObject::destoryComponent(std::string _name)
 {
-	try{
-		for (Component *var : *components)
+	for (Component *var : *components)
+	{
+		if (var->__getClassName() == _name)
 		{
-			if (var->getClassName() == _name)
+			for (std::string var : *deleteComponents)
 			{
-				for (std::string var : *deleteComponents)
-				{
-					if (var == _name)
-						throw std::runtime_error("Component not found");
-				}
-				deleteComponents->push_back(_name);
-				return true;
+				if (var == _name)
+					throw std::runtime_error("Component : \"" + _name + "\" not found");
 			}
+			deleteComponents->push_back(_name);
+			return;
 		}
-		throw std::runtime_error("Component not found");
 	}
-	catch(const std::runtime_error& e){
-		std::cerr << e.what() << std::endl;
-		return false;
-	}
+	throw std::runtime_error("Component : \"" + _name + "\" not found");
 }
 
-std::string GameObject::toString(){
+std::string GameObject::toString()
+{
 	return name;
 }
 

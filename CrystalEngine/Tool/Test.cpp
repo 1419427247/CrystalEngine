@@ -16,7 +16,7 @@ namespace CrystalEngine
 Test::Test(){
     for (Test *var : instance)
     {
-        if (var->getClassName() == getClassName())
+        if (var->__getClassName() == __getClassName())
             throw;
     }
     instance.push_back(this);

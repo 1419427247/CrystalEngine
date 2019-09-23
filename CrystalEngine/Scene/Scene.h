@@ -33,7 +33,6 @@ private:
 	bool isAlive;
 	std::vector<std::string> *newGameObjects;
 	std::vector<std::string> *deleteGameObjects;
-
 	std::unordered_map<std::string, GameObject *> *gameObjects;
 	Physical* physical; 
 	
@@ -81,7 +80,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool newGameObject(std::string _gameObjectName);
+	void newGameObject(std::string _gameObjectName);
 	/**
 	 * @brief 
 	 * 
@@ -89,7 +88,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool creatGameObject(std::string _gameObjectName);
+	void creatGameObject(std::string _gameObjectName);
 	/**
 	 * @brief Get the Game Object object
 	 * 
@@ -104,7 +103,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool destoryGameObject(std::string _name);
+	void destoryGameObject(std::string _gameObjectName);
 
 	/**
 	 * @brief 
@@ -114,7 +113,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool newComponent(std::string _gameObjectName, Component *_component);
+	void newComponent(std::string _gameObjectName, Component *_component);
 	/**
 	 * @brief 
 	 * 
@@ -123,7 +122,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool creatComponent(std::string _gameObjectName, Component *_component);
+	void creatComponent(std::string _gameObjectName, Component *_component);
 	/**
 	 * @brief Get the Component object
 	 * 
@@ -140,7 +139,13 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool destoryComponent(std::string _gameObjectName, std::string _name);
+	void destoryComponent(std::string _gameObjectName, std::string _componentName);
+	
+	/**
+	 * @brief 
+	 * 
+	 */
+	void finish();
 };
 
 

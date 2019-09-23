@@ -10,23 +10,20 @@
  */
 #include "CrystalEngine/Application.h"
 
+
 class Temp : public CrystalEngine::Component
 {
 public:
 	OBJECT(Temp)
-	CrystalEngine::RigidBody *r;
+	CrystalEngine::GameObject *g;
 	void start()
 	{
-		r = (CrystalEngine::RigidBody *)getComponent("Temp");
-		r->setType(CrystalEngine::BodyType::dynamicBody);
-		std::cout << "Hi" << std::endl;
+		std::cout << "Hi~~" <<std::endl;
 	}
 	void update()
 	{
-		CrystalEngine::Vector v(0, 0);
-		if (gameObject->transform->getPosition().getY() < -30)
-			r->setTransform(v, VECTOR_DOWN);
-		std::cout << gameObject->transform->toString() << std::endl;
+		destoryGameObject("qwq");
+		newGameObject("qwq");
 	}
 	void destory()
 	{
@@ -36,15 +33,15 @@ public:
 
 int main()
 {
-	CrystalEngine::Scene *scene = new CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
+	CrystalEngine::Scene scene = CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
 
-	scene->creatGameObject("qwq");
-	scene->creatComponent("qwq", new CrystalEngine::RigidBody());
-	scene->creatComponent("qwq", new Temp());
+	scene.creatGameObject("qwq");
 
-	CrystalEngine::Application *application = new CrystalEngine::Application(scene);
+	scene.creatComponent("qwq", new Temp());
 
-	application->run();
-	
+	CrystalEngine::Application application = CrystalEngine::Application(scene);
+
+	application.run(20);
+
 	return 1;
 }

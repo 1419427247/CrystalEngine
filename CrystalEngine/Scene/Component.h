@@ -30,19 +30,23 @@ public:
 
 	Component();
 	
+	Component(GameObject* _gameObject);
+
 	virtual ~Component();
 
 	virtual void start();
 	virtual void update();
 	virtual void destory();
 
-	bool newGameObject(std::string _gameObjectName);
-	GameObject *getGameObject(std::string _gameObjectName) const;
-	bool destoryGameObject(std::string _name);
+	GameObject& getGameObject();
 
-	bool newComponent(Component *_component);
+	void newGameObject(std::string _gameObjectName);
+	GameObject *getGameObject(std::string _gameObjectName) const;
+	void destoryGameObject(std::string _name);
+
+	void newComponent(Component *_component);
 	Component *getComponent(std::string _name) const;
-	bool destoryComponent(std::string _name);
+	void destoryComponent(std::string _name);
 };
 } // namespace CrystalEngine
 #endif

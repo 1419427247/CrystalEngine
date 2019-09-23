@@ -55,7 +55,7 @@ private:
 	 * @brief 游戏物体组件容器
 	 * 
 	 */
-	std::list<Component *> *components;
+	std::vector<Component *> *components;
 	/**
 	 * @brief 父物体
 	 * 
@@ -65,7 +65,7 @@ private:
 	 * @brief 子物体
 	 * 
 	 */
-	std::list<GameObject *> *children;
+	std::vector<GameObject *> *children;
 
 public:
 	OBJECT(GameObject)
@@ -85,6 +85,13 @@ public:
 	 * @param _name 
 	 */
 	GameObject(std::string _name);
+	/**
+	 * @brief Construct a new Game Object object
+	 * 
+	 * @param _name 
+	 * @param _scene 
+	 */
+	GameObject(std::string _name,Scene* _scene);
 	/**
 	 * @brief Destroy the Game Object object
 	 * 
@@ -120,9 +127,9 @@ public:
 	/**
 	 * @brief Get the Components object
 	 * 
-	 * @return std::list<Component *>& 
+	 * @return std::vector<Component *>& 
 	 */
-	std::list<Component *>& getComponents();
+	std::vector<Component *>& getComponents();
 
 	/**
 	 * @brief Set the Parten object
@@ -131,7 +138,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool setParten(GameObject *_gameObject);
+	void setParten(GameObject *_gameObject);
 	/**
 	 * @brief Get the Parten object
 	 * 
@@ -142,16 +149,14 @@ public:
 	 * @brief 
 	 * 
 	 * @param _gameObject 
-	 * @return true 
-	 * @return false 
 	 */
-	bool addChild(GameObject *_gameObject);
+	void addChild(GameObject *_gameObject);
 	/**
 	 * @brief Get the Children object
 	 * 
-	 * @return const std::list<GameObject *>& 
+	 * @return const std::vector<GameObject *>& 
 	 */
-	const std::list<GameObject *>& getChildren() const;
+	const std::vector<GameObject *>& getChildren() const;
 	/**
 	 * @brief Get the Children Count object
 	 * 
@@ -165,7 +170,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool removeChild(GameObject *_gameObject);
+	void removeChild(GameObject *_gameObject);
 	/**
 	 * @brief 
 	 * 
@@ -179,7 +184,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool creatGameObject(std::string _gameObjectName);
+	void creatGameObject(std::string _gameObjectName);
 	/**
 	 * @brief 
 	 * 
@@ -187,7 +192,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool newGameObject(std::string _gameObjectName);
+	void newGameObject(std::string _gameObjectName);
 	/**
 	 * @brief Get the Game Object object
 	 * 
@@ -202,7 +207,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool destoryGameObject(std::string _name);
+	void destoryGameObject(std::string _name);
 	/**
 	 * @brief 
 	 * 
@@ -210,16 +215,13 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool creatComponent(Component *_component);
+	void creatComponent(Component *_component);
 	/**
 	 * @brief 
 	 * 
 	 * @param _component 
-	 * @return true 
-	 * @return false 
 	 */
-	bool newComponent(Component *_component);
-
+	void newComponent(Component *_component);
 	/**
 	 * @brief Get the Component object
 	 * 
@@ -234,7 +236,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool destoryComponent(std::string _name);
+	void destoryComponent(std::string _name);
 	/**
 	 * @brief 
 	 * 
