@@ -6,11 +6,15 @@ include_directories(.)
 
 aux_source_directory(./CrystalEngine CrystalEngine_SRC_LIST)
 
+aux_source_directory(./CrystalEngine/Application CrystalEngine_SRC_LIST)
+
 aux_source_directory(./CrystalEngine/Component CrystalEngine_SRC_LIST)
 
-aux_source_directory(./CrystalEngine/Scene CrystalEngine_SRC_LIST)
+aux_source_directory(./CrystalEngine/GameObject CrystalEngine_SRC_LIST)
 
 aux_source_directory(./CrystalEngine/Tool CrystalEngine_SRC_LIST)
+
+aux_source_directory(./CrystalEngine/World CrystalEngine_SRC_LIST)
 
 add_compile_options(-std=c++11)
 

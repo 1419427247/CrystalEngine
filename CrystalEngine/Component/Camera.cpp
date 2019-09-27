@@ -13,7 +13,7 @@
 
 namespace CrystalEngine
 {
-Camera::Camera()
+Camera::Camera(GameObject* _gameObject):Component(_gameObject)
 {
 }
 

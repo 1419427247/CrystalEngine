@@ -9,17 +9,18 @@
  * 
  */
 
-#include "CrystalEngine/Application.h"
 
+
+#include "CrystalEngine/Application/Application.h"
 namespace CrystalEngine
 {
 Application::Application()
 {
 }
 
-Application::Application(Scene& _scene)
+Application::Application(World* _world)
 {
-    scene = &_scene;
+    world = _world;
 }
 
 Application::~Application()
@@ -27,8 +28,8 @@ Application::~Application()
 }
 void Application::run(int _millisecond)
 {
-    scene->start();
-    Timer::runLoop<Scene>(scene, &Scene::update, _millisecond);
-    scene->destory();
+    world->start();
+    Timer::runLoop(world,_millisecond);
+    world->destory();
 }  
 } // namespace CrystalEngine

@@ -9,27 +9,15 @@
  * 
  */
 
-#ifndef TIME_H
-#define TIME_H
+#ifndef TIMER_H
+#define TIMER_H
 
 #include "CrystalEngine/Tool/Object.h"
 #include "CrystalEngine/Tool/Test.h"
 
 namespace CrystalEngine
 {
-/**
- * @brief 
- * 
- */
-struct Date
-{
-	int year;
-	int month;
-	int day;
-	int hour;
-	int minute;
-	int second;
-};
+
 
 class Runnable;
 /**
@@ -41,13 +29,6 @@ class Timer : public Object
 public:
 	OBJECT(Timer);
 	Timer();
-	/**
-	 * @brief 
-	 * 
-	 * @return Date 
-	 */
-	static Date now();
-
 	/**
 	 * @brief 
 	 * 
@@ -174,6 +155,9 @@ public:
 		});
 		thread.detach();
 	}
+
+	static double executionTime(std::function<void()> _fun);
+
 	/**
 	 * @brief 
 	 * 

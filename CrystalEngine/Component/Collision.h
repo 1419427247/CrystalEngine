@@ -10,7 +10,7 @@
  */
 #ifndef COLLISHION_H
 #define COLLISHION_H
-#include "CrystalEngine/Scene/Component.h"
+#include "CrystalEngine/Component/Component.h"
 namespace CrystalEngine
 {
 /**
@@ -25,7 +25,7 @@ public:
      * @brief Construct a new Collision object
      * 
      */
-    Collision();
+    Collision(GameObject* _gameObject);
 	/**
 	 * @brief Destroy the Collision object
 	 * 

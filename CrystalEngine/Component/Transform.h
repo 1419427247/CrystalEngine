@@ -11,8 +11,8 @@
 
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
-#include "CrystalEngine/Tool/Test.h"
-#include "CrystalEngine/Scene/Component.h"
+
+#include "CrystalEngine/Component/Component.h"
 
 namespace CrystalEngine
 {
@@ -50,13 +50,7 @@ public:
 	 * @brief Construct a new Transform object
 	 * 
 	 */
-	Transform();
-	/**
-	 * @brief Construct a new Transform object
-	 * 
-	 * @param _t 
-	 */
-	Transform(const Transform &_t);
+	Transform(GameObject* _gameObject);
 	/**
 	 * @brief Destroy the Transform object
 	 * 

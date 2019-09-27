@@ -9,34 +9,25 @@
  * 
  */
 
-#include "CrystalEngine/Scene/Scene.h"
-#include "CrystalEngine/Scene/GameObject.h"
-#include "CrystalEngine/Scene/Component.h"
+#include "CrystalEngine/World/World.h"
 
+#include "CrystalEngine/GameObject/GameObject.h"
+
+#include "CrystalEngine/Component/Component.h"
 #include "CrystalEngine/Component/Transform.h"
+
 namespace CrystalEngine
 {
-GameObject::GameObject()
-{
-	scene = nullptr;
-	parent = nullptr;
 
-	newComponents = new std::vector<Component *>();
-	deleteComponents = new std::vector<std::string>();
-	components = new std::vector<Component *>();
-
-	children = new std::vector<GameObject *>();
-	transform = new Transform();
-	creatComponent(transform);
-}
-GameObject::GameObject(std::string _name) : GameObject()
+GameObject::GameObject(std::string _name,World* _world)
 {
 	name = _name;
-}
+	world = _world;
 
-GameObject::GameObject(std::string _name, Scene *_scene) : GameObject(_name)
-{
-	scene = _scene;
+	components = new std::vector<Component *>();
+	children = new std::vector<GameObject *>();
+
+	transform = new Transform(this);
 }
 
 GameObject::~GameObject()
@@ -46,13 +37,6 @@ GameObject::~GameObject()
 		delete components->back();
 		components->pop_back();
 	}
-	while (!newComponents->empty())
-	{
-		delete newComponents->back();
-		newComponents->pop_back();
-	}
-	delete newComponents;
-	delete deleteComponents;
 	delete components;
 	delete children;
 }
@@ -74,48 +58,6 @@ void GameObject::start()
 
 void GameObject::update()
 {
-	for (std::string var : *deleteComponents)
-	{
-		for (Component *component : *components)
-		{
-			if (component->__getClassName() == var)
-			{
-				try
-				{
-					component->destory();
-				}
-				catch (const std::exception &e)
-				{
-					std::cerr << e.what() << '\n';
-				}
-
-				//components->erase(std::find(components->begin(),components->end(), component));
-				std::swap(*std::find(components->begin(), components->end(), component), *components->end());
-				components->pop_back();
-
-				delete component;
-				break;
-			}
-		}
-	}
-	deleteComponents->clear();
-
-	for (Component *var : *newComponents)
-	{
-		components->push_back(var);
-		var->gameObject = this;
-
-		try
-		{
-			var->start();
-		}
-		catch (const std::exception &e)
-		{
-			std::cerr << e.what() << '\n';
-		}
-	}
-	newComponents->clear();
-
 	for (Component *var : *components)
 	{
 		try
@@ -149,9 +91,9 @@ std::string GameObject::getName() const
 	return name;
 }
 
-Scene &GameObject::getScene()
+World &GameObject::getWorld()
 {
-	return *scene;
+	return *world;
 }
 
 std::vector<Component *> &GameObject::getComponents()
@@ -307,117 +249,6 @@ void GameObject::cleanChildren()
 		var->parent = nullptr;
 	}
 	children->clear();
-}
-
-void GameObject::newGameObject(std::string _gameObjectName)
-{
-	scene->newGameObject(_gameObjectName);
-}
-
-void GameObject::creatGameObject(std::string _gameObjectName)
-{
-	scene->creatGameObject(_gameObjectName);
-}
-
-GameObject *GameObject::getGameObject(std::string _gameObjectName) const
-{
-	return scene->getGameObject(_gameObjectName);
-}
-
-void GameObject::destoryGameObject(std::string _name)
-{
-	scene->destoryGameObject(_name);
-}
-
-void GameObject::creatComponent(Component *_component)
-{
-	if (_component == nullptr)
-		throw std::invalid_argument("Parameter cannot be empty");
-	components->push_back(_component);
-	_component->gameObject = this;
-}
-
-void GameObject::newComponent(Component *_component)
-{
-	if (_component == nullptr)
-		throw std::invalid_argument("Parameter cannot be empty");
-	for (Component *var : *components)
-	{
-		if (var->__getClassName() == _component->__getClassName())
-			throw std::runtime_error("Component : " + _component->__getClassName() + "already exists");
-	}
-	for (Component *var : *newComponents)
-	{
-		if (var->__getClassName() == _component->__getClassName())
-			throw std::runtime_error("Component : " + _component->__getClassName() + "already exists");
-	}
-	newComponents->push_back(_component);
-}
-
-Component *GameObject::getComponent(std::string _name) const
-{
-	for (Component *var : *components)
-	{
-		if (var->__getClassName() == _name)
-		{
-			return var;
-		}
-	}
-	throw std::runtime_error("Component : \"" + _name + "\" not found");
-}
-
-void GameObject::destoryComponent(std::string _name)
-{
-	for (Component *var : *components)
-	{
-		if (var->__getClassName() == _name)
-		{
-			for (std::string var : *deleteComponents)
-			{
-				if (var == _name)
-					throw std::runtime_error("Component : \"" + _name + "\" not found");
-			}
-			deleteComponents->push_back(_name);
-			return;
-		}
-	}
-	throw std::runtime_error("Component : \"" + _name + "\" not found");
-}
-
-std::string GameObject::toString()
-{
-	return name;
-}
-
-TestGameObject::TestGameObject()
-{
-}
-
-TestGameObject::~TestGameObject()
-{
-}
-
-void TestGameObject::run()
-{
-	CrystalEngine::GameObject *obj1 = new CrystalEngine::GameObject("G1");
-	CrystalEngine::GameObject *obj2 = new CrystalEngine::GameObject("G2");
-	CrystalEngine::GameObject *obj3 = new CrystalEngine::GameObject("G3");
-
-	// Comparison(obj1->addChild(obj2), true);
-	// Comparison(obj1->addChild(obj3), false);
-
-	// Comparison(obj1->addChild(obj2), false);
-	// Comparison(obj1->addChild(obj3), false);
-
-	// Comparison(obj2->getParten(), obj1);
-	// Comparison(obj3->getParten(), obj1);
-
-	// Comparison(obj1->getChildrenCount(), 2);
-	// Comparison(obj1->getChildren().size(), 2);
-
-	delete obj1;
-	delete obj2;
-	delete obj3;
 }
 
 } // namespace CrystalEngine

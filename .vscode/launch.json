@@ -8,14 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "D:\\CrystalEngine-master\\Bin\\demo.exe",
+            "program": "C:/Users/iPadCrystal/Desktop/CrystalEngine-master/Bin/demo.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\TDM-GCC-64\\bin\\gdb.exe",
+            "miDebuggerPath": "C:/TDM-GCC-64/bin/gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

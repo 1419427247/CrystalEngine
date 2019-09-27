@@ -13,22 +13,17 @@
 #define COMPONENT_H
 
 #include "CrystalEngine/Tool/Object.h"
-#include "CrystalEngine/Tool/Test.h"
 
 namespace CrystalEngine
 {
 class GameObject;
-class RigidBody;
+
 class Component : public Object
 {
-	friend class GameObject;
-	friend class RigidBody;
 public:
 	OBJECT(Component)
 
 	GameObject *gameObject;
-
-	Component();
 	
 	Component(GameObject* _gameObject);
 
@@ -40,13 +35,6 @@ public:
 
 	GameObject& getGameObject();
 
-	void newGameObject(std::string _gameObjectName);
-	GameObject *getGameObject(std::string _gameObjectName) const;
-	void destoryGameObject(std::string _name);
-
-	void newComponent(Component *_component);
-	Component *getComponent(std::string _name) const;
-	void destoryComponent(std::string _name);
 };
 } // namespace CrystalEngine
 #endif

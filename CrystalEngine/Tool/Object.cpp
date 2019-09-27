@@ -13,13 +13,13 @@
 namespace CrystalEngine
 {
     std::unordered_map<std::string, Object *(*)()> Object::__objects;
-
+    std::set<Object*> Object::__pointer;
     Object::Object(){
-
+        __pointer.insert(this);
     }
 
     Object::~Object(){
-
+        __pointer.erase(this);
     }
 
     Object* Object::instantiation(std::string _string)

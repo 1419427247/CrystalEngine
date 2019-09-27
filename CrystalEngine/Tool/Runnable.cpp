@@ -20,16 +20,22 @@ Runnable::Runnable()
 Runnable::~Runnable()
 {
 }
-void Runnable::run()
+
+void Runnable::start(){
+     alive = true;
+}
+
+void Runnable::update()
 {
+}
+
+void Runnable::destory(){
+     alive = false;
 }
 
 bool Runnable::isAlive()
 {
     return alive;
 }
-void Runnable::exit()
-{
-    alive = false;
-}
+
 } // namespace CrystalEngine

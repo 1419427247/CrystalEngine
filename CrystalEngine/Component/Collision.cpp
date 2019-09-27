@@ -8,14 +8,16 @@
  * @copyright Copyright (c) 2019
  * 
  */
-#include "CrystalEngine/Scene/Scene.h"
-#include "CrystalEngine/Scene/GameObject.h"
-#include "CrystalEngine/Scene/Physical.h"
+#include "CrystalEngine/World/World.h"
+
+#include "CrystalEngine/GameObject/GameObject.h"
 
 #include "CrystalEngine/Component/Collision.h"
+
+
 namespace CrystalEngine
 {
-Collision::Collision()
+Collision::Collision(GameObject* _gameObject):Component(_gameObject)
 {
 }
 Collision::~Collision()
@@ -24,16 +26,14 @@ Collision::~Collision()
 
 void Collision::start()
 {
-    if (gameObject->scene->physical)
-        gameObject->scene->physical->newCollision(this);
+    //Physical::__physical.newCollision(this);
 }
 void Collision::update()
 {
 }
 void Collision::destory()
 {
-    if (gameObject->scene->physical)
-        gameObject->scene->physical->destoryCollision(this);
+    //Physical::__physical.destoryCollision(this);
 }
 
 } // namespace CrystalEngine

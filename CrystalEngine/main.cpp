@@ -1,47 +1,36 @@
-/**
- * @file main.cpp
- * @author iPad水晶 (1419427247@qq.com)
- * @brief 程序的主入口
- * @version 0.1
- * @date 2019年09月07日
- *
- * @copyright Copyright (c) 2019
- *
- */
-#include "CrystalEngine/Application.h"
 
+#include "CrystalEngine/Application/Application.h"
 
-class Temp : public CrystalEngine::Component
-{
-public:
-	OBJECT(Temp)
-	CrystalEngine::GameObject *g;
-	void start()
-	{
-		std::cout << "Hi~~" <<std::endl;
-	}
-	void update()
-	{
-		destoryGameObject("qwq");
-		newGameObject("qwq");
-	}
-	void destory()
-	{
-		std::cout << "By!";
-	}
-};
-
+using namespace CrystalEngine;
 int main()
 {
-	CrystalEngine::Scene scene = CrystalEngine::Scene(new CrystalEngine::Box2dPhysical());
+    while (true)
+    {
 
-	scene.creatGameObject("qwq");
+    
+            Command com ={"help",{"-v", "qwq", "-h"}};
+            Command com2 ={"move",{"-v", "-h"}};
+            com = com2;
+            com2 = com;
+                    /* code */
+    }
+            //com = com2;
+    // std::cout << Timer::executionTime([](){
+    //     for (size_t i = 0; i < 100000; i++)
+    //     {
+    //     }
+    // });
 
-	scene.creatComponent("qwq", new Temp());
 
-	CrystalEngine::Application application = CrystalEngine::Application(scene);
+    //auto fun = std::bind(_t,_args...);
 
-	application.run(20);
+    // World world;
 
-	return 1;
+    // GameObject obj1("qwq",&world);
+    // temp t1(&obj1);
+
+    // Application application(&world);
+
+    // application.run(100);
+    return 1;
 }

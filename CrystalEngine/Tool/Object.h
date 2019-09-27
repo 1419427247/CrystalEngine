@@ -12,26 +12,15 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#define REGISTER(OBJECT)                                    \
-    {                                                       \
-        using namespace CrystalEngine;                      \
-        Object::__objects[#OBJECT] = OBJECT::instantiation; \
-    }
-
-#define INSTANTIATION(OBJECT_NAME) new OBJECT_NAME()
-
 #define OBJECT(OBJECT_NAME)                 \
 public:                                     \
-    static Object* __instantiation()          \
-    {                                       \
-        return (Object *)new OBJECT_NAME(); \
-    }                                       \
     virtual std::string __getClassName()      \
     {                                       \
         return #OBJECT_NAME;                \
     }
 
 #include <iostream>
+#include <set>
 #include <unordered_map>
 #include <vector>
 #include <list>
@@ -59,6 +48,8 @@ public:
      */
     static std::unordered_map<std::string, Object *(*)()> __objects;
 
+    static std::set<Object*> __pointer;
+
     OBJECT(Object)
     /**
      * @brief Construct a new Object object
@@ -83,18 +74,7 @@ public:
      * @return std::string 
      */
     virtual std::string toString();
-    /**
-     * @brief 
-     * 
-     * @tparam T 
-     * @param _string 
-     * @return T* 
-     */
-    template <class T>
-    static T *__instantiation(std::string _string)
-    {
-        return (T *)__objects[_string]();
-    }
+
 };
 } // namespace CrystalEngine
 #endif

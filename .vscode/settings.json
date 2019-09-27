@@ -69,5 +69,6 @@
 
     // The template for the date parameter in Doxygen.
     "doxdocgen.generic.dateTemplate": "@date {date}",
+    "C_Cpp.errorSquiggles": "Disabled",
 
 }

@@ -11,8 +11,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "CrystalEngine/Tool/Test.h"
-#include "CrystalEngine/Scene/Component.h"
+#include "CrystalEngine/Component/Component.h"
 
 namespace CrystalEngine
 {
@@ -35,7 +34,7 @@ public:
 	 * @brief Construct a new Camera object
 	 * 
 	 */
-    Camera();
+    Camera(GameObject* _gameObject);
 	/**
 	 * @brief Destroy the Camera object
 	 * 

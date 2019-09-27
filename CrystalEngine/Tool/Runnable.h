@@ -17,48 +17,24 @@
 namespace CrystalEngine
 {
 class Timer;
-/**
- * @brief 
- * 
- */
+
 class Runnable : public Object
 {   
-    friend class Timer;
-    /**
-     * @brief 
-     * 
-     */
     bool alive;
 public:
     OBJECT(Runnable)
-    /**
-     * @brief Construct a new Runnable object
-     * 
-     */
-    Runnable();
-    /**
-     * @brief Destroy the Runnable object
-     * 
-     */
-    virtual ~Runnable();
-    /**
-     * @brief 
-     * 
-     */
-    virtual void run();
 
-    /**
-     * @brief 
-     * 
-     * @return true 
-     * @return false 
-     */
+    Runnable();
+
+    virtual ~Runnable();
+
+    void start();
+
+    virtual void update();
+
+    void destory();
+
     bool isAlive();
-    /**
-     * @brief 
-     * 
-     */
-    void exit();
     
 };
 } // namespace CrystalEngine

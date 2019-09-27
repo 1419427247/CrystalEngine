@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2019
  * 
  */
-#include "CrystalEngine/Scene/GameObject.h"
+#include "CrystalEngine/GameObject/GameObject.h"
 
 #include "CrystalEngine/Component/Transform.h"
 
@@ -16,7 +16,7 @@
 
 namespace CrystalEngine
 {
-Transform::Transform()
+Transform::Transform(GameObject* _gameObject):Component(_gameObject)
 {
     worldPosition = new Vector();
     worldRotate = new Vector(1.0, 0.0);
@@ -25,14 +25,6 @@ Transform::Transform()
     loaclRotate = new Vector(1.0, 0.0);
 }
 
-Transform::Transform(const Transform &_t)
-{
-    worldPosition = new Vector(_t.worldPosition->getX(), _t.worldPosition->getY());
-    worldRotate = new Vector(_t.worldRotate->getX(), _t.worldRotate->getY());
-
-    loaclPosition = new Vector(_t.loaclPosition->getX(), _t.loaclPosition->getY());
-    loaclRotate = new Vector(_t.loaclRotate->getX(), _t.loaclRotate->getY());
-}
 
 Transform::~Transform()
 {
