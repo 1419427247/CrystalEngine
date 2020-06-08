@@ -15,6 +15,11 @@ class Print extends Component {
 	public void Awake() {
 		System.out.println("Awake");
 	}
+
+	@Override
+	public void Destroyed() {
+		
+	}
 }
 
 public class Program {
@@ -23,7 +28,7 @@ public class Program {
 		GameObject A1 = world.NewGameObject("A1");
 		GameObject B1 = world.NewGameObject("B1");
 		GameObject B2 = world.NewGameObject("B2");
-
+		A1.NewComponent(Print.class);
 		world.Update();
 	}
 }

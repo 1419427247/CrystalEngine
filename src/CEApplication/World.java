@@ -3,27 +3,53 @@ package CEApplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+enum WorldState{
+	really,
+	run,
+	finish,
+}
+
 public class World {
+	private WorldState state = WorldState.really;
 	private HashMap<String, GameObject> gameObjects = new HashMap<String, GameObject>();
 	private ArrayList<String> gameObjectsTrash = new ArrayList<String>();
 
-	public void Start() {
-		for (GameObject gameObject : gameObjects.values()) {
-			gameObject.Start();
-		}
-	}
-
 	public void Update() {
-		for (String name : gameObjectsTrash) {
-			if (gameObjects.get(name) != null) {
-				gameObjects.remove(name);
+		if (state == WorldState.really) {
+			state = WorldState.run;
+			for (GameObject gameObject : gameObjects.values()) {
+				gameObject.Start();
 			}
 		}
-		for (GameObject gameObject : gameObjects.values()) {
-			gameObject.Update();
+		if (state == WorldState.run) {
+			for (String name : gameObjectsTrash) {
+				if (gameObjects.get(name) != null) {
+					gameObjects.get(name).Destroyed();
+					gameObjects.remove(name);
+				}
+			}
+			gameObjectsTrash.clear();
+			for (GameObject gameObject : gameObjects.values()) {
+				gameObject.Update();
+			}
+		}
+		if (state == WorldState.finish) {
+			for (GameObject gameObject : gameObjects.values()) {
+				gameObject.Destroyed();
+			}
+			gameObjectsTrash.clear();
+			return;
 		}
 	}
 
+	public void Destroy() {
+		state = WorldState.finish;
+	}
+	
+	public WorldState GetState() {
+		return state;
+	}
+	
 	public GameObject NewGameObject(String name) {
 		GameObject gameObject = new GameObject(name, this);
 		if (!gameObjects.containsKey(name)) {

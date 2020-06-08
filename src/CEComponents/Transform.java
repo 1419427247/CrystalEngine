@@ -25,7 +25,11 @@ public class Transform extends Component {
 	public void Update() {
 
 	}
-
+	
+	@Override
+	public void Destroyed() {
+		
+	}
 	public void Translate (float x, float y) {
 		position.Add(x,y);
 	}

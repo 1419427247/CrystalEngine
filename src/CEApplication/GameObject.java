@@ -100,7 +100,7 @@ public class GameObject {
 			component.Start();
 		}
 	}
-
+	
 	public void Update() {
 		for (Class<? extends Component> clazz : componentsTrash) {
 			for (Component component : components) {
@@ -114,11 +114,20 @@ public class GameObject {
 			component.Update();
 		}
 	}
-
+	
+	public void Destroyed() {
+		for (Component component : components) {
+			component.Destroyed();
+		}
+	}
+	
 	public void NewComponent(Class<? extends Component> component) {
 		try {
 			Component c = component.getDeclaredConstructor().newInstance();
 			c.gameObject = this;
+			if (world.GetState() == WorldState.run) {
+				c.Start();				
+			}
 			components.add(c);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
