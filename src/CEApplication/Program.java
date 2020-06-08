@@ -26,8 +26,7 @@ public class Program {
 	public static void main(String[] args) {
 		World world = new World();
 		GameObject A1 = world.NewGameObject("A1");
-		GameObject B1 = world.NewGameObject("B1");
-		GameObject B2 = world.NewGameObject("B2");
+		A1.NewComponent(Print.class);
 		A1.NewComponent(Print.class);
 		world.Update();
 	}
