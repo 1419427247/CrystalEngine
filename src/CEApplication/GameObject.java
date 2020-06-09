@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import CEApplication.World.WorldEvent;
+
 public class GameObject {
 	protected World world;
 	protected String name;
@@ -103,6 +105,8 @@ public class GameObject {
 		for (Class<? extends Component> clazz : componentsTrash) {
 			for (Component component : components) {
 				if (component.getClass() == clazz) {
+					world.event.DoEvent(WorldEvent.OnComponentCreated,component);
+					component.Destroyed();
 					components.remove(component);
 					break;
 				}
@@ -119,31 +123,16 @@ public class GameObject {
 		}
 	}
 	
-	public void NewComponent(Class<? extends Component> component) {
-		try {
-			Component c = component.getDeclaredConstructor().newInstance();
-			c.gameObject = this;
-			if (world.GetState() == WorldState.run) {
-				c.Start();				
-			}
-			components.add(c);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
+	public void CreateComponent(Class<? extends Component> clazz) {
+		world.CreateComponent(name, clazz);
 	}
 
 	public Component GetComponent(Class<? extends Component> clazz) {
-		for (Component component : components) {
-			if (component.getClass() == clazz) {
-				return component;
-			}
-		}
-		return null;
+		return world.GetComponent(name, clazz);
 	}
 
-	public void RemoveComponent(Class<? extends Component> clazz) {
-		componentsTrash.add(clazz);
+	public void DestroyComponent(Class<? extends Component> clazz) {
+		world.DestroyComponent(name,clazz);
 	}
 
 }

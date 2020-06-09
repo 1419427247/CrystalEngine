@@ -7,5 +7,4 @@ public class Camera extends GameObject {
 	public Camera(String name, World world) {
 		super(name, world);
 	}
-	
 }
