@@ -1,7 +1,7 @@
 package CEApplication;
 
 public abstract class Component {
-	protected GameObject gameObject;
+	GameObject gameObject;
 
 	public Component() {
 		this.Awake();

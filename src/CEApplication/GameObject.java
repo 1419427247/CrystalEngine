@@ -1,7 +1,5 @@
 package CEApplication;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;

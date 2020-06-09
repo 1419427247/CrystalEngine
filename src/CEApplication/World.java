@@ -3,12 +3,6 @@ package CEApplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-enum WorldState{
-	really,
-	run,
-	finish,
-}
-
 public class World {
 	private WorldState state = WorldState.really;
 	private HashMap<String, GameObject> gameObjects = new HashMap<String, GameObject>();
