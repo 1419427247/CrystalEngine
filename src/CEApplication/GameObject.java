@@ -134,7 +134,7 @@ public class GameObject {
 		}
 		for (Class<? extends Component> clazz : componentsNew) {
 			Component component = AddComponent(clazz);
-			world.event.DoEvent(WorldEvent.OnGameObjectCreated,component);
+			world.event.DoEvent(WorldEvent.OnComponentCreated,component);
 			component.Start();
 		}
 		componentsTrash.clear();
@@ -155,9 +155,6 @@ public class GameObject {
 		try {
 			Component component = clazz.getDeclaredConstructor().newInstance();
 			component.gameObject = this;
-			if(world!=null){
-				component.Awake();
-			}
 			components.add(component);
 			return component;
 		} catch (IllegalArgumentException e) {
@@ -185,8 +182,6 @@ public class GameObject {
 	public void RemoveComponent(Class<? extends Component> clazz) {
 		for (Component component : components) {
 			if (component.getClass() == clazz) {
-				world.event.DoEvent(WorldEvent.OnComponentDestroyed,component);
-				component.Destroyed();
 				components.remove(component);
 				break;
 			}

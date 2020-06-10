@@ -12,11 +12,6 @@ public class Transform extends Component {
 //	public Vector l0calSize = new Vector();
 
 	@Override
-	public void Awake() {
-
-	}
-
-	@Override
 	public void Start() {
 
 	}

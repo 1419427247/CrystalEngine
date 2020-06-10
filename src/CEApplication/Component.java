@@ -3,8 +3,6 @@ package CEApplication;
 public abstract class Component {
 	GameObject gameObject;
 
-	public abstract void Awake();
-
 	public abstract void Start();
 
 	public abstract void Update();
