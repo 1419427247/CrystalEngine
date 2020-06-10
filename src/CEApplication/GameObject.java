@@ -59,6 +59,9 @@ public class GameObject {
 	}
 
 	public boolean HasChild(GameObject gameObject) {
+		if(gameObject==null){
+			throw new NullPointerException();
+		}
 		return gameObject.HasParent(this);
 	}
 
@@ -83,6 +86,9 @@ public class GameObject {
 	}
 
 	public boolean AddChild(GameObject gameObject) {
+		if(gameObject==null){
+			throw new NullPointerException();
+		}
 		if (gameObject != this) {
 			if (HasParent(gameObject)) {
 				return false;
@@ -102,6 +108,9 @@ public class GameObject {
 	}
 
 	public boolean RemoveChild(GameObject gameObject) {
+		if(gameObject==null){
+			throw new NullPointerException();
+		}
 		if (gameObject.parent == this) {
 			gameObject.parent = null;
 			return children.remove(gameObject);
@@ -146,8 +155,10 @@ public class GameObject {
 		try {
 			Component component = clazz.getDeclaredConstructor().newInstance();
 			component.gameObject = this;
+			if(world!=null){
+				component.Awake();
+			}
 			components.add(component);
-			component.Awake();
 			return component;
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
