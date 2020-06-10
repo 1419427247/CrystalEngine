@@ -9,10 +9,8 @@ import CETool.EventListener;
 class Print extends Component {
 	@Override
 	public void Update() {
+		gameObject.world.AddGameObject("A2");
 		System.out.println("Update");
-		GameObject A2 = gameObject.world.CreateGameObject("A2");
-		gameObject.SetParent(A2);
-		gameObject.world.DestroyGameObject("A2");
 	}
 
 	@Override
@@ -33,7 +31,7 @@ class Print extends Component {
 				}
 			}
 		});
-	
+//	
 	}
 
 	@Override
@@ -49,11 +47,16 @@ class Print extends Component {
 
 public class Program {
 	public static void main(String[] args) {
+		GameObject p1 = new GameObject("CP");
+		p1.AddComponent(Print.class);
+		
+		Perfab perfab = new Perfab(p1);
+		
 		World world = new World();
-		GameObject A1 = world.CreateGameObject("A1");
-		A1.CreateComponent(Print.class);
+		
+		world.AddGameObject(perfab);
+		
 		world.Update();
 		world.Update();
-
 	}
 }
