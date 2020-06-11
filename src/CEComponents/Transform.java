@@ -1,16 +1,15 @@
  package CEComponents;
 
-import CEApplication.Component;
-import CETool.Vector;
+import CEApplication.CEComponent;
+import CEUtility.CEVector;
 
-public class Transform extends Component {
-	public Vector position = new Vector();
+public class Transform extends CEComponent {
+	public CEVector position = new CEVector();
 //	public Vector l0calPosition = new Vector();
-	public Vector rotation = new Vector();
+	public CEVector rotation = new CEVector();
 //	public Vector l0calRotation = new Vector();
 //	public Vector size = new Vector();
-//	public Vector l0calSize = new Vector();
-
+//	public Vector localSize = new Vector();
 	@Override
 	public void Start() {
 
@@ -22,14 +21,14 @@ public class Transform extends Component {
 	}
 	
 	@Override
-	public void Destroyed() {
+	public void Destroy() {
 		
 	}
 	public void Translate (float x, float y) {
 		position.Add(x,y);
 	}
 	
-	public void Translate(Vector translation) {
+	public void Translate(CEVector translation) {
 		position.Add(translation);
 	}
 }

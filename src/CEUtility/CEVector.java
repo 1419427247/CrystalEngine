@@ -1,21 +1,21 @@
-package CETool;
+package CEUtility;
 
-public class Vector {
-	public static final Vector ZERO = new Vector(0, 0);
-	public static final Vector UP = new Vector(0, 1);
-	public static final Vector DWON = new Vector(0, -1);
-	public static final Vector LEFT = new Vector(-1, 0);
-	public static final Vector RIGHT = new Vector(0, 1);
+public class CEVector {
+	public static final CEVector ZERO = new CEVector(0, 0);
+	public static final CEVector UP = new CEVector(0, 1);
+	public static final CEVector DWON = new CEVector(0, -1);
+	public static final CEVector LEFT = new CEVector(-1, 0);
+	public static final CEVector RIGHT = new CEVector(0, 1);
 
 	private double x;
 	private double y;
 
-	public Vector() {
+	public CEVector() {
 		x = 0;
 		y = 0;
 	}
 
-	public Vector(double x, double y) {
+	public CEVector(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -44,8 +44,8 @@ public class Vector {
 		return GetRadian() / Math.PI * 180;
 	}
 
-	public Vector Clone() {
-		return new Vector(x, y);
+	public CEVector Clone() {
+		return new CEVector(x, y);
 	}
 
 	public double GetLength() {
@@ -56,7 +56,7 @@ public class Vector {
 		return x * x + y * y;
 	}
 
-	public Vector Zero() {
+	public CEVector Zero() {
 		x = 0;
 		y = 0;
 		return this;
@@ -72,7 +72,7 @@ public class Vector {
 		y = Math.sin(angle) * value;
 	}
 
-	public Vector Normalize() {
+	public CEVector Normalize() {
 		double length = GetLength();
 		x = x / length;
 		y = y / length;
@@ -83,22 +83,22 @@ public class Vector {
 		return GetLength() == 1.0;
 	}
 
-	public Vector Reverse() {
+	public CEVector Reverse() {
 		x = -x;
 		y = -y;
 		return this;
 	}
 
-	public double DotProduct(Vector v) {
+	public double DotProduct(CEVector v) {
 		return x * v.x + y * v.y;
 	}
 
-	public double CrossProduct(Vector v) {
+	public double CrossProduct(CEVector v) {
 		return x * v.y - y * v.x;
 	}
 
 
-	public void Add(Vector v1) {
+	public void Add(CEVector v1) {
 		this.x = this.x + v1.x;
 		this.y = this.y + v1.y;
 	}
@@ -108,7 +108,7 @@ public class Vector {
 		this.y = this.y + y;
 	}
 	
-	public void Subtract(Vector v1) {
+	public void Subtract(CEVector v1) {
 		this.x = this.x - v1.x;
 		this.y = this.y - v1.y;
 	}
@@ -128,7 +128,7 @@ public class Vector {
 		this.y = this.y / value;
 	}
 	
-	public static double RadianBetween(Vector v1, Vector v2) {
+	public static double RadianBetween(CEVector v1, CEVector v2) {
 		if (!v1.IsNormalized())
 			v1 = v1.Clone().Normalize();
 		if (!v2.IsNormalized())
@@ -140,19 +140,19 @@ public class Vector {
 		return radian / Math.PI * 180;
 	}
 
-	public static Vector Add(Vector v1, Vector v2) {
-		return new Vector(v1.x + v2.x, v1.y + v2.y);
+	public static CEVector Add(CEVector v1, CEVector v2) {
+		return new CEVector(v1.x + v2.x, v1.y + v2.y);
 	}
 
-	public static Vector Subtract(Vector v1, Vector v2) {
-		return new Vector(v1.x - v2.x, v1.y - v2.y);
+	public static CEVector Subtract(CEVector v1, CEVector v2) {
+		return new CEVector(v1.x - v2.x, v1.y - v2.y);
 	}
 
-	public static Vector Multiply(Vector v1, double value) {
-		return new Vector(v1.x * value, v1.y * value);
+	public static CEVector Multiply(CEVector v1, double value) {
+		return new CEVector(v1.x * value, v1.y * value);
 	}
 
-	public static Vector Divide(Vector v1, double value) {
-		return new Vector(v1.x / value, v1.y / value);
+	public static CEVector Divide(CEVector v1, double value) {
+		return new CEVector(v1.x / value, v1.y / value);
 	}
 }
