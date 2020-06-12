@@ -1,11 +1,11 @@
 package CEApplication;
 
-public interface CEBehave
+public abstract class CEBehave
 {
 	
-	public void Start();
+	public abstract void Start();
 
-	public void Update();
+	public abstract void Update();
 
-	public void Destroy();
+	public abstract void Destroy();
 }

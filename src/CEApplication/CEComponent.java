@@ -1,6 +1,6 @@
 package CEApplication;
 
-public abstract class CEComponent implements CEBehave{
+public abstract class CEComponent extends CEBehave{
 	CEGameObject gameObject;
 
 	public abstract void Start();

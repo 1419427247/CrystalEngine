@@ -2,7 +2,7 @@ package CEApplication;
 import java.util.*;
 import CEUtility.*;
 
-public class CEBehaviorContainer implements CEBehave
+public class CEBehaviorContainer extends CEBehave
 {
 	CEBehaviorState state=CEBehaviorState.none;
 	ArrayList<CEBehave> list=new ArrayList<CEBehave>();
@@ -25,14 +25,18 @@ public class CEBehaviorContainer implements CEBehave
 	@Override
 	public void Update()
 	{
+		state=CEBehaviorState.remove;
 		for (int i = listTrash.size() - 1;i >= 0;i--)
 		{
 			Remove(listTrash.get(i));
 		}
+		listTrash.clear();
+		state=CEBehaviorState.create;
 		for (int i = listNew.size() - 1;i >= 0;i--)
 		{
 			Add(listNew.get(i));
 		}
+		listNew.clear();
 		state=CEBehaviorState.update;
 		for (CEBehave behave : list)
 		{
@@ -52,25 +56,35 @@ public class CEBehaviorContainer implements CEBehave
 		state=CEBehaviorState.none;
 	}
 	
-	public void Add(CEBehave behave){
-		if(state!=CEBehaviorState.none){
+	public CEBehave Add(CEBehave behave){
+		if(state!=CEBehaviorState.none &&
+		state!=CEBehaviorState.create){
 			throw new RuntimeException();
 		}
 		list.add(behave);
+		if(state==CEBehaviorState.create){
+			behave.Start();
+		}
+		return behave;
 	}
 	
 	public void New(CEBehave behave){
 		listNew.add(behave);
 	}
 	
-	public void Remove(CEBehave behave){
-		if(state!=CEBehaviorState.none){
+	public CEBehave Remove(CEBehave behave){
+		if(state!=CEBehaviorState.none &&
+		   state!=CEBehaviorState.remove){
 			throw new RuntimeException();
-		}
+		 }
 		list.remove(behave);
+		if(state==CEBehaviorState.remove){
+			behave.Destroy();
+		}
+		return behave;
 	}
 	
 	public void Destroy(CEBehave behave){
-		listTrash.remove(behave);
+		listTrash.add(behave);
 	}
 }

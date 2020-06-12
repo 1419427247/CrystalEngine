@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class CEGameObject implements CEBehave
+public class CEGameObject extends CEBehave
 {
 	protected String name;
 	protected CEWorld world;
@@ -13,26 +13,45 @@ public class CEGameObject implements CEBehave
 	protected boolean isDestoryed = false;
 	
 	protected CEGameObject parent;
-	protected ArrayList<CEGameObject> children = new ArrayList<CEGameObject>();
+	protected ArrayList<CEGameObject> children;
 
-	protected HashSet<CEComponent> components = new HashSet<CEComponent>();
+	CEComponemtManager componentManager;
 	
-	protected ArrayList<Class<? extends CEComponent>> componentsNew = new ArrayList<Class<? extends CEComponent>>();
-	protected ArrayList<Class<? extends CEComponent>> componentsTrash = new ArrayList<Class<? extends CEComponent>>();
 	
 	public CEGameObject(String name) {
 		this.name = name;
 		this.world = null;
+		
+		children = new ArrayList<CEGameObject>();
+		componentManager = new CEComponemtManager(this);
 	}
 	
 	public CEGameObject(String name, CEWorld world) {
 		this.name = name;
 		this.world = world;
+		
+		children = new ArrayList<CEGameObject>();
+		componentManager = new CEComponemtManager(this);
+	}
+	
+	@Override
+	public void Start()
+	{
+		componentManager.Start();
 	}
 
-	public static void initiazlie(){
-		
+	@Override
+	public void Update()
+	{
+		componentManager.Update();
 	}
+
+	@Override
+	public void Destroy()
+	{
+		componentManager.Destroy();
+	}
+	
 	
 	public String GetName() {
 		return name;
@@ -124,100 +143,4 @@ public class CEGameObject implements CEBehave
 	public int GetChildSzie() {
 		return children.size();
 	}
-
-	public void Start() {
-		for (CEComponent component : components) {
-			component.Start();
-		}
-	}
-	
-	public void Update() {
-		for (int i = componentsTrash.size() - 1;i >= 0;i--)
-		{
-			RemoveComponent(componentsTrash.get(i));
-			componentsTrash.remove(i);
-		}
-		for (int i = componentsNew.size() - 1;i >= 0;i--)
-		{
-			AddComponent(componentsNew.get(i));
-			componentsNew.remove(i);
-		}
-		for (CEComponent component : components) {
-			component.Update();
-		}
-	}
-
-	@Override
-	public void Destroy()
-	{
-		isDestoryed = true;
-		for (CEComponent component : components) {
-			component.Destroy();
-		}
-	}
-	
-	public CEComponent AddComponent(Class<? extends CEComponent> clazz) {
-		try {
-			CEComponent component = clazz.getDeclaredConstructor().newInstance();
-			component.gameObject = this;
-			components.add(component);
-			
-			if(world!=null){
-				//World.gameObjectManager.event.DoEvent(World.WorldEvent.OnComponentCreated,component);
-				component.Start();
-			}
-			
-			return component;
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public void RemoveComponent(Class<? extends CEComponent> clazz) {
-		for (CEComponent component : components) {
-			if (component.getClass() == clazz) {
-				components.remove(component);
-				if(world!=null){
-					//world.event.DoEvent(World.WorldEvent.OnComponentCreated,component);
-					component.Destroy();
-				}
-				break;
-			}
-		}
-	}
-	
-	public void NewComponent(Class<? extends CEComponent> clazz) {
-		componentsNew.add(clazz);
-	}
-
-	public CEComponent GetComponent(Class<? extends CEComponent> clazz) {
-		for (CEComponent component : components) {
-			if (component.getClass() == clazz) {
-				return component;				
-			}
-		}
-		return null;
-	}
-
-	public void DestroyComponent(Class<? extends CEComponent> clazz) {
-		componentsTrash.add(clazz);
-	}
-
 }

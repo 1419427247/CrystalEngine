@@ -12,17 +12,14 @@ public class CEGameObjectManager extends CEBehaviorContainer
 	HashMap<String,CEGameObject> gameObjectsMap;
 	CEWorld world;
 	
-	public CEGameObjectManager()
+	public CEGameObjectManager(CEWorld world)
 	{
 		gameObjectsMap=new HashMap<String,CEGameObject>();
+		this.world=world;
 	}
 	
 	public void AddEventListener(CEEventListener<CEBehaviorContainer> listener){
 		event.Add(listener);
-	}
-	
-	public void Init(CEWorld world){
-		this.world = world;
 	}
 	
 	public CEGameObject AddGameObject(CEGameObject gameObject)
@@ -66,9 +63,8 @@ public class CEGameObjectManager extends CEBehaviorContainer
 		if (!gameObjectsMap.containsKey(gameObject.name))
 		{
 			gameObject.world=this.world;
-			super.New(gameObject);
 			gameObjectsMap.put(gameObject.name, gameObject);
-			gameObject.Start();
+			super.New(gameObject);
 			for (CEGameObject child:gameObject.children)
 			{
 				gameObject.AddChild(NewGameObject(child));	
@@ -113,8 +109,8 @@ public class CEGameObjectManager extends CEBehaviorContainer
 				list.add(child);
 			}
 			gameObject.isDestoryed=true;
-			super.Remove(first);
 			gameObjectsMap.remove(first.name);
+			super.Remove(first);
 			list.removeFirst();
 		}
 	}
@@ -139,9 +135,9 @@ public class CEGameObjectManager extends CEBehaviorContainer
 			{
 				list.add(child);
 			}
-			object.Destroy();
 			object.isDestoryed=true;
 			gameObjectsMap.remove(object.name);
+			super.Destroy(object);
 			list.removeFirst();
 		}
 	}
@@ -159,8 +155,8 @@ public class CEGameObjectManager extends CEBehaviorContainer
 			}
 			object.Destroy();
 			object.isDestoryed=true;
-			super.Destroy(object);
 			gameObjectsMap.remove(object.name);
+			super.Destroy(object);
 			list.removeFirst();
 		}
 	}

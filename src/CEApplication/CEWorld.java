@@ -7,20 +7,39 @@ import CEGameObject.*;
 
 public class CEWorld
 {
-	static{
-		
+	public final enum CEWorldState{
+		none,
+		starting,
+		running,
+		ending,
 	}
 	Camera mainCamera;
-	public static CEGameObjectManager gameObjectManager=new CEGameObjectManager();
+	public CEGameObjectManager gameObjectManager;
 
+	private CEWorldState state;
 	public CEWorld()
 	{
-		gameObjectManager.Init(this);
+		gameObjectManager=new CEGameObjectManager(this);
+		state=CEWorldState.starting;
 	}
-
+	
 	public void Update()
 	{
-		
+		switch(state){
+			case starting:
+				gameObjectManager.Start();
+				state=CEWorldState.running;
+			break;
+			case running:
+				gameObjectManager.Update();
+			break;
+			case ending:
+				gameObjectManager.Destroy();
+			break;
+			default:
+				state=CEWorldState.starting;
+			break;
+		}
 	}
 	
 
