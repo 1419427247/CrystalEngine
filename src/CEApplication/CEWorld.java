@@ -5,7 +5,7 @@ import java.util.*;
 import CEGameObject.*;
 
 
-public class CEWorld
+public class CEWorld extends CEBehave
 {
 	public final enum CEWorldState{
 		none,
@@ -16,30 +16,35 @@ public class CEWorld
 	Camera mainCamera;
 	public CEGameObjectManager gameObjectManager;
 
-	private CEWorldState state;
+	private CEWorldState state = CEWorldState.none;
 	public CEWorld()
 	{
 		gameObjectManager=new CEGameObjectManager(this);
 		state=CEWorldState.starting;
 	}
 	
+	@Override
+	public void Start()
+	{
+		state = CEWorldState.starting;
+		gameObjectManager.Start();
+		state = CEWorldState.none;
+	}
+
+	@Override
 	public void Update()
 	{
-		switch(state){
-			case starting:
-				gameObjectManager.Start();
-				state=CEWorldState.running;
-			break;
-			case running:
-				gameObjectManager.Update();
-			break;
-			case ending:
-				gameObjectManager.Destroy();
-			break;
-			default:
-				state=CEWorldState.starting;
-			break;
-		}
+		state = CEWorldState.running;
+		gameObjectManager.Update();
+		state = CEWorldState.none;
+	}
+	
+	@Override
+	public void Destroy()
+	{
+		state = CEWorldState.ending;
+		gameObjectManager.Destroy();
+		state = CEWorldState.none;
 	}
 	
 
