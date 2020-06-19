@@ -44,7 +44,7 @@ public class CEGameObjectManager extends CEBehaviorContainer
 		return gameObject;			
 	}
 
-	public CEGameObject AddGameObject(CEPerfab perfab)
+	public CEGameObject AddGameObject(CEGameObjectPerfab perfab)
 	{
 		return AddGameObject(perfab.Instantiation());
 	}
@@ -74,7 +74,7 @@ public class CEGameObjectManager extends CEBehaviorContainer
 	}
 	
 	
-	public void NewGameObject(CEPerfab perfab)
+	public void NewGameObject(CEGameObjectPerfab perfab)
 	{
 		if (perfab == null)
 		{

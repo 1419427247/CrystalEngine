@@ -1,75 +1,54 @@
 package CEApplication;
 
 import java.io.*;
-import java.util.*;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 
-public class CEPerfab implements Serializable
+public abstract class CEPerfab<T>
 {
-	private CEGameObject gameObject;
-	public CEPerfab(CEGameObject gameObject)
+	T perfab;
+	
+	public CEPerfab(Element documentElement){
+		if(documentElement.getNodeType() != Node.ELEMENT_NODE){
+			throw new RuntimeException();
+		}
+		this.perfab = NewPerfabByElement(documentElement);
+	}
+	
+	public CEPerfab(InputStream input)
 	{
-		if(gameObject==null){
-			throw new NullPointerException();
-		}
-		this.gameObject = gameObject;
-	}
-	
-	private CEGameObject CreateByNode(Node node){
-		if(node.getNodeType() == Node.ELEMENT_NODE){
-			System.out.println((node.getAttributes().getNamedItem("name")));
-//			CEGameObject gameObject = new CEGameObject();
-			
-		}
-		
-		return null;
-		
-	}
-	
-	public CEPerfab(String path){
 		try
 		{
 			DocumentBuilder build = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			InputStream input = new FileInputStream("/storage/emulated/0/AppProjects/CrystalEngine/File.xml");
-			Document doc= build.parse(input);
-
-			this.gameObject=CreateByNode(doc.getDocumentElement());
+			Document document= build.parse(input);
+			this.perfab = NewPerfabByElement(document.getDocumentElement());
 		}
 		catch (FileNotFoundException e)
 		{
+			System.err.println(e);
 		}
 		catch (ParserConfigurationException e)
 		{
+			System.err.println(e);
 		}
 		catch (SAXException e)
 		{
-			
+			System.err.println(e);
 		}
 		catch (IOException e)
 		{
-			
+			System.err.println(e);
 		}
-	}
-	
-	
-	private CEGameObject Clone(CEGameObject gameObject)
-	{
-		CEGameObject object = new CEGameObject(gameObject.name);
-		for (CEBehave behave : gameObject.componentManager.list)
+		catch (Exception e)
 		{
-			object.componentManager.AddComponent(((CEComponent)behave).getClass());
+			System.err.println(e);
 		}
-		for (CEGameObject child : gameObject.children)
-		{
-			object.AddChild(Clone(child));
-		}
-		return gameObject;
 	}
 
-	public CEGameObject Instantiation()
-	{
-		return Clone(gameObject);
-	}
+	public abstract T NewPerfabByElement(Element documentElement);
+	
+	public abstract T Clone();
+	
+	public abstract T Instantiation();
 }

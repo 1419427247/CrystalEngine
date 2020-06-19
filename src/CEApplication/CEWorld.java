@@ -2,7 +2,6 @@ package CEApplication;
 
 import java.net.*;
 import java.util.*;
-import CEGameObject.*;
 
 
 public class CEWorld extends CEBehave
@@ -13,7 +12,6 @@ public class CEWorld extends CEBehave
 		running,
 		ending,
 	}
-	Camera mainCamera;
 	public CEGameObjectManager gameObjectManager;
 
 	private CEWorldState state = CEWorldState.none;

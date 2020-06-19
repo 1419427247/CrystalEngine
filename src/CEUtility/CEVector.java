@@ -20,6 +20,11 @@ public class CEVector {
 		this.y = y;
 	}
 
+	public CEVector(CEVector vector) {
+		this.x = vector.x;
+		this.y = vector.y;
+	}
+	
 	public double getX() {
 		return x;
 	}
