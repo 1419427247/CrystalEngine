@@ -95,29 +95,43 @@ public class CEGameObjectManager extends CEBehaviorContainer
 	}
 
 	public void RemoveGameObject(CEGameObject gameObject){
+//		if (gameObjectsMap.get(gameObject.name) == null)
+//		{
+//			throw new NullPointerException();
+//		}
+//		LinkedList<CEGameObject> list = new LinkedList<CEGameObject>();
+//		list.add(gameObjectsMap.get(gameObject.name));
+//		while (list.size() > 0)
+//		{
+//			CEGameObject first = list.getFirst();
+//			for (CEGameObject child : first.children)
+//			{
+//				list.add(child);
+//			}
+//			gameObject.isDestoryed=true;
+//			gameObjectsMap.remove(first.name);
+//			super.Remove(first);
+//			list.removeFirst();
+//		}
+		
 		if (gameObjectsMap.get(gameObject.name) == null)
 		{
 			throw new NullPointerException();
 		}
-		LinkedList<CEGameObject> list = new LinkedList<CEGameObject>();
-		list.add(gameObjectsMap.get(gameObject.name));
-		while (list.size() > 0)
+		for (CEGameObject child : gameObject.children)
 		{
-			CEGameObject first = list.getFirst();
-			for (CEGameObject child : first.children)
-			{
-				list.add(child);
-			}
-			gameObject.isDestoryed=true;
-			gameObjectsMap.remove(first.name);
-			super.Remove(first);
-			list.removeFirst();
+			RemoveGameObject(child);
 		}
+		
+		gameObject.isDestoryed=true;
+		gameObjectsMap.remove(gameObject.name);
+		super.Remove(gameObject);
+		
 	}
 	
 	public void RemoveGameObject(String name)
 	{
-		RemoveGameObject(gameObjectsMap.get(name));
+		RemoveGameObject(GetGameObject(name));
 	}
 
 	public void DestroyGameObject(CEGameObject gameObject)
@@ -126,39 +140,19 @@ public class CEGameObjectManager extends CEBehaviorContainer
 		{
 			throw new NullPointerException();
 		}
-		LinkedList<CEGameObject> list = new LinkedList<CEGameObject>();
-		list.add(gameObject);
-		while (list.size() > 0)
+		
+		for (CEGameObject child : gameObject.children)
 		{
-			CEGameObject object = list.getFirst();
-			for (CEGameObject child : object.children)
-			{
-				list.add(child);
-			}
-			object.isDestoryed=true;
-			gameObjectsMap.remove(object.name);
-			super.Destroy(object);
-			list.removeFirst();
+			DestroyGameObject(child);
 		}
+		gameObject.isDestoryed=true;
+		gameObjectsMap.remove(gameObject.name);
+		super.Destroy(gameObject);
 	}
 	
 	public void DestroyGameObject(String name)
 	{
-		LinkedList<CEGameObject> list = new LinkedList<CEGameObject>();
-		list.add(gameObjectsMap.get(name));
-		while (list.size() > 0)
-		{
-			CEGameObject object = list.getFirst();
-			for (CEGameObject child : object.children)
-			{
-				list.add(child);
-			}
-			object.Destroy();
-			object.isDestoryed=true;
-			gameObjectsMap.remove(object.name);
-			super.Destroy(object);
-			list.removeFirst();
-		}
+		DestroyGameObject(GetGameObject(name));
 	}
 	
 }

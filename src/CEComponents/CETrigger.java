@@ -1,19 +1,18 @@
 package CEComponents;
-
 import CEApplication.*;
+import CEUtility.*;
 
-public class CECamera extends CEComponent
+public class CETrigger extends CEComponent
 {
-	public enum CleanFlat{
-		SOILDCOLOR,
-		DONTCLEAR,
+	
+	CEPolygon polygon;
+	public CETrigger(CEPolygon polygon){
+		this.polygon=polygon;
 	}
-	public static CECamera mainCamera;
-	private CleanFlat cleanFlat;
 	@Override
 	public void Start()
 	{
-		mainCamera=this;
+		// TODO: Implement this method
 	}
 
 	@Override
@@ -26,5 +25,5 @@ public class CECamera extends CEComponent
 	public void Destroy()
 	{
 		// TODO: Implement this method
-	}
+	}	
 }

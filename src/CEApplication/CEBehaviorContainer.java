@@ -6,7 +6,7 @@ public class CEBehaviorContainer extends CEBehave
 {
 	CEBehaviorState state=CEBehaviorState.none;
 	ArrayList<CEBehave> list=new ArrayList<CEBehave>();
-
+	
 	ArrayList<CEBehave> listTrash=new ArrayList<CEBehave>();
 	ArrayList<CEBehave> listNew=new ArrayList<CEBehave>();
 

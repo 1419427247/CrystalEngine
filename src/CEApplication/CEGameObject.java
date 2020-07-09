@@ -3,6 +3,7 @@ package CEApplication;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import CEComponents.*;
 
 public class CEGameObject extends CEBehave
 {
@@ -15,6 +16,8 @@ public class CEGameObject extends CEBehave
 	protected CEGameObject parent;
 	protected ArrayList<CEGameObject> children;
 
+	protected CETransform transform=new CETransform(); 
+	
 	CEComponemtManager componentManager;
 	
 	
@@ -50,6 +53,7 @@ public class CEGameObject extends CEBehave
 	public void Destroy()
 	{
 		componentManager.Destroy();
+		SetParent(null);
 	}
 	
 	
@@ -140,7 +144,7 @@ public class CEGameObject extends CEBehave
 		return false;
 	}
 
-	public int GetChildSzie() {
+	public int GetChildrenSize() {
 		return children.size();
 	}
 }

@@ -5,7 +5,7 @@ import CEApplication.*;
 public class CEPolygon
 {
 	public CEVector[] points;
-	private CEVector[] _points;
+	protected CEVector[] _points;
 	public CEPolygon(CEVector ...points)
 	{
 		this._points = points;
@@ -17,7 +17,12 @@ public class CEPolygon
 		this._points = (CEVector[]) points.toArray();
 		this.points = this._points;
 	}
-
+	
+	public void Set(CEVector ...points){
+		this._points = points;
+		this.points = points;
+	}
+	
 	public void SetPosition(CEVector position)
 	{
 		for (int i=0;i < _points.length;i++)

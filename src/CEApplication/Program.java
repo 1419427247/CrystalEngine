@@ -1,12 +1,9 @@
 package CEApplication;
 
-import java.io.*;
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
-import org.xml.sax.*;
-import java.util.*;
-import java.lang.reflect.*;
 import CEUtility.*;
+import java.sql.*;
+import java.util.*;
+import java.nio.channels.*;
 class Print extends CEComponent
 {
 	public int x;
@@ -14,12 +11,17 @@ class Print extends CEComponent
 	public void Update()
 	{		
 		System.out.println("我是" + gameObject.GetName());
+		if(gameObject.world.gameObjectManager.GetGameObject("123")!=null){
+		gameObject.world.gameObjectManager.DestroyGameObject("123");
+		}
+		System.out.println("我有"+gameObject.GetChildrenSize());
 	}
 
 	@Override
 	public void Start()
 	{
 		System.out.println(gameObject.GetName() + "开始啦");
+		
 
 	}
 
@@ -32,25 +34,18 @@ class Print extends CEComponent
 
 public class Program
 {
-	
 	public static void main(String[] args)
 	{
 		try
 		{
-			
-			CEPolygon polygon=new CEPolygon(new CEVector(0,1));
-			polygon.SetRotation(90);
-			for(CEVector vec:polygon.points){
-				System.out.println(vec.getX()+","+vec.getY());
-			}
-			//CEGameObjectPerfab per=new CEGameObjectPerfab(new FileInputStream("/storage/emulated/0/AppProjects/CrystalEngine/Cube.Perfab"));			
-			//CEWorld world = new CEWorld();
-			//world.gameObjectManager.AddGameObject(per);
-//			world.Start();
-//			world.Update();
-//			world.Update();
-//			world.Update();
-//			world.Destroy();
+			CEWorld world = new CEWorld();
+			world.gameObjectManager.AddGameObject(new CEGameObject("123"));
+			world.gameObjectManager.AddGameObject(new CEGameObject("1234")).SetParent(world.gameObjectManager.GetGameObject("123"));
+			world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(Print.class);
+			world.Start();
+			world.Update();
+			world.Update();
+			world.Destroy();
 		}
 		catch(Exception e){
 			System.err.println(e);
