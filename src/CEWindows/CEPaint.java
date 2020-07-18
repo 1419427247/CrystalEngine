@@ -3,7 +3,7 @@ import java.util.*;
 
 public abstract class CEPaint
 {
-	public static final enum Style
+	public static enum Style
     {
         FILL,
         FILL_AND_STROKE,

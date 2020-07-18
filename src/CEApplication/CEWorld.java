@@ -1,12 +1,8 @@
 package CEApplication;
 
-import java.net.*;
-import java.util.*;
-
-
 public class CEWorld extends CEBehave
 {
-	public final enum CEWorldState{
+	public enum CEWorldState{
 		none,
 		starting,
 		running,
