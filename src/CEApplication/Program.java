@@ -1,7 +1,6 @@
 package CEApplication;
 
 import CEUtility.*;
-import java.sql.*;
 import java.util.*;
 import java.nio.channels.*;
 class Print extends CEComponent
@@ -11,9 +10,7 @@ class Print extends CEComponent
 	public void Update()
 	{		
 		System.out.println("我是" + gameObject.GetName());
-		if(gameObject.world.gameObjectManager.GetGameObject("123")!=null){
-		gameObject.world.gameObjectManager.DestroyGameObject("123");
-		}
+		
 		System.out.println("我有"+gameObject.GetChildrenSize());
 	}
 
@@ -34,24 +31,32 @@ class Print extends CEComponent
 
 public class Program
 {
-	public static void main(String[] args)
+	public static void main(String[] args) throws InterruptedException
 	{
-		try
-		{
+		
 			CEWorld world = new CEWorld();
 			world.gameObjectManager.AddGameObject(new CEGameObject("123"));
 			world.gameObjectManager.AddGameObject(new CEGameObject("1234")).SetParent(world.gameObjectManager.GetGameObject("123"));
+			world.gameObjectManager.GetGameObject("1234").componentManager.AddComponent(Print.class);
 			world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(Print.class);
-			world.Start();
-			world.Update();
-			world.Update();
-			world.Destroy();
-		}
-		catch(Exception e){
-			System.err.println(e);
-		}
+			
+			CEWorldManager.LoadWorld(world);
+			
+			Thread.sleep(200);
+			
+			
+		CEWorld world2 = new CEWorld();
+		world2.gameObjectManager.AddGameObject(new CEGameObject("a"));
+		world2.gameObjectManager.AddGameObject(new CEGameObject("b")).SetParent(world2.gameObjectManager.GetGameObject("a"));
+		world2.gameObjectManager.GetGameObject("a").componentManager.AddComponent(Print.class);
+		world2.gameObjectManager.GetGameObject("b").componentManager.AddComponent(Print.class);
 		
-			//world.gameObjectManager.AddGameObject(perfab.Instantiation());
-		System.out.println();
+			
+			System.out.println("加载新场景。");
+			CEWorldManager.LoadWorld(world2);
+			
+			Thread.sleep(200);
+			CEWorldManager.LoadWorld(null);
+			//world.gameObjectManager.AddGameObject(perfab.Instantiation()
 	}
 }

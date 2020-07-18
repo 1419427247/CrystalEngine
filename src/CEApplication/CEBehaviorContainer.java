@@ -4,6 +4,7 @@ import CEUtility.*;
 
 public class CEBehaviorContainer extends CEBehave
 {
+
 	CEBehaviorState state=CEBehaviorState.none;
 	ArrayList<CEBehave> list=new ArrayList<CEBehave>();
 	
@@ -78,7 +79,7 @@ public class CEBehaviorContainer extends CEBehave
 
 	public CEBehave Remove(CEBehave behave)
 	{
-		if (state == CEBehaviorState.start &&
+		if (state == CEBehaviorState.start ||
 			state == CEBehaviorState.update)
 		{
 			throw new RuntimeException();

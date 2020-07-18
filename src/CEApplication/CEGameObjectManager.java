@@ -54,7 +54,7 @@ public class CEGameObjectManager extends CEBehaviorContainer
 		return AddGameObject(new CEGameObject(name));
 	}
 	
-	private CEGameObject NewGameObject(CEGameObject gameObject)
+	public CEGameObject NewGameObject(CEGameObject gameObject)
 	{
 		if (gameObject == null)
 		{
@@ -126,6 +126,7 @@ public class CEGameObjectManager extends CEBehaviorContainer
 		gameObject.isDestoryed=true;
 		gameObjectsMap.remove(gameObject.name);
 		super.Remove(gameObject);
+		gameObject.SetParent(null);
 		
 	}
 	

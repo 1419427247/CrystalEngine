@@ -3,9 +3,9 @@ package CEApplication;
 public abstract class CEBehave
 {
 	
-	public abstract void Start();
+	protected abstract void Start();
 
-	public abstract void Update();
+	protected abstract void Update();
 
-	public abstract void Destroy();
+	protected abstract void Destroy();
 }

@@ -49,7 +49,4 @@ public abstract class CEGraphics extends CEComponent
 
     public abstract void drawPosText(String text, float[] pos, CEPaint paint) ;
 
-    public abstract void drawPicture(CEPicture picture) ;
-
-    public abstract void drawPicture(CEPicture picture, CERect dst) ;
 }
