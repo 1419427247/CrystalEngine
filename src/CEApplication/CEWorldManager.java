@@ -1,5 +1,8 @@
 package CEApplication;
 
+import CEUtility.CETime;
+import CEWindows.CEInput;
+
 public class CEWorldManager implements Runnable
 {
 	private static CEWorld world;
@@ -15,7 +18,6 @@ public class CEWorldManager implements Runnable
 		{
 			while (thread.getState() != Thread.State.TERMINATED)
 			{
-				System.out.println("没好");
 				try
 				{
 					Thread.sleep(20);
@@ -37,9 +39,10 @@ public class CEWorldManager implements Runnable
 	{
 		while (true)
 		{
+			long s = System.currentTimeMillis();
 			try
 			{
-				Thread.sleep(50);
+				Thread.sleep(10);
 			}
 			catch (InterruptedException e)
 			{
@@ -62,6 +65,7 @@ public class CEWorldManager implements Runnable
 					break;
 				}
 			}
+			CETime.deltaTime = (System.currentTimeMillis() - s) / 1000f;
 		}
 	}
 }

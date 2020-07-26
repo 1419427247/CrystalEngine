@@ -1,5 +1,7 @@
 package CEApplication;
 
+import CEWindows.CEInput;
+
 public class CEWorld extends CEBehave
 {
 	public enum CEWorldState{

@@ -1,6 +1,7 @@
 package CEComponents;
 
 import CEApplication.*;
+import java.awt.*;
 
 public class CECamera extends CEComponent
 {
@@ -9,7 +10,8 @@ public class CECamera extends CEComponent
 		DONTCLEAR,
 	}
 	public static CECamera mainCamera;
-	private CleanFlat cleanFlat;
+	public CleanFlat cleanFlat;
+	public Color backGroundColor = Color.BLUE;
 	@Override
 	public void Start()
 	{

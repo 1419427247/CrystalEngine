@@ -1,62 +1,54 @@
 package CEApplication;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import CEComponents.*;
 
-public class CEGameObject extends CEBehave
-{
+public class CEGameObject extends CEBehave {
 	protected String name;
 	protected CEWorld world;
 
 	protected boolean isFrozen = false;
 	protected boolean isDestoryed = false;
-	
+
 	protected CEGameObject parent;
 	protected ArrayList<CEGameObject> children;
 
-	protected CETransform transform=new CETransform(); 
-	
+	public CETransform transform = new CETransform();
+
 	CEComponemtManager componentManager;
-	
-	
+
 	public CEGameObject(String name) {
 		this.name = name;
 		this.world = null;
-		
+
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
 	}
-	
+
 	public CEGameObject(String name, CEWorld world) {
 		this.name = name;
 		this.world = world;
-		
+
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
 	}
-	
+
 	@Override
-	public void Start()
-	{
+	public void Start() {
 		componentManager.Start();
 	}
 
 	@Override
-	public void Update()
-	{
+	public void Update() {
 		componentManager.Update();
 	}
 
 	@Override
-	public void Destroy()
-	{
+	public void Destroy() {
 		componentManager.Destroy();
 		SetParent(null);
 	}
-	
-	
+
 	public String GetName() {
 		return name;
 	}
@@ -85,7 +77,7 @@ public class CEGameObject extends CEBehave
 	}
 
 	public boolean HasChild(CEGameObject gameObject) {
-		if(gameObject==null){
+		if (gameObject == null) {
 			throw new NullPointerException();
 		}
 		return gameObject.HasParent(this);
@@ -112,7 +104,7 @@ public class CEGameObject extends CEBehave
 	}
 
 	public boolean AddChild(CEGameObject gameObject) {
-		if(gameObject==null){
+		if (gameObject == null) {
 			throw new NullPointerException();
 		}
 		if (gameObject != this) {
@@ -134,7 +126,7 @@ public class CEGameObject extends CEBehave
 	}
 
 	public boolean RemoveChild(CEGameObject gameObject) {
-		if(gameObject==null){
+		if (gameObject == null) {
 			throw new NullPointerException();
 		}
 		if (gameObject.parent == this) {

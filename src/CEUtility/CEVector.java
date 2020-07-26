@@ -133,6 +133,11 @@ public class CEVector {
 		this.y = this.y / value;
 	}
 	
+	@Override
+	public String toString() {
+		return "(" +x+ ","+y+")";
+	}
+
 	public static double RadianBetween(CEVector v1, CEVector v2) {
 		if (!v1.IsNormalized())
 			v1 = v1.Clone().Normalize();

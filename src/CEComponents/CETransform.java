@@ -4,9 +4,10 @@ import CEApplication.CEComponent;
 import CEUtility.CEVector;
 
 public class CETransform extends CEComponent {
-	public CEVector position = new CEVector();
-//	public Vector l0calPosition = new Vector();
+	public CEVector position = new CEVector(0,0);
 	public double angle = 0;
+	public CEVector scale = new CEVector(1,1);
+//	public Vector l0calPosition = new Vector();
 //	public Vector l0calRotation = new Vector();
 //	public Vector size = new Vector();
 //	public Vector localSize = new Vector();
