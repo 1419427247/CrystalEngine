@@ -39,6 +39,7 @@ public class CEBehaviorContainer extends CEBehave
 		}
 		listNew.clear();
 		state = CEBehaviorState.update;
+		
 		for (CEBehave behave : list)
 		{
 			behave.Update();

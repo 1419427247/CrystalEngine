@@ -12,6 +12,7 @@ public class CECamera extends CEComponent
 	public static CECamera mainCamera;
 	public CleanFlat cleanFlat;
 	public Color backGroundColor = Color.BLUE;
+	public float filedOfView = 90f;
 	@Override
 	public void Start()
 	{

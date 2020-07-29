@@ -30,27 +30,32 @@ public class CEFrame extends JFrame
     public void run() {
         while (true) {
             panel.repaint();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
-    public synchronized void keyTyped(KeyEvent e){
-        
+    public synchronized void keyTyped(KeyEvent e) {
+
     }
 
     @Override
-    public synchronized void keyPressed(KeyEvent e){
-        CEInput.keyPressedMap.put(e.getKeyCode(),true);
+    public synchronized void keyPressed(KeyEvent e) {
+        CEInput.keyPressedMap.put(e.getKeyCode(), true);
     }
-    
+
     @Override
-    public synchronized void keyReleased(KeyEvent e){
+    public synchronized void keyReleased(KeyEvent e) {
         CEInput.keyPressedMap.put(e.getKeyCode(), false);
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        
+
     }
 
     @Override

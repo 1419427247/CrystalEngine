@@ -1,6 +1,16 @@
 package CEApplication;
 
+import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 
 import CEComponents.CECamera;
 import CEComponents.CESprite;
@@ -16,34 +26,35 @@ class Print extends CEComponent {
 
 	}
 
-	int x=-1,y=-1;
+	int x = -1, y = -1;
 
 	@Override
 	public void Update() {
 		if (CEInput.IsKeyDown(KeyEvent.VK_A)) {
-			gameObject.transform.Translate(1,0);
+			gameObject.transform.Translate(1, 0);
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_D)) {
-			gameObject.transform.Translate(CEVector.Multiply(CEVector.LEFT,CETime.deltaTime));
+			gameObject.transform.Translate(-1, 0);
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_E)) {
-			gameObject.transform.angle++;
+			CECamera.mainCamera.gameObject.transform.angle +=3 ;
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_Q)) {
-			gameObject.transform.scale.Subtract(0.01f,0.01f);
+			// gameObject.transform.scale.Subtract(0.01f, 0.01f);
+			CECamera.mainCamera.filedOfView+=0.1;
 		}
-		if(CEInput.IsKeyDown(1)){
+		if (CEInput.IsKeyDown(1)) {
 			if (x == -1 && y == -1) {
 				x = CEInput.mouseX;
 				y = CEInput.mouseY;
 				return;
 			}
-			gameObject.transform.Translate((CEInput.mouseX - x) / 1f,-(CEInput.mouseY - y) / 1f);
+			gameObject.transform.Translate((CEInput.mouseX - x) / 1f, -(CEInput.mouseY - y) / 1f);
 			x = CEInput.mouseX;
 			y = CEInput.mouseY;
-		}else{
-			x=-1;
-			y=-1;
+		} else {
+			x = -1;
+			y = -1;
 		}
 	}
 
@@ -57,44 +68,37 @@ class Print extends CEComponent {
  * Frame extends JFrame
  */
 
-
 public class Program {
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
+		CEWorld world = new CEWorld();
+		world.gameObjectManager.AddGameObject(new CEGameObject("123"));
 
-		
+		world.gameObjectManager.AddGameObject(new CEGameObject("234"));
+		world.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CESprite.class);
 
+		CESprite sprite1 =(CESprite)
+		world.gameObjectManager.GetGameObject("234").componentManager.GetComponent(CESprite.class);
+		sprite1.setImage("4.bmp");
 
-		// CEWorld world = new CEWorld();
-		// world.gameObjectManager.AddGameObject(new CEGameObject("123"));
+		world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(CESprite.class);
+		world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(Print.class);
+		world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(CECamera.class);
 
-		// world.gameObjectManager.AddGameObject(new CEGameObject("234"));
-		// world.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CESprite.class);
+		CESprite sprite2 =(CESprite)
+		world.gameObjectManager.GetGameObject("123").componentManager.GetComponent(CESprite.class);
+		sprite2.setImage("OIP.jpg");
 
-		// CESprite sprite1 =(CESprite) world.gameObjectManager.GetGameObject("234").componentManager.GetComponent(CESprite.class);
-		// sprite1.setImage("长史");
+		CEApplication application = new CEApplication(world);
 
-		// world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(Print.class);
-		// world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(CESprite.class);
-		// world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(CECamera.class);
+		CEWorld world2 = new CEWorld();
+		world2.gameObjectManager.AddGameObject(new CEGameObject("a"));
+		world2.gameObjectManager.AddGameObject(new
+		CEGameObject("b")).SetParent(world2.gameObjectManager.GetGameObject("a"));
+		world2.gameObjectManager.GetGameObject("a").componentManager.AddComponent(CECamera.class);
+		world2.gameObjectManager.GetGameObject("b").componentManager.AddComponent(Print.class);
 
+		//CEWorldManager.LoadWorld(world2);
 
-		// CESprite sprite2 =(CESprite) world.gameObjectManager.GetGameObject("123").componentManager.GetComponent(CESprite.class);
-		// sprite2.setImage("无标题.png");
-
-		// CEApplication application = new CEApplication(world);
-
-
-		// Thread.sleep(200);
-
-		// CEWorld world2 = new CEWorld();
-		// world2.gameObjectManager.AddGameObject(new CEGameObject("a"));
-		// world2.gameObjectManager.AddGameObject(new
-		// CEGameObject("b")).SetParent(world2.gameObjectManager.GetGameObject("a"));
-		// world2.gameObjectManager.GetGameObject("a").componentManager.AddComponent(Print.class);
-		// world2.gameObjectManager.GetGameObject("b").componentManager.AddComponent(Print.class);
-
-		// System.out.println("价值");
-
-		// world.gameObjectManager.AddGameObject(perfab.Instantiation()
+		System.out.println("价值");
 	}
 }
