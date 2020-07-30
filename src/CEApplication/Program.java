@@ -37,11 +37,10 @@ class Print extends CEComponent {
 			gameObject.transform.Translate(-1, 0);
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_E)) {
-			CECamera.mainCamera.gameObject.transform.angle +=3 ;
+			CECamera.mainCamera.filedOfView++;
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_Q)) {
-			// gameObject.transform.scale.Subtract(0.01f, 0.01f);
-			CECamera.mainCamera.filedOfView+=0.1;
+			CECamera.mainCamera.gameObject.transform.angle++;
 		}
 		if (CEInput.IsKeyDown(1)) {
 			if (x == -1 && y == -1) {
@@ -49,7 +48,7 @@ class Print extends CEComponent {
 				y = CEInput.mouseY;
 				return;
 			}
-			gameObject.transform.Translate((CEInput.mouseX - x) / 1f, -(CEInput.mouseY - y) / 1f);
+			gameObject.transform.Translate((x-CEInput.mouseX) / 1f, (y-CEInput.mouseY) / 1f);
 			x = CEInput.mouseX;
 			y = CEInput.mouseY;
 		} else {
@@ -86,7 +85,7 @@ public class Program {
 
 		CESprite sprite2 =(CESprite)
 		world.gameObjectManager.GetGameObject("123").componentManager.GetComponent(CESprite.class);
-		sprite2.setImage("OIP.jpg");
+		sprite2.setImage("无标题.png");
 
 		CEApplication application = new CEApplication(world);
 

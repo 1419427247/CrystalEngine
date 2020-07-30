@@ -15,6 +15,4 @@ public class CEInput {
         }
         return false;
     }
-
-    
 }
