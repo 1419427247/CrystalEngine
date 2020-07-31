@@ -11,7 +11,7 @@ public class CEComponemtManager extends CEBehaviorContainer
 	}
 
 	public CEComponent AddComponent(CEComponent component){
-		component.gameObject = gameObject;
+		component.gameObject = this.gameObject;
 		return (CEComponent)super.Add(component);
 	}
 	

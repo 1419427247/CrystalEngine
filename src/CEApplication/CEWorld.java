@@ -1,47 +1,50 @@
 package CEApplication;
 
-import CEWindows.CEInput;
-
 public class CEWorld extends CEBehave
 {
-	public enum CEWorldState{
-		none,
-		starting,
-		running,
-		ending,
-	}
+	public static final int NONE = 1;
+	public static final int STARTING = 2;
+	public static final int RUNNING = 3;
+	public static final int ENDING = 4;
+
 	public CEGameObjectManager gameObjectManager;
 
-	private CEWorldState state = CEWorldState.none;
+	private int state = CEWorld.NONE;
 	public CEWorld()
 	{
 		gameObjectManager=new CEGameObjectManager(this);
-		state=CEWorldState.starting;
+		state=CEWorld.STARTING;
 	}
 	
+	public int getState() {
+		return state;
+	}
+
 	@Override
 	public void Start()
 	{
-		state = CEWorldState.starting;
+		state = CEWorld.STARTING;
 		gameObjectManager.Start();
-		state = CEWorldState.none;
+		state = CEWorld.NONE;
 	}
 
 	@Override
 	public void Update()
 	{
-		state = CEWorldState.running;
+		state = CEWorld.RUNNING;
 		gameObjectManager.Update();
-		state = CEWorldState.none;
+		state = CEWorld.NONE;
 	}
 	
 	@Override
 	public void Destroy()
 	{
-		state = CEWorldState.ending;
+		state = CEWorld.ENDING;
 		gameObjectManager.Destroy();
-		state = CEWorldState.none;
+		state = CEWorld.NONE;
 	}
+
+
 	
 
 	//	public GameObject CreateGameObject(Perfab name) {

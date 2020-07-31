@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Component name = "CEApplication.Print">
-	<Field name = "x" type = "int"></Field>
-	
-</Component>

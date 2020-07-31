@@ -5,12 +5,10 @@ import java.awt.*;
 
 public class CECamera extends CEComponent
 {
-	public enum CleanFlat{
-		SOILDCOLOR,
-		DONTCLEAR,
-	}
+	public static final int SOILDCOLOR = 1;
+	public static final int DONTCLEAR = 2;
 	public static CECamera mainCamera;
-	public CleanFlat cleanFlat;
+	public int cleanFlat = CECamera.SOILDCOLOR;
 	public Color backGroundColor = Color.BLUE;
 	public float filedOfView = 90f;
 	@Override

@@ -7,11 +7,12 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 	public class EventType {
 		public static final int OnGameObjectCreated = 1;
 	}
-
+	CEGameObject root;
 	HashMap<String, CEGameObject> gameObjectsMap;
 	CEWorld world;
 
 	public CEGameObjectManager(CEWorld world) {
+		root = new CEGameObject();
 		gameObjectsMap = new HashMap<String, CEGameObject>();
 		this.world = world;
 	}
@@ -31,15 +32,14 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		gameObject.world = this.world;
 		super.Add(gameObject);
 		gameObjectsMap.put(gameObject.name, gameObject);
+		if (gameObject.parent == null) {
+			gameObject.SetParent(root);
+		}
 		event.DoEvent(this, EventType.OnGameObjectCreated, gameObject);
 		for (CEGameObject child : gameObject.children) {
 			gameObject.AddChild(AddGameObject(child));
 		}
 		return gameObject;
-	}
-
-	public CEGameObject AddGameObject(CEGameObjectPerfab perfab) {
-		return AddGameObject(perfab.Instantiation());
 	}
 
 	public CEGameObject AddGameObject(String name) {
@@ -61,13 +61,6 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		return gameObject;
 	}
 
-	public void NewGameObject(CEGameObjectPerfab perfab) {
-		if (perfab == null) {
-			throw new NullPointerException();
-		}
-		NewGameObject(perfab.Instantiation());
-	}
-
 	public void NewGameObject(String name) {
 		NewGameObject(new CEGameObject(name));
 	}
@@ -77,37 +70,16 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 	}
 
 	public void RemoveGameObject(CEGameObject gameObject) {
-		// if (gameObjectsMap.get(gameObject.name) == null)
-		// {
-		// throw new NullPointerException();
-		// }
-		// LinkedList<CEGameObject> list = new LinkedList<CEGameObject>();
-		// list.add(gameObjectsMap.get(gameObject.name));
-		// while (list.size() > 0)
-		// {
-		// CEGameObject first = list.getFirst();
-		// for (CEGameObject child : first.children)
-		// {
-		// list.add(child);
-		// }
-		// gameObject.isDestoryed=true;
-		// gameObjectsMap.remove(first.name);
-		// super.Remove(first);
-		// list.removeFirst();
-		// }
-
 		if (gameObjectsMap.get(gameObject.name) == null) {
 			throw new NullPointerException();
 		}
 		for (CEGameObject child : gameObject.children) {
 			RemoveGameObject(child);
 		}
-
 		gameObject.isDestoryed = true;
 		gameObjectsMap.remove(gameObject.name);
 		super.Remove(gameObject);
 		gameObject.SetParent(null);
-
 	}
 
 	public void RemoveGameObject(String name) {

@@ -1,6 +1,7 @@
  package CEComponents;
 
 import CEApplication.CEComponent;
+import CEApplication.CEPerfab;
 import CEUtility.CEVector;
 
 public class CETransform extends CEComponent {

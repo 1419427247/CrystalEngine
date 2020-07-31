@@ -1,6 +1,9 @@
 package CEApplication;
 
 import java.util.ArrayList;
+
+import org.w3c.dom.*;
+
 import CEComponents.*;
 
 public class CEGameObject extends CEBehave {
@@ -13,9 +16,20 @@ public class CEGameObject extends CEBehave {
 	protected CEGameObject parent;
 	protected ArrayList<CEGameObject> children;
 
-	public CETransform transform = new CETransform();
+	public CETransform transform;
 
-	CEComponemtManager componentManager;
+	public CEComponemtManager componentManager;
+
+	public CEGameObject() {
+		this.name = null;
+		this.world = null;
+
+		children = new ArrayList<CEGameObject>();
+		componentManager = new CEComponemtManager(this);
+
+		transform = new CETransform();
+		componentManager.AddComponent(transform);
+	}
 
 	public CEGameObject(String name) {
 		this.name = name;
@@ -23,6 +37,9 @@ public class CEGameObject extends CEBehave {
 
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
+
+		transform = new CETransform();
+		componentManager.AddComponent(transform);
 	}
 
 	public CEGameObject(String name, CEWorld world) {
@@ -31,6 +48,9 @@ public class CEGameObject extends CEBehave {
 
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
+
+		transform = new CETransform();
+		componentManager.AddComponent(transform);
 	}
 
 	@Override
@@ -89,7 +109,7 @@ public class CEGameObject extends CEBehave {
 				if (parent != null) {
 					parent.RemoveChild(this);
 				}
-				parent = null;
+				parent = world.gameObjectManager.root;
 			} else if (parent == null) {
 				gameObject.AddChild(this);
 			} else {
@@ -130,7 +150,7 @@ public class CEGameObject extends CEBehave {
 			throw new NullPointerException();
 		}
 		if (gameObject.parent == this) {
-			gameObject.parent = null;
+			gameObject.parent = world.gameObjectManager.root;
 			return children.remove(gameObject);
 		}
 		return false;
@@ -138,5 +158,68 @@ public class CEGameObject extends CEBehave {
 
 	public int GetChildrenSize() {
 		return children.size();
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
+
+	@Override
+	public void convertToObject(Node root) {
+
+		Element object = (Element) root;
+
+		this.name = root.getNodeName();
+		this.isFrozen = Boolean.parseBoolean(object.getAttribute("isFrozen"));
+		this.isDestoryed = Boolean.parseBoolean(object.getAttribute("isDestoryed"));
+
+		NodeList list = object.getChildNodes();
+		NodeList children = null;
+		NodeList components = null;
+		for (int i = 0; i < list.getLength(); i++) {
+			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				switch (list.item(i).getNodeName()) {
+					case "children":
+						children = list.item(i).getChildNodes();
+						break;
+					case "components":
+						components = list.item(i).getChildNodes();
+						break;
+				}
+			}
+		}
+
+		for (int i = 0; i < children.getLength(); i++) {
+			if (children.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				AddChild((CEGameObject) CEApplication.xml.convertToObject(children.item(i)));
+			}
+		}
+		for (int i = 0; i < components.getLength(); i++) {
+			if (components.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				componentManager.AddComponent((CEComponent) CEApplication.xml.convertToObject(components.item(i)));
+			}
+		}
+	}
+
+	@Override
+	public void convertToNode(Document document, Node root) {
+		Element object = (Element) root;
+
+		object.setAttribute("name", this.name);
+		object.setAttribute("isFrozen", Boolean.toString(this.isFrozen));
+		object.setAttribute("isDestoryed", Boolean.toString(this.isDestoryed));
+
+		Element children = document.createElement("children");
+		for (CEGameObject gameObject : this.children) {
+			children.appendChild(CEApplication.xml.convertToNode(document, gameObject));
+		}
+		object.appendChild(children);
+
+		Element components = document.createElement("components");
+		for (CEBehave behave : this.componentManager.list) {
+			components.appendChild(CEApplication.xml.convertToNode(document, (CEComponent) behave));
+		}
+		object.appendChild(components);
 	}
 }

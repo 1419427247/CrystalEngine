@@ -6,13 +6,13 @@ import CEWindows.CEInput;
 public class CEWorldManager implements Runnable
 {
 	private static CEWorld world;
-	private static CEBehaviorState state;
+	private static int state;
 	private static Thread thread;
 	public static void LoadWorld(CEWorld world)
 	{
 		if (CEWorldManager.world != null)
 		{
-			CEWorldManager.state = CEBehaviorState.destory;
+			CEWorldManager.state = CEBehaviorContainer.DESTORY;
 		}
 		if (thread != null)
 		{
@@ -29,7 +29,7 @@ public class CEWorldManager implements Runnable
 			}
 		}
 		CEWorldManager.world = world;
-		CEWorldManager.state = CEBehaviorState.start;
+		CEWorldManager.state = CEBehaviorContainer.START;
 		thread = new Thread(new CEWorldManager());
 		thread.start();
 	}
@@ -50,16 +50,16 @@ public class CEWorldManager implements Runnable
 			}
 			if (world != null)
 			{
-				if (state == CEBehaviorState.start)
+				if (state == CEBehaviorContainer.START)
 				{
 					world.Start();
-					state = CEBehaviorState.update;
+					state = CEBehaviorContainer.UPDATE;
 				}
-				else if (state == CEBehaviorState.update)
+				else if (state == CEBehaviorContainer.UPDATE)
 				{
 					world.Update();
 				}
-				else if (state == CEBehaviorState.destory)
+				else if (state == CEBehaviorContainer.DESTORY)
 				{
 					world.Destroy();
 					break;

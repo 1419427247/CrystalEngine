@@ -4,8 +4,14 @@ import CEUtility.*;
 
 public class CEBehaviorContainer extends CEBehave
 {
+	public static final int NONE = 1;
+	public static final int START = 2;
+	public static final int CREATE = 3;
+	public static final int REMOVE = 4;
+	public static final int UPDATE = 5;
+	public static final int DESTORY = 6;
 
-	CEBehaviorState state=CEBehaviorState.none;
+	int state = CEBehaviorContainer.NONE;
 	ArrayList<CEBehave> list=new ArrayList<CEBehave>();
 	
 	ArrayList<CEBehave> listTrash=new ArrayList<CEBehave>();
@@ -16,7 +22,7 @@ public class CEBehaviorContainer extends CEBehave
 	@Override
 	public void Start()
 	{
-		state = CEBehaviorState.start;
+		state = CEBehaviorContainer.START;
 		for (CEBehave behave : list)
 		{
 			behave.Start();
@@ -26,47 +32,47 @@ public class CEBehaviorContainer extends CEBehave
 	@Override
 	public void Update()
 	{
-		state = CEBehaviorState.remove;
+		state = CEBehaviorContainer.REMOVE;
 		for (int i = listTrash.size() - 1;i >= 0;i--)
 		{
 			Remove(listTrash.get(i));
 		}
 		listTrash.clear();
-		state = CEBehaviorState.create;
+		state = CEBehaviorContainer.CREATE;
 		for (int i = listNew.size() - 1;i >= 0;i--)
 		{
 			Add(listNew.get(i));
 		}
 		listNew.clear();
-		state = CEBehaviorState.update;
+		state = CEBehaviorContainer.UPDATE;
 		
 		for (CEBehave behave : list)
 		{
 			behave.Update();
 		}
-		state = CEBehaviorState.none;
+		state = CEBehaviorContainer.NONE;
 	}
 
 	@Override
 	public void Destroy()
 	{
-		state = CEBehaviorState.destory;
+		state = CEBehaviorContainer.DESTORY;
 		for (int i = list.size() - 1;i >= 0;i--)
 		{
 			Remove(list.get(i));
 		}
-		state = CEBehaviorState.none;
+		state = CEBehaviorContainer.NONE;
 	}
 
 	public CEBehave Add(CEBehave behave)
 	{
-		if (state == CEBehaviorState.start ||
-			state == CEBehaviorState.update)
+		if (state == CEBehaviorContainer.START ||
+			state == CEBehaviorContainer.UPDATE)
 		{
 			throw new RuntimeException();
 		}
 		list.add(behave);
-		if (state == CEBehaviorState.create)
+		if (state == CEBehaviorContainer.CREATE)
 		{
 			behave.Start();
 		}
@@ -80,14 +86,14 @@ public class CEBehaviorContainer extends CEBehave
 
 	public CEBehave Remove(CEBehave behave)
 	{
-		if (state == CEBehaviorState.start ||
-			state == CEBehaviorState.update)
+		if (state == CEBehaviorContainer.START ||
+			state == CEBehaviorContainer.UPDATE)
 		{
 			throw new RuntimeException();
 		}
 		list.remove(behave);
-		if (state == CEBehaviorState.remove ||
-			state == CEBehaviorState.destory)
+		if (state == CEBehaviorContainer.REMOVE ||
+			state == CEBehaviorContainer.DESTORY)
 		{
 			behave.Destroy();
 		}

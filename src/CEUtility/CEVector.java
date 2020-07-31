@@ -135,7 +135,7 @@ public class CEVector {
 	
 	@Override
 	public String toString() {
-		return "(" +x+ ","+y+")";
+		return x+ " "+y;
 	}
 
 	public static double RadianBetween(CEVector v1, CEVector v2) {
