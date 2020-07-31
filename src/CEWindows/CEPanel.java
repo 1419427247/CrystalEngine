@@ -40,6 +40,10 @@ class CEPanel extends JPanel {
 							/ (2 * CECamera.mainCamera.filedOfView / 90f));
 
 			for (CESprite sprite : CESprite.sprites) {
+				if (sprite.image == null) {
+					continue;
+				}
+				
 				AffineTransform transform1 = new AffineTransform();
 
 				CEVector position = CEVector.Subtract(sprite.gameObject.transform.position,

@@ -1,14 +1,17 @@
 package CEApplication;
 
 import CEComponents.CECamera;
+import CEUtility.CETime;
 import CEWindows.CEInput;
 import java.awt.event.*;
 import java.io.File;
 
 public class Print extends CEComponent {
 
+	CEGameObject o;
 	@Override
 	public void Start() {
+		o =  gameObject.world.gameObjectManager.GetGameObject("234");
 		System.out.println(gameObject.GetName() + "开始啦");
 
 	}
@@ -18,19 +21,19 @@ public class Print extends CEComponent {
 	@Override
 	public void Update() {
 		if (CEInput.IsKeyDown(KeyEvent.VK_A)) {
-			gameObject.transform.Translate(1, 0);
+			o.transform.Translate(-150*CETime.deltaTime, 0);
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_D)) {
-			gameObject.transform.Translate(-1, 0);
+			o.transform.Translate(150*CETime.deltaTime, 0);
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_E)) {
 			CECamera.mainCamera.filedOfView++;
 		}
 		if (CEInput.IsKeyDown(KeyEvent.VK_Q)) {
-			CECamera.mainCamera.gameObject.transform.angle++;
+			o.transform.angle++;
 		}
 		if (CEInput.IsKeyDown(1)) {
-            CEApplication.xml.write(CEApplication.xml.convertToDocument(gameObject.world.gameObjectManager.root),new File("1.xml"));
+            //CEApplication.xml.write(CEApplication.xml.convertToDocument(gameObject.world.gameObjectManager.root),new File("1.xml"));
 
 
 			if (x == -1 && y == -1) {

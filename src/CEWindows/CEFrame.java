@@ -14,6 +14,8 @@ public class CEFrame extends JFrame
     public CEPanel panel = new CEPanel();
 
     public CEFrame() {
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	
         this.addKeyListener(this);
         this.addFocusListener(this);
         this.addMouseListener(this);
