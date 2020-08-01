@@ -1,10 +1,12 @@
 package CEApplication;
 
+import CEComponents.CEAudio;
 import CEComponents.CECamera;
 import CEUtility.CETime;
 import CEWindows.CEInput;
+
 import java.awt.event.*;
-import java.io.File;
+import java.io.FileInputStream;
 
 public class Print extends CEComponent {
 
@@ -12,7 +14,7 @@ public class Print extends CEComponent {
 	@Override
 	public void Start() {
 		o =  gameObject.world.gameObjectManager.GetGameObject("234");
-		System.out.println(gameObject.GetName() + "开始啦");
+		System.out.println(gameObject.GetName() + "寮�濮嬪暒");
 
 	}
 
@@ -33,25 +35,13 @@ public class Print extends CEComponent {
 			o.transform.angle++;
 		}
 		if (CEInput.IsKeyDown(1)) {
-            //CEApplication.xml.write(CEApplication.xml.convertToDocument(gameObject.world.gameObjectManager.root),new File("1.xml"));
-
-
-			if (x == -1 && y == -1) {
-				x = CEInput.mouseX;
-				y = CEInput.mouseY;
-				return;
-			}
-			gameObject.transform.Translate((x - CEInput.mouseX) / 1f, (y - CEInput.mouseY) / 1f);
-			x = CEInput.mouseX;
-			y = CEInput.mouseY;
-		} else {
-			x = -1;
-			y = -1;
+			CEAudio audio = (CEAudio)gameObject.componentManager.GetComponent(CEAudio.class);
+			audio.Play();
 		}
 	}
 
 	@Override
 	public void Destroy() {
-		System.out.println("我被摧毁啦");
+		System.out.println("鎴戣鎽ф瘉鍟�");
 	}
 }
