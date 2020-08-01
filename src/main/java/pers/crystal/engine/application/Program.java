@@ -19,7 +19,7 @@ public class Program {
 		CESprite sprite1 = (CESprite)
 
 		world.gameObjectManager.GetGameObject("234").componentManager.GetComponent(CESprite.class);
-		sprite1.setImage("4.bmp");
+		sprite1.setImage("asset/4.bmp");
 
 		world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(CESprite.class);
 		world.gameObjectManager.GetGameObject("123").componentManager.AddComponent(Print.class);
@@ -28,7 +28,7 @@ public class Program {
 
 		CESprite sprite2 = (CESprite) world.gameObjectManager.GetGameObject("123").componentManager
 				.GetComponent(CESprite.class);
-		sprite2.setImage("OIP.jpg");
+		sprite2.setImage("asset/OIP.jpg");
 
 		new CEApplication(world);
 
