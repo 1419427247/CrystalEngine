@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="pers.crystal.engine.AppTest" time="0.031" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="pers.crystal.engine.AppTest" time="0.039" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.class.path" value="c:\Users\CrystalPad\Documents\CrystalEngine\target\test-classes;c:\Users\CrystalPad\Documents\CrystalEngine\target\classes;C:\Users\CrystalPad\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\CrystalPad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.class.path" value="C:\Users\CrystalPad\Documents\CrystalEngine\target\test-classes;C:\Users\CrystalPad\Documents\CrystalEngine\target\classes;C:\Users\CrystalPad\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\CrystalPad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -17,9 +17,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="CN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-11\bin"/>
-    <property name="sun.java.command" value="C:\Users\CRYSTA~1\AppData\Local\Temp\surefire1965768213598946142\surefirebooter7113781313375064398.jar C:\Users\CrystalPad\AppData\Local\Temp\surefire1965768213598946142 2020-08-01T18-53-36_579-jvmRun1 surefire7654008172006601786tmp surefire_09755065704494086039tmp"/>
+    <property name="sun.java.command" value="C:\Users\CRYSTA~1\AppData\Local\Temp\surefire2656743870477332763\surefirebooter3153841212165318245.jar C:\Users\CrystalPad\AppData\Local\Temp\surefire2656743870477332763 2020-08-02T12-05-25_728-jvmRun1 surefire1246578987454279933tmp surefire_08580578588636690109tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="c:\Users\CrystalPad\Documents\CrystalEngine\target\test-classes;c:\Users\CrystalPad\Documents\CrystalEngine\target\classes;C:\Users\CrystalPad\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\CrystalPad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\CrystalPad\Documents\CrystalEngine\target\test-classes;C:\Users\CrystalPad\Documents\CrystalEngine\target\classes;C:\Users\CrystalPad\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\CrystalPad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\CrystalPad"/>
     <property name="user.language" value="zh"/>
@@ -27,13 +27,13 @@
     <property name="java.version.date" value="2018-09-25"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-11"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="c:\Users\CrystalPad\Documents\CrystalEngine"/>
+    <property name="basedir" value="C:\Users\CrystalPad\Documents\CrystalEngine"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\CRYSTA~1\AppData\Local\Temp\surefire1965768213598946142\surefirebooter7113781313375064398.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\CRYSTA~1\AppData\Local\Temp\surefire2656743870477332763\surefirebooter3153841212165318245.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11+28"/>
@@ -48,7 +48,7 @@
     <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\CRYSTA~1\AppData\Local\Temp\"/>
     <property name="java.version" value="11"/>
-    <property name="user.dir" value="c:\Users\CrystalPad\Documents\CrystalEngine"/>
+    <property name="user.dir" value="C:\Users\CrystalPad\Documents\CrystalEngine"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>

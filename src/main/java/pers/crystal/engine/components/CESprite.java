@@ -1,8 +1,7 @@
 package pers.crystal.engine.components;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -14,12 +13,16 @@ public class CESprite extends CEComponent {
     public static ArrayList<CESprite> sprites = new ArrayList<CESprite>();
     public BufferedImage image;
 
-    public void setImage(String path){
+    public void SetImage(File file){
         try {
-            image = ImageIO.read(new FileInputStream(path));
+            image = ImageIO.read(new FileInputStream(file));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void SetImage(BufferedImage bufferedImage){
+        image = bufferedImage;
     }
 
     @Override
@@ -34,6 +37,6 @@ public class CESprite extends CEComponent {
 
     @Override
     public void Destroy() {
-
+        sprites.remove(this);
     }
 }
