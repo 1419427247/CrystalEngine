@@ -50,33 +50,33 @@ public class CESocket implements Runnable {
         int offset = 0;
         byte[] bytes = datagramPacket.getData();
         while (offset < bytes.length) {
-            int index = (int) (((bytes[offset] & 0xFF) << 24) | ((bytes[offset + 1] & 0xFF) << 16)
+            int length = (int) (((bytes[offset] & 0xFF) << 24) | ((bytes[offset + 1] & 0xFF) << 16)
                     | ((bytes[offset + 2] & 0xFF) << 8) | (bytes[offset + 3] & 0xFF));
-            int length = (int) (((bytes[offset + 4] & 0xFF) << 24) | ((bytes[offset + 5] & 0xFF) << 16)
-                    | ((bytes[offset + 6] & 0xFF) << 8) | (bytes[offset + 7] & 0xFF));
-            if (index == 0) {
+            if (length == 0) {
                 break;
             }
-            CEMassage massage = new CEMassage(datagramPacket.getAddress());
-            byte[] args = Arrays.copyOfRange(bytes, offset + 8, offset + 8 + length);
+            CEMessage massage = new CEMessage();
+            byte[] args = Arrays.copyOfRange(bytes, offset + 4, offset + 4 + length);
+
             for (int i = 0; i < args.length; i++) {
                 massage.bytes.add(args[i]);
             }
-            command.Execute(index, massage);
-            offset += length + 8;
-            if (bytes.length - offset < 8) {
+            
+            command.Execute(massage.GetString(), datagramPacket.getAddress(), massage);
+            offset += length + 4;
+            if (bytes.length - offset < 4) {
                 break;
             }
         }
     }
 
-    public void RegisterInstruction(int index, CEInstruction instruction) {
-        command.RegisterInstruction(index, instruction);
+    public void RegisterInstruction(String key, CEInstruction instruction) {
+        command.RegisterInstruction(key, instruction);
     }
 
-    public void SendMessage(CEMassage message, int port) {
+    public void SendMessage(CEMessage message, InetAddress inetAddress, int port) {
         byte[] bytes = message.GetAllBytes();
-        DatagramPacket datagramPacket = new DatagramPacket(bytes, bytes.length, message.inetAddress, port);
+        DatagramPacket datagramPacket = new DatagramPacket(bytes, bytes.length, inetAddress, port);
         try {
             datagramSocket.send(datagramPacket);
         } catch (IOException e) {

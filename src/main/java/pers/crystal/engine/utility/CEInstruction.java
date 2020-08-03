@@ -1,8 +1,11 @@
 package pers.crystal.engine.utility;
 
-import pers.crystal.engine.utility.net.CEMassage;
+import java.net.InetAddress;
+
+import pers.crystal.engine.utility.net.CEMessage;
+
 
 public interface CEInstruction
 {
-	public abstract void Do(CEMassage massage);
+	public abstract void Do(InetAddress inetAddress,CEMessage massage);
 }

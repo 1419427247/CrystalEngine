@@ -1,43 +1,47 @@
 package pers.crystal.engine.components;
 
 import java.net.InetAddress;
-import java.net.SocketAddress;
+import java.net.UnknownHostException;
 
 import pers.crystal.engine.application.CEComponent;
 import pers.crystal.engine.utility.CEInstruction;
-import pers.crystal.engine.utility.net.CEMassage;
+import pers.crystal.engine.utility.net.CEMessage;
 import pers.crystal.engine.utility.net.CESocket;
-import pers.crystal.engine.utility.net.CESyncValue;
 
 public class CEClient extends CEComponent {
-    public static final int SYNCVALUE = 1;
+    public static int port = 4231;
+    CESocket socket = new CESocket(port);
+    private InetAddress inetAddress;
 
-    CESocket socket = new CESocket(4231);
-
-    @Override
-    public void Start() {
-        socket.RegisterInstruction(SYNCVALUE, new CEInstruction() {
+    public CEClient() {
+        socket.RegisterInstruction("CONNECTION", new CEInstruction() {
             @Override
-            public void Do(CEMassage massage) {
-                int type = massage.GetByte();
-                switch (type) {
-                    case CESyncValue.TYPE_INT:
-                    
-                        break;
-                    case CESyncValue.TYPE_CAHR:
-
-                        break;
-                    case CESyncValue.TYPE_STRING:
-
-                        break;
-                    case CESyncValue.TYPE_BOOLEAN:
-
-                        break;
-                    default:
-                        break;
+            public void Do(InetAddress iAddress, CEMessage massage) {
+                boolean bool = massage.GetBoolean();
+                if (bool) {
+                    inetAddress = iAddress;
+                    System.out.println("Connection succeeded");
+                } else {
+                    System.out.println("Connection failed");
                 }
             }
         });
+
+        socket.RegisterInstruction("SYNCVALUE", new CEInstruction() {
+            @Override
+            public void Do(InetAddress iAddress, CEMessage massage) {
+                System.out.println(massage.GetByte());
+            }
+        });
+    }
+
+    @Override
+    public void Start() {
+        try {
+            inetAddress = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,7 +51,14 @@ public class CEClient extends CEComponent {
 
     @Override
     public void Destroy() {
-        // TODO Auto-generated method stub
 
+    }
+
+    public void Connect(InetAddress inetAddress, int port) {
+        socket.SendMessage(new CEMessage().AddInstruction("CONNECT"), inetAddress, port);
+    }
+
+    public void SendMessage(CEMessage message, int port) {
+        socket.SendMessage(message, inetAddress, port);
     }
 }

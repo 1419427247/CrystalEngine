@@ -25,48 +25,31 @@ import pers.crystal.engine.components.CEServer;
 import pers.crystal.engine.components.CESprite;
 import pers.crystal.engine.utility.CEAsset;
 import pers.crystal.engine.utility.CEInstruction;
-import pers.crystal.engine.utility.net.CEMassage;
+import pers.crystal.engine.utility.net.CEMessage;
 import pers.crystal.engine.utility.net.CESocket;
+import pers.crystal.engine.utility.net.CESyncValue;
 
 public class Program {
 
 	public static void main(final String[] args) throws FileNotFoundException {
-		CESocket server = new CESocket(14333);
-		CESocket client = new CESocket(14332);
-
-		client.RegisterInstruction(1, new CEInstruction() {
-			@Override
-			public void Do(CEMassage massage) {
-				System.out.println(massage.GetString());
-				System.out.println(massage.GetInt());
-				System.out.println(massage.GetInt());
-			}
-		});
-		client.RegisterInstruction(2, new CEInstruction() {
-			@Override
-			public void Do(CEMassage massage) {
-				System.out.println(massage.GetString());
-				System.out.println(massage.GetChar());
-				System.out.println(massage.GetBoolean());
-			}
-		});
-		CEMassage m = null;
+		CEServer server = new CEServer();
+		
+		CEClient client = new CEClient();
+		
 		try {
-			m = new CEMassage(InetAddress.getLocalHost());
-			m.AddInstruction(1, "撒v dvsdfsd旦", 456, 8656);
-			m.AddInstruction(2, "撒旦", '下', true);
+			client.Connect(InetAddress.getLocalHost(), CEServer.port);
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		}
+		CESyncValue<Integer> i = server.CreateSyncValue("123", 44);
+		i.SetValue(445);
 
 		while (true) {
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			server.SendMessage(m, 14332);
 		}
 
 		// CEWorld world = new CEWorld();

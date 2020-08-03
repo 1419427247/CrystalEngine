@@ -8,21 +8,19 @@ import java.util.ArrayList;
 /**
  * CEMassage
  */
-public class CEMassage {
+public class CEMessage {
     public int offset = 0;
-
-    public InetAddress inetAddress = null;
 
     public ArrayList<Byte> bytes = new ArrayList<Byte>();
 
-    public CEMassage(InetAddress inetAddress) {
-        this.inetAddress = inetAddress;
+    public CEMessage() {
+
     }
 
-    public void AddInstruction(int index, Object... args) {
-        AddInt(index);
+    public CEMessage AddInstruction(String key, Object... args) {
         int length = 0;
         AddInt(length);
+        length += AddString(key);
         for (int i = 0; i < args.length; i++) {
             if (args[i] instanceof Integer) {
                 length += AddInt((int) args[i]);
@@ -39,6 +37,7 @@ public class CEMassage {
             }
         }
         SetInt(bytes.size() - length - 4, length);
+        return this;
     }
 
     public int AddInt(int value) {

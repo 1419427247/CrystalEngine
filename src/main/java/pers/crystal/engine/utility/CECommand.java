@@ -1,28 +1,29 @@
 package pers.crystal.engine.utility;
 
+import java.net.InetAddress;
 import java.util.*;
 
-import pers.crystal.engine.utility.net.CEMassage;
+import pers.crystal.engine.utility.net.CEMessage;
 
 public class CECommand
 {
-	private HashMap<Integer,CEInstruction> instructionSet = new HashMap<Integer,CEInstruction>();
+	private HashMap<String,CEInstruction> instructionSet = new HashMap<String,CEInstruction>();
 	
-	public void RegisterInstruction(int index,CEInstruction instruction){
-		if(instructionSet.containsKey(index)){
+	public void RegisterInstruction(String key,CEInstruction instruction){
+		if(instructionSet.containsKey(key)){
 			throw new RuntimeException();
 		}
-		instructionSet.put(index,instruction);
+		instructionSet.put(key,instruction);
 	}
 	
-	public void RemoveInstruction(Integer index){
-		if(!instructionSet.containsKey(index)){
+	public void RemoveInstruction(String key){
+		if(!instructionSet.containsKey(key)){
 			throw new RuntimeException();
 		}
-		instructionSet.remove(index);
+		instructionSet.remove(key);
 	}
 	
-	public void Execute(Integer index,CEMassage massage){
-		instructionSet.get(index).Do(massage);	
+	public void Execute(String key,InetAddress inetAddress,CEMessage massage){
+		instructionSet.get(key).Do(inetAddress,massage);	
 	}
 }
