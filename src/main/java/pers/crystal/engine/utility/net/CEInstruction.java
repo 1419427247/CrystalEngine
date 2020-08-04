@@ -1,8 +1,6 @@
-package pers.crystal.engine.utility;
+package pers.crystal.engine.utility.net;
 
 import java.net.InetAddress;
-
-import pers.crystal.engine.utility.net.CEMessage;
 
 
 public interface CEInstruction

@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Arrays;
 
-import pers.crystal.engine.utility.CECommand;
-import pers.crystal.engine.utility.CEInstruction;
-
 public class CESocket implements Runnable {
 
     public static final int DATA_MAX_LENGTH = 2048;
@@ -45,7 +42,6 @@ public class CESocket implements Runnable {
             }
         }
     }
-
     protected void OnReceive(DatagramPacket datagramPacket) {
         int offset = 0;
         byte[] bytes = datagramPacket.getData();
@@ -69,7 +65,6 @@ public class CESocket implements Runnable {
             }
         }
     }
-
     public void RegisterInstruction(String key, CEInstruction instruction) {
         command.RegisterInstruction(key, instruction);
     }

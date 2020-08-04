@@ -1,8 +1,6 @@
 package pers.crystal.engine.utility.net;
 
 import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.SocketAddress;
 import java.util.ArrayList;
 
 /**
@@ -17,27 +15,40 @@ public class CEMessage {
 
     }
 
-    public CEMessage AddInstruction(String key, Object... args) {
+    public CEMessage AddInstruction(String key, byte signal, Object... args) {
         int length = 0;
         AddInt(length);
         length += AddString(key);
+        length += AddByte(signal);
         for (int i = 0; i < args.length; i++) {
-            if (args[i] instanceof Integer) {
-                length += AddInt((int) args[i]);
-            } else if (args[i] instanceof Character) {
-                length += AddChar((char) args[i]);
-            } else if (args[i] instanceof Byte) {
-                length += AddByte((byte) args[i]);
-            } else if (args[i] instanceof String) {
-                length += AddString((String) args[i]);
-            } else if (args[i] instanceof Boolean) {
-                length += AddBoolean((boolean) args[i]);
-            } else {
-                throw new RuntimeException();
-            }
+            length += Add(args[i]);
         }
         SetInt(bytes.size() - length - 4, length);
         return this;
+    }
+
+    public int Add(Object value){
+        if (value instanceof Integer) {
+            return AddInt((int) value);
+        } else if (value instanceof String) {
+            return AddString((String) value);
+        } else if (value instanceof Float) {
+            return AddFloat((Float) value);
+        } else if (value instanceof Double) {
+            return AddDouble((Double) value);
+        } else if (value instanceof Character) {
+            return AddChar((char) value);
+        } else if (value instanceof Byte) {
+            return AddByte((byte) value);
+        } else if (value instanceof Boolean) {
+            return AddBoolean((boolean) value);
+        } else if (value instanceof Short) {
+            return AddShort((Short) value);
+        } else if (value instanceof Long) {
+            return AddLong((Long) value);
+        } else {
+            throw new RuntimeException();
+        }
     }
 
     public int AddInt(int value) {
@@ -115,10 +126,6 @@ public class CEMessage {
         return 0;
     }
 
-    // public void SetString(int offset, String value) {
-    // bytes.set(offset, (byte) (value ? 1 : 0));
-    // }
-
     public String GetString() {
         String value = null;
         try {
@@ -145,6 +152,59 @@ public class CEMessage {
         }
         offset += bytes.length;
         return bytes;
+    }
+
+    public int AddShort(short value) {
+        this.bytes.add((byte) (value & 0xff));
+        this.bytes.add((byte) ((value & 0xff00) >> 8));
+        return 2;
+    }
+
+    public short getShort() {
+        short value = (short) ((0xff & this.bytes.get(offset)) | (0xff00 & (this.bytes.get(offset + 1) << 8)));
+        offset += 2;
+        return value;
+    }
+
+    public int AddLong(long value) {
+        this.bytes.add((byte) (value & 0xff));
+        this.bytes.add((byte) ((value >> 8) & 0xff));
+        this.bytes.add((byte) ((value >> 16) & 0xff));
+        this.bytes.add((byte) ((value >> 24) & 0xff));
+        this.bytes.add((byte) ((value >> 32) & 0xff));
+        this.bytes.add((byte) ((value >> 40) & 0xff));
+        this.bytes.add((byte) ((value >> 48) & 0xff));
+        this.bytes.add((byte) ((value >> 56) & 0xff));
+        return 8;
+    }
+
+    public long getLong() {
+        long value = (0xffL & (long) this.bytes.get(offset) 
+                | (0xff00L & ((long) this.bytes.get(offset + 1) << 8))
+                | (0xff0000L & ((long) this.bytes.get(offset + 2) << 16))
+                | (0xff000000L & ((long) this.bytes.get(offset + 3) << 24))
+                | (0xff00000000L & ((long) this.bytes.get(offset + 4) << 32))
+                | (0xff0000000000L & ((long) this.bytes.get(offset + 5) << 40))
+                | (0xff000000000000L & ((long) this.bytes.get(offset + 6) << 48))
+                | (0xff00000000000000L & ((long) this.bytes.get(offset + 7) << 56)));
+        offset += 8;
+        return value;
+    }
+
+    public int AddFloat(float value) {
+        return AddInt(Float.floatToIntBits(value));
+    }
+
+    public float GetFloat() {
+        return Float.intBitsToFloat(GetInt());
+    }
+
+    public int AddDouble(double value) {
+        return AddLong(Double.doubleToLongBits(value));
+    }
+
+    public double GetDouble() {
+        return Double.longBitsToDouble(getLong());
     }
 
     public byte[] GetAllBytes() {

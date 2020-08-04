@@ -11,6 +11,7 @@ import java.nio.charset.Charset;
 import java.nio.file.*;
 import java.util.Base64;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.sound.sampled.*;
@@ -24,7 +25,7 @@ import pers.crystal.engine.components.CEClient;
 import pers.crystal.engine.components.CEServer;
 import pers.crystal.engine.components.CESprite;
 import pers.crystal.engine.utility.CEAsset;
-import pers.crystal.engine.utility.CEInstruction;
+
 import pers.crystal.engine.utility.net.CEMessage;
 import pers.crystal.engine.utility.net.CESocket;
 import pers.crystal.engine.utility.net.CESyncValue;
@@ -33,7 +34,6 @@ public class Program {
 
 	public static void main(final String[] args) throws FileNotFoundException {
 		CEServer server = new CEServer();
-		
 		CEClient client = new CEClient();
 		
 		try {
@@ -41,12 +41,15 @@ public class Program {
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		}
-		CESyncValue<Integer> i = server.CreateSyncValue("123", 44);
-		i.SetValue(445);
+
+		CESyncValue i = server.CreateSyncValue("123", "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
+		CESyncValue j = client.CreateSyncValue("123");
 
 		while (true) {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
+
+				System.out.println(j.GetValue());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

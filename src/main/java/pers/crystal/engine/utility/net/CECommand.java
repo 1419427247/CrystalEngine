@@ -1,8 +1,9 @@
-package pers.crystal.engine.utility;
+package pers.crystal.engine.utility.net;
 
 import java.net.InetAddress;
 import java.util.*;
 
+import pers.crystal.engine.components.CEServer;
 import pers.crystal.engine.utility.net.CEMessage;
 
 public class CECommand
