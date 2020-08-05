@@ -13,8 +13,7 @@ public class CEServerSync {
 	}
 
 	public CESyncValue Create(String key, Object value) {
-		byte type = CESyncValue.Type(value);
-		CESyncValue syncValue = new CESyncValue(server,key, type, value);
+		CESyncValue syncValue = new CESyncValue(server,key, value);
 		syncValues.add(syncValue);
 		return syncValue;
 	}

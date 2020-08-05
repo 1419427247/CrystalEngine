@@ -25,6 +25,12 @@ public class CECommand
 	}
 	
 	public void Execute(String key,InetAddress inetAddress,CEMessage massage){
-		instructionSet.get(key).Do(inetAddress,massage);	
+		byte signal = (byte)massage.Get();
+
+		CEInstruction instruction = instructionSet.get(key);
+		if (instruction == null) {
+			throw new RuntimeException();
+		}
+		instructionSet.get(key).Do(inetAddress,signal,massage.GetAll());	
 	}
 }

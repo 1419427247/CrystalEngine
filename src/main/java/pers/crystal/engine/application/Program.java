@@ -25,7 +25,7 @@ import pers.crystal.engine.components.CEClient;
 import pers.crystal.engine.components.CEServer;
 import pers.crystal.engine.components.CESprite;
 import pers.crystal.engine.utility.CEAsset;
-
+import pers.crystal.engine.utility.net.CEInstruction;
 import pers.crystal.engine.utility.net.CEMessage;
 import pers.crystal.engine.utility.net.CESocket;
 import pers.crystal.engine.utility.net.CESyncValue;
@@ -35,24 +35,40 @@ public class Program {
 	public static void main(final String[] args) throws FileNotFoundException {
 		CEServer server = new CEServer();
 		CEClient client = new CEClient();
-		
-		try {
-			client.Connect(InetAddress.getLocalHost(), CEServer.port);
-		} catch (UnknownHostException e1) {
-			e1.printStackTrace();
-		}
 
-		CESyncValue i = server.CreateSyncValue("123", "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
-		CESyncValue j = client.CreateSyncValue("123");
+		// client.RegisterInstruction("A", new CEInstruction() {
+		// 	@Override
+		// 	public void Do(InetAddress inetAddress, byte signal, Object... args) {
+		// 		System.out.println(signal);
+		// 		for (Object object : args) {
+		// 			System.out.println(object);
+		// 		}
+		// 	}
+		// });
+
+		// try {
+		// 	server.SendMessage(new CEMessage().AddInstruction("A", (byte) 1, 2, 3), InetAddress.getLocalHost(),
+		// 			4231);
+		// } catch (UnknownHostException e1) {
+		// 	e1.printStackTrace();
+		// }
+
+		try {
+			client.Connect(InetAddress.getLocalHost(), 4232);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CESyncValue i1 = server.CreateSyncValue("ABCDEFGH",41242141);
+		CESyncValue i2 = server.CreateSyncValue("IJKLMNOP","qwasfafasfasda撒大苏打实打实的啊沙发沙发沙发沙发ed");
+
+		CESyncValue j1 = client.CreateSyncValue("ABCDEFGH");
+		CESyncValue j2 = client.CreateSyncValue("IJKLMNOP");
 
 		while (true) {
-			try {
-				Thread.sleep(1000);
-
-				System.out.println(j.GetValue());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			server.Update();
+			System.out.println(j1.GetValue());
+			System.out.println(j2.GetValue());
 		}
 
 		// CEWorld world = new CEWorld();

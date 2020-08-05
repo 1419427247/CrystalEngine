@@ -42,29 +42,32 @@ public class CESocket implements Runnable {
             }
         }
     }
+
     protected void OnReceive(DatagramPacket datagramPacket) {
         int offset = 0;
         byte[] bytes = datagramPacket.getData();
         while (offset < bytes.length) {
-            int length = (int) (((bytes[offset] & 0xFF) << 24) | ((bytes[offset + 1] & 0xFF) << 16)
-                    | ((bytes[offset + 2] & 0xFF) << 8) | (bytes[offset + 3] & 0xFF));
-            if (length == 0) {
+            byte type = bytes[offset];
+            int length = (int) (((bytes[offset + 1] & 0xFF) << 24) | ((bytes[offset + 2] & 0xFF) << 16)
+                    | ((bytes[offset + 3] & 0xFF) << 8) | (bytes[offset + 4] & 0xFF));
+            if (type == 0 || length == 0) {
                 break;
             }
             CEMessage massage = new CEMessage();
-            byte[] args = Arrays.copyOfRange(bytes, offset + 4, offset + 4 + length);
+            byte[] args = Arrays.copyOfRange(bytes, offset + 5, offset + 5 + length);
 
             for (int i = 0; i < args.length; i++) {
                 massage.bytes.add(args[i]);
             }
-            
-            command.Execute(massage.GetString(), datagramPacket.getAddress(), massage);
-            offset += length + 4;
-            if (bytes.length - offset < 4) {
+
+            command.Execute((String) massage.Get(), datagramPacket.getAddress(), massage);
+            offset += length + 5;
+            if (bytes.length - offset < 5) {
                 break;
             }
         }
     }
+
     public void RegisterInstruction(String key, CEInstruction instruction) {
         command.RegisterInstruction(key, instruction);
     }

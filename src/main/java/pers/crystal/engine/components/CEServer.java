@@ -39,14 +39,20 @@ public class CEServer extends CEComponent implements CEInstruction {
 
     }
 
+    private LinkedList<CEMessage> messages = new LinkedList<CEMessage>();
+
     @Override
     public void Update() {
-
+        while (!messages.isEmpty()) {
+            for (Client client : clients) {
+                socket.SendMessage(messages.poll(), client.inetAddress, client.port);
+            }
+        }
     }
 
     @Override
     public void Destroy() {
-
+        socket.Close();
     }
 
     public void RegisterInstruction(String key, CEInstruction instruction) {
@@ -54,10 +60,12 @@ public class CEServer extends CEComponent implements CEInstruction {
     }
 
     public void SendMessage(CEMessage message) {
-        synchronized (this) {
-            for (Client client : clients) {
-                socket.SendMessage(message, client.inetAddress, client.port);
-            }
+        if (messages.isEmpty()) {
+            messages.add(message);
+        }else if (messages.getLast().size() + message.size() <= CESocket.DATA_MAX_LENGTH){
+                messages.getLast().bytes.addAll(message.bytes);
+        }else{
+            messages.add(message);
         }
     }
 
@@ -70,13 +78,13 @@ public class CEServer extends CEComponent implements CEInstruction {
     }
 
     @Override
-    public synchronized void Do(InetAddress inetAddress, CEMessage massage) {
-        switch (massage.GetByte()) {
+    public synchronized void Do(InetAddress inetAddress, byte signal, Object... args) {
+        switch (signal) {
             case SIGNAL_CONNECT:
-                CONNECT(inetAddress, massage);
+                CONNECT(inetAddress, args);
                 break;
             case SIGNAL_DISCONNECT:
-                DISCONNECT(inetAddress, massage);
+                DISCONNECT(inetAddress, args);
                 break;
 
             default:
@@ -84,8 +92,8 @@ public class CEServer extends CEComponent implements CEInstruction {
         }
     }
 
-    private void CONNECT(InetAddress inetAddress, CEMessage massage) {
-        int port = massage.GetInt();
+    private void CONNECT(InetAddress inetAddress, Object... args) {
+        int port = (int) args[0];
         if (clientMap.containsKey(inetAddress.getHostAddress())) {
             socket.SendMessage(new CEMessage().AddInstruction("CEClient", CEClient.SIGNAL_CONNECT_RESULT, false),
                     inetAddress, port);
@@ -99,13 +107,13 @@ public class CEServer extends CEComponent implements CEInstruction {
             CEMessage message = new CEMessage();
             for (CESyncValue syncValues : serverSync.syncValues) {
                 message.AddInstruction("CEClientSync", CEClientSync.SIGNAL_ONSYNC, syncValues.GetKey(),
-                        syncValues.GetType(), syncValues.GetValue());
+                        syncValues.GetValue());
             }
             this.SendMessage(message, inetAddress, port);
         }
     }
 
-    private void DISCONNECT(InetAddress inetAddress, CEMessage massage) {
+    private void DISCONNECT(InetAddress inetAddress, Object... args) {
         clients.remove(clientMap.get(inetAddress.getHostAddress()));
         clientMap.remove(inetAddress.getHostAddress());
     }
