@@ -1,5 +1,8 @@
 package pers.crystal.engine.application;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
+
 public class CEWorld extends CEBehave
 {
 	public static final int NONE = 1;
@@ -7,13 +10,13 @@ public class CEWorld extends CEBehave
 	public static final int RUNNING = 3;
 	public static final int ENDING = 4;
 
+	public static World physicalWorld = new World(new Vec2(0,9.8f));
 	public CEGameObjectManager gameObjectManager;
 
 	private int state = CEWorld.NONE;
 	public CEWorld()
 	{
 		gameObjectManager=new CEGameObjectManager(this);
-		state=CEWorld.STARTING;
 	}
 	
 	public int getState() {
@@ -33,9 +36,10 @@ public class CEWorld extends CEBehave
 	{
 		state = CEWorld.RUNNING;
 		gameObjectManager.Update();
+		physicalWorld.step(0.02f, 8, 3);
 		state = CEWorld.NONE;
 	}
-	
+
 	@Override
 	public void Destroy()
 	{
@@ -43,8 +47,6 @@ public class CEWorld extends CEBehave
 		gameObjectManager.Destroy();
 		state = CEWorld.NONE;
 	}
-
-
 	
 
 	//	public GameObject CreateGameObject(Perfab name) {

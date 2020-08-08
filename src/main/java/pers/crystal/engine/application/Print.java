@@ -2,9 +2,6 @@ package pers.crystal.engine.application;
 
 import java.awt.event.KeyEvent;
 
-import pers.crystal.engine.components.CEAudio;
-import pers.crystal.engine.components.CECamera;
-import pers.crystal.engine.utility.CEAsset;
 import pers.crystal.engine.utility.CETime;
 import pers.crystal.engine.windows.CEInput;
 
@@ -12,8 +9,7 @@ public class Print extends CEComponent {
 
 	@Override
 	public void Start() {
-		System.out.println(gameObject.GetName() + "寮�濮嬪暒");
-
+		
 	}
 
 	int x = -1, y = -1;
@@ -39,6 +35,6 @@ public class Print extends CEComponent {
 
 	@Override
 	public void Destroy() {
-		System.out.println("鎴戣鎽ф瘉鍟�");
+
 	}
 }

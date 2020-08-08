@@ -1,7 +1,6 @@
 package pers.crystal.engine.components;
 
 import java.net.*;
-import java.security.MessageDigestSpi;
 import java.util.*;
 
 import pers.crystal.engine.application.CEComponent;

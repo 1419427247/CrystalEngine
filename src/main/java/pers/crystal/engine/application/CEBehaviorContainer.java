@@ -22,7 +22,7 @@ public class CEBehaviorContainer extends CEBehave
 	CEEvent<CEBehaviorContainer> event=new CEEvent<CEBehaviorContainer>();
 
 	@Override
-	public void Start()
+	public synchronized void Start()
 	{
 		state = CEBehaviorContainer.START;
 		for (CEBehave behave : list)
@@ -32,7 +32,7 @@ public class CEBehaviorContainer extends CEBehave
 	}
 
 	@Override
-	public void Update()
+	public synchronized void Update()
 	{
 		state = CEBehaviorContainer.REMOVE;
 		for (int i = listTrash.size() - 1;i >= 0;i--)
@@ -56,7 +56,7 @@ public class CEBehaviorContainer extends CEBehave
 	}
 
 	@Override
-	public void Destroy()
+	public synchronized void Destroy()
 	{
 		state = CEBehaviorContainer.DESTORY;
 		for (int i = list.size() - 1;i >= 0;i--)
@@ -64,9 +64,12 @@ public class CEBehaviorContainer extends CEBehave
 			Remove(list.get(i));
 		}
 		state = CEBehaviorContainer.NONE;
+		list.clear();
+		listTrash.clear();
+		listNew.clear();
 	}
 
-	public CEBehave Add(CEBehave behave)
+	public synchronized CEBehave Add(CEBehave behave)
 	{
 		if (state == CEBehaviorContainer.START ||
 			state == CEBehaviorContainer.UPDATE)
@@ -81,12 +84,12 @@ public class CEBehaviorContainer extends CEBehave
 		return behave;
 	}
 
-	public void New(CEBehave behave)
+	public synchronized void New(CEBehave behave)
 	{
 		listNew.add(behave);
 	}
 
-	public CEBehave Remove(CEBehave behave)
+	public synchronized CEBehave Remove(CEBehave behave)
 	{
 		if (state == CEBehaviorContainer.START ||
 			state == CEBehaviorContainer.UPDATE)
@@ -102,7 +105,7 @@ public class CEBehaviorContainer extends CEBehave
 		return behave;
 	}
 
-	public void Destroy(CEBehave behave)
+	public synchronized void Destroy(CEBehave behave)
 	{
 		listTrash.add(behave);
 	}

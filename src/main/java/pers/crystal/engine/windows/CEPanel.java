@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 import pers.crystal.engine.components.CECamera;
-import pers.crystal.engine.components.CESprite;
+import pers.crystal.engine.components.sprite.CESprite;
 import pers.crystal.engine.utility.CETime;
 import pers.crystal.engine.utility.CEVector;
 
@@ -39,16 +39,17 @@ class CEPanel extends JPanel {
 					-(CECamera.mainCamera.filedOfView / 90f - 1) * getHeight()
 							/ (2 * CECamera.mainCamera.filedOfView / 90f));
 
-			for (CESprite sprite : CESprite.sprites) {
+			for (int i = 0; i < CESprite.sprites.size(); i++) {
+				CESprite sprite = CESprite.sprites.get(i);
 				if (sprite.image == null) {
 					continue;
 				}
-				
+
 				AffineTransform transform1 = new AffineTransform();
 
 				CEVector position = CEVector.Subtract(sprite.gameObject.transform.position,
 						CECamera.mainCamera.gameObject.transform.position);
-						
+
 				transform1.translate(position.getX() - sprite.image.getWidth() / 2 + getWidth() / 2,
 						position.getY() - sprite.image.getHeight() / 2 + getHeight() / 2);
 
@@ -57,8 +58,8 @@ class CEPanel extends JPanel {
 				transform1.rotate(angle, sprite.image.getWidth() / 2, sprite.image.getHeight() / 2);
 
 				// CEVector scale = sprite.gameObject.transform.scale;
-				// transform1.scale(scale.getX(),
-				// scale.getY());
+				// transform1.scale(scale.getX() * 3,
+				// scale.getY() * 3);
 
 				g2d.drawImage(sprite.image, transform1, null);
 			}

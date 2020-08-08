@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.net.*;
 import java.util.Arrays;
 
+import javax.management.RuntimeErrorException;
+
 public class CESocket implements Runnable {
 
-    public static final int DATA_MAX_LENGTH = 2048;
+    public static final int DATA_MAX_LENGTH = 64;
     private CECommand command = new CECommand();
     private DatagramSocket datagramSocket = null;
 
@@ -73,7 +75,11 @@ public class CESocket implements Runnable {
     }
 
     public void SendMessage(CEMessage message, InetAddress inetAddress, int port) {
+        if (message.size() > DATA_MAX_LENGTH) {
+            throw new RuntimeException();
+        }
         byte[] bytes = message.GetAllBytes();
+        
         DatagramPacket datagramPacket = new DatagramPacket(bytes, bytes.length, inetAddress, port);
         try {
             datagramSocket.send(datagramPacket);

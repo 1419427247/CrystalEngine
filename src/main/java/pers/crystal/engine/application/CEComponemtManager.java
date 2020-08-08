@@ -1,20 +1,20 @@
 package pers.crystal.engine.application;
 
 import java.lang.reflect.*;
+import java.util.ArrayList;
 
-public class CEComponemtManager extends CEBehaviorContainer
-{
+public class CEComponemtManager extends CEBehaviorContainer {
 	CEGameObject gameObject;
-	
-	CEComponemtManager(CEGameObject gameObject){
-		this.gameObject=gameObject;
+
+	CEComponemtManager(CEGameObject gameObject) {
+		this.gameObject = gameObject;
 	}
 
-	public CEComponent AddComponent(CEComponent component){
+	public CEComponent AddComponent(CEComponent component) {
 		component.gameObject = this.gameObject;
-		return (CEComponent)super.Add(component);
+		return (CEComponent) super.Add(component);
 	}
-	
+
 	public CEComponent AddComponent(Class<? extends CEComponent> clazz) {
 		try {
 			CEComponent component = clazz.getDeclaredConstructor().newInstance();
@@ -45,44 +45,38 @@ public class CEComponemtManager extends CEBehaviorContainer
 		component.gameObject = gameObject;
 		super.New(component);
 	}
-	
+
 	public void NewComponent(Class<? extends CEComponent> clazz) {
-		try
-		{
+		try {
 			CEComponent component = clazz.getDeclaredConstructor().newInstance();
 			component.gameObject = gameObject;
 			super.New(component);
+		} catch (InstantiationException e) {
+		} catch (NoSuchMethodException e) {
+		} catch (IllegalArgumentException e) {
+		} catch (InvocationTargetException e) {
+		} catch (IllegalAccessException e) {
 		}
-		catch (InstantiationException e)
-		{}
-		catch (NoSuchMethodException e)
-		{}
-		catch (IllegalArgumentException e)
-		{}
-		catch (InvocationTargetException e)
-		{}
-		catch (IllegalAccessException e)
-		{}
 	}
 
 	public CEComponent GetComponent(CEComponent component) {
 		for (CEBehave behave : list) {
 			if (behave == component) {
-				return (CEComponent)behave;				
+				return (CEComponent) behave;
 			}
 		}
 		return null;
 	}
-	
+
 	public CEComponent GetComponent(Class<? extends CEComponent> clazz) {
 		for (CEBehave behave : list) {
 			if (behave.getClass() == clazz) {
-				return (CEComponent)behave;				
+				return (CEComponent) behave;
 			}
 		}
 		return null;
 	}
-	
+
 	public void RemoveComponent(CEComponent component) {
 		for (CEBehave behave : list) {
 			if (behave == component) {
@@ -90,7 +84,7 @@ public class CEComponemtManager extends CEBehaviorContainer
 			}
 		}
 	}
-	
+
 	public void RemoveComponent(Class<? extends CEComponent> clazz) {
 		for (CEBehave behave : list) {
 			if (behave.getClass() == clazz) {
@@ -102,8 +96,12 @@ public class CEComponemtManager extends CEBehaviorContainer
 	public void DestroyComponent(CEComponent component) {
 		super.Destroy(component);
 	}
-	
+
 	public void DestroyComponent(Class<? extends CEComponent> clazz) {
 		DestroyComponent(GetComponent(clazz));
+	}
+
+	public ArrayList<CEBehave> GetComponentList() {
+		return list;
 	}
 }

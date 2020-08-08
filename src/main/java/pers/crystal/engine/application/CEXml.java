@@ -99,7 +99,6 @@ public class CEXml {
             root.setAttribute("name", name);
             root.setAttribute("value", null);
         } else {
-            System.out.println(object.getClass().getName());
             root = document.createElement(object.getClass().getName());
             root.setAttribute("name", name);
             root.setAttribute("value", object.toString());

@@ -1,5 +1,6 @@
 package pers.crystal.engine.application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import pers.crystal.engine.utility.CEEventListener;
@@ -8,12 +9,11 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 	public class EventType {
 		public static final int OnGameObjectCreated = 1;
 	}
-	CEGameObject root;
+
 	HashMap<String, CEGameObject> gameObjectsMap;
 	CEWorld world;
 
 	public CEGameObjectManager(CEWorld world) {
-		root = new CEGameObject();
 		gameObjectsMap = new HashMap<String, CEGameObject>();
 		this.world = world;
 	}
@@ -30,12 +30,8 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		if (gameObjectsMap.containsKey(gameObject.name)) {
 			throw new RuntimeException("Game object name: " + gameObject.name + " already exists");
 		}
-		gameObject.world = this.world;
 		super.Add(gameObject);
 		gameObjectsMap.put(gameObject.name, gameObject);
-		if (gameObject.parent == null) {
-			gameObject.SetParent(root);
-		}
 		event.DoEvent(this, EventType.OnGameObjectCreated, gameObject);
 		for (CEGameObject child : gameObject.children) {
 			gameObject.AddChild(AddGameObject(child));
@@ -52,7 +48,6 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 			throw new NullPointerException();
 		}
 		if (!gameObjectsMap.containsKey(gameObject.name)) {
-			gameObject.world = this.world;
 			gameObjectsMap.put(gameObject.name, gameObject);
 			super.New(gameObject);
 			for (CEGameObject child : gameObject.children) {
@@ -104,4 +99,7 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		DestroyGameObject(GetGameObject(name));
 	}
 
+	public ArrayList<CEBehave> GetComponentList() {
+		return list;
+	}
 }

@@ -2,35 +2,20 @@ package pers.crystal.engine.application;
 
 import pers.crystal.engine.utility.CETime;
 
-public class CEWorldManager implements Runnable
-{
-	private static CEWorld world;
-	private static int state;
-	private static Thread thread;
-	public static void LoadWorld(CEWorld world)
-	{
-		if (CEWorldManager.world != null)
-		{
-			CEWorldManager.state = CEBehaviorContainer.DESTORY;
+public class CEWorldManager implements Runnable {
+	private CEWorld world;
+	private CEWorld newWorld;
+	private int state;
+
+	public void LoadWorld(CEWorld world) {
+		if (this.world == null) {
+			state = CEBehaviorContainer.START;
+			CEGameObject.world = world;
+			this.world = world;
+		}else{
+			state = CEBehaviorContainer.DESTORY;
+			newWorld = world;
 		}
-		if (thread != null)
-		{
-			while (thread.getState() != Thread.State.TERMINATED)
-			{
-				try
-				{
-					Thread.sleep(20);
-				}
-				catch (InterruptedException e)
-				{
-					System.err.println(e);
-				}
-			}
-		}
-		CEWorldManager.world = world;
-		CEWorldManager.state = CEBehaviorContainer.START;
-		thread = new Thread(new CEWorldManager());
-		thread.start();
 	}
 
 	@Override
@@ -41,7 +26,7 @@ public class CEWorldManager implements Runnable
 			long s = System.currentTimeMillis();
 			try
 			{
-				Thread.sleep(10);
+				Thread.sleep(20);
 			}
 			catch (InterruptedException e)
 			{
@@ -51,17 +36,21 @@ public class CEWorldManager implements Runnable
 			{
 				if (state == CEBehaviorContainer.START)
 				{
+					System.out.println("START");
 					world.Start();
 					state = CEBehaviorContainer.UPDATE;
 				}
 				else if (state == CEBehaviorContainer.UPDATE)
 				{
+					System.out.println("Update");
 					world.Update();
 				}
 				else if (state == CEBehaviorContainer.DESTORY)
 				{
 					world.Destroy();
-					break;
+					CEGameObject.world = world;
+					world = newWorld;
+					state = CEBehaviorContainer.START;
 				}
 			}
 			CETime.deltaTime = (System.currentTimeMillis() - s) / 1000f;

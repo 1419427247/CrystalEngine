@@ -10,9 +10,9 @@ import org.w3c.dom.NodeList;
 import pers.crystal.engine.components.CETransform;
 
 public class CEGameObject extends CEBehave {
+	static CEWorld world;
+	
 	protected String name;
-	protected CEWorld world;
-
 	protected boolean isFrozen = false;
 	protected boolean isDestoryed = false;
 
@@ -25,7 +25,6 @@ public class CEGameObject extends CEBehave {
 
 	public CEGameObject() {
 		this.name = null;
-		this.world = null;
 
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
@@ -36,18 +35,6 @@ public class CEGameObject extends CEBehave {
 
 	public CEGameObject(String name) {
 		this.name = name;
-		this.world = null;
-
-		children = new ArrayList<CEGameObject>();
-		componentManager = new CEComponemtManager(this);
-
-		transform = new CETransform();
-		componentManager.AddComponent(transform);
-	}
-
-	public CEGameObject(String name, CEWorld world) {
-		this.name = name;
-		this.world = world;
 
 		children = new ArrayList<CEGameObject>();
 		componentManager = new CEComponemtManager(this);
@@ -112,7 +99,7 @@ public class CEGameObject extends CEBehave {
 				if (parent != null) {
 					parent.RemoveChild(this);
 				}
-				parent = world.gameObjectManager.root;
+				parent = null;
 			} else if (parent == null) {
 				gameObject.AddChild(this);
 			} else {
@@ -153,7 +140,7 @@ public class CEGameObject extends CEBehave {
 			throw new NullPointerException();
 		}
 		if (gameObject.parent == this) {
-			gameObject.parent = world.gameObjectManager.root;
+			gameObject.parent = null;
 			return children.remove(gameObject);
 		}
 		return false;
@@ -224,5 +211,9 @@ public class CEGameObject extends CEBehave {
 			components.appendChild(CEApplication.xml.convertToNode(document, (CEComponent) behave));
 		}
 		object.appendChild(components);
+	}
+
+	public static CEWorld getWorld() {
+		return world;
 	}
 }

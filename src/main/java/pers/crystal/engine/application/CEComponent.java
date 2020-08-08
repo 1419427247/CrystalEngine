@@ -6,6 +6,6 @@ public abstract class CEComponent extends CEBehave {
 	public abstract void Start();
 
 	public abstract void Update();
-
+	
 	public abstract void Destroy();
 }
