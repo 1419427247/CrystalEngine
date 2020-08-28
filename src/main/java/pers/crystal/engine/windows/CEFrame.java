@@ -1,7 +1,6 @@
 package pers.crystal.engine.windows;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -12,76 +11,101 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
+import pers.crystal.engine.application.CEInputManager;
+
 /**
  * CEFrame
  */
-public class CEFrame implements KeyListener, FocusListener, MouseListener, MouseMotionListener, Runnable {
-    private JFrame frame = new JFrame();
-    private CEPanel panel = new CEPanel();
-    private GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    public CEFrame() {
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class CEFrame implements KeyListener, FocusListener, MouseListener, MouseMotionListener {
+    private static JFrame frame = null;
+    private static CEPanel panel = new CEPanel();
+    private static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment()
+            .getDefaultScreenDevice();
 
-        frame.addKeyListener(this);
-        frame.addFocusListener(this);
-        frame.addMouseListener(this);
-        frame.addMouseMotionListener(this);
+    public static void Create() {
+        if (frame == null) {
+            frame = new JFrame();
 
-        frame.add(panel);
-        frame.setSize(1024, 768);
-        frame.setVisible(true);
-        new Thread(this).start();
+            CEFrame ceFrame = new CEFrame();
+
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            frame.addKeyListener(ceFrame);
+            frame.addFocusListener(ceFrame);
+            frame.addMouseListener(ceFrame);
+            frame.addMouseMotionListener(ceFrame);
+
+            frame.add(panel);
+            frame.setSize(1024, 768);
+
+            frame.setUndecorated(true);
+
+            frame.setVisible(true);
+            new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    while (true) {
+                        panel.repaint();
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
     }
 
-
-    public void SetResizable(boolean resizable){
+    public static void SetResizable(boolean resizable) {
         frame.setResizable(resizable);
     }
-    public void IsSetResizable(){
+
+    public static void IsSetResizable() {
         frame.isResizable();
     }
 
-    public void SetUndecorated(boolean undecorated){
-        frame.setUndecorated(undecorated);
+    public static void SetFullScreenWindow(boolean fullScreenWindow) {
+        graphicsDevice.setFullScreenWindow(fullScreenWindow == true ? frame : null);
     }
 
-    public void IsUndecorated(boolean undecorated){
-        frame.isUndecorated();
-    }
-
-    public void SetFullScreenWindow(boolean fullScreenWindow){
-        graphicsDevice.setFullScreenWindow(fullScreenWindow == true ? frame : null );
-    }
-
-    public boolean IsFullScreenWindow(){
+    public static boolean IsFullScreenWindow() {
         return graphicsDevice.getFullScreenWindow() != null;
-    } 
+    }
+
+    public static void Add(Component component) {
+        frame.add(component);
+    }
+
+    public static void Remove(Component component) {
+        frame.remove(component);
+    }
+
+    public static int GetWidth() {
+        return frame.getWidth();
+    }
+
+    public static int GetHeight() {
+        return frame.getHeight();
+    }
 
     @Override
-    public void run() {
-        while (true) {
-            panel.repaint();
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (!CEInputManager.keyMap.containsKey(e.getKeyCode()) || CEInputManager.keyMap.get(e.getKeyCode()) == false) {
+            CEInputManager.keyDownMap.put(e.getKeyCode(), true);
+            CEInputManager.keyMap.put(e.getKeyCode(), true);
         }
     }
 
     @Override
-    public synchronized void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public synchronized void keyPressed(KeyEvent e) {
-        CEInput.keyPressedMap.put(e.getKeyCode(), true);
-    }
-
-    @Override
-    public synchronized void keyReleased(KeyEvent e) {
-        CEInput.keyPressedMap.put(e.getKeyCode(), false);
+    public void keyReleased(KeyEvent e) {
+        CEInputManager.keyMap.put(e.getKeyCode(), false);
+        CEInputManager.keyUpMap.put(e.getKeyCode(), true);
     }
 
     @Override
@@ -91,19 +115,19 @@ public class CEFrame implements KeyListener, FocusListener, MouseListener, Mouse
 
     @Override
     public void focusLost(FocusEvent e) {
-        CEInput.keyPressedMap.clear();
+        CEInputManager.keyMap.clear();
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        CEInput.mouseX = e.getX();
-        CEInput.mouseY = e.getY();
+        CEInputManager.mouseX = e.getX();
+        CEInputManager.mouseY = e.getY();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        CEInput.mouseX = e.getX();
-        CEInput.mouseY = e.getY();
+        CEInputManager.mouseX = e.getX();
+        CEInputManager.mouseY = e.getY();
     }
 
     @Override
@@ -113,12 +137,12 @@ public class CEFrame implements KeyListener, FocusListener, MouseListener, Mouse
 
     @Override
     public void mousePressed(MouseEvent e) {
-        CEInput.keyPressedMap.put(e.getButton(), true);
+        CEInputManager.keyMap.put(e.getButton(), true);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        CEInput.keyPressedMap.put(e.getButton(), false);
+        CEInputManager.keyMap.put(e.getButton(), false);
     }
 
     @Override

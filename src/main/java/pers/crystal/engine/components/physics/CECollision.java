@@ -16,11 +16,8 @@ public class CECollision extends CEComponent {
     Shape shape;
     Fixture fixture;
 
-    CESprite sprite = new CESprite();
-
     BufferedImage bufferedImage;
     Graphics graphics;
-
     @Override
     public void Start() {
         CEComponent rigidbody = gameObject.componentManager.GetComponent(CERigidbody.class);
@@ -29,8 +26,6 @@ public class CECollision extends CEComponent {
                 fixture = ((CERigidbody) rigidbody).body.createFixture(shape, density);
             }
         }
-        sprite.gameObject = this.gameObject;
-        sprite.Start();
     }
 
     @Override
@@ -48,6 +43,9 @@ public class CECollision extends CEComponent {
                 }
             }
         }
-        //sprite.Destroy();
+    }
+
+    public void SetDensity(float density) {
+        fixture.setDensity(density);
     }
 }

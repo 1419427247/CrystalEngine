@@ -18,7 +18,7 @@ public class CEClientSync implements CEInstruction {
     }
 
     @Override
-    public void Do(InetAddress inetAddress,byte signal,Object... args) {
+    public void Do(InetAddress inetAddress, byte signal, Object... args) {
         switch (signal) {
             case SIGNAL_ONSYNC:
                 ONSYNC(inetAddress, args);

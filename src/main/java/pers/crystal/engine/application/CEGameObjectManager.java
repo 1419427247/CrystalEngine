@@ -22,7 +22,7 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		event.Add(listener);
 	}
 
-	public synchronized CEGameObject AddGameObject(CEGameObject gameObject) {
+	public CEGameObject AddGameObject(CEGameObject gameObject) {
 		if (gameObject == null) {
 			throw new NullPointerException();
 		}
@@ -82,7 +82,7 @@ public class CEGameObjectManager extends CEBehaviorContainer {
 		RemoveGameObject(GetGameObject(name));
 	}
 
-	public synchronized void DestroyGameObject(CEGameObject gameObject) {
+	public void DestroyGameObject(CEGameObject gameObject) {
 		if (gameObject == null) {
 			throw new NullPointerException();
 		}

@@ -12,15 +12,7 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class CEXml {
-    DocumentBuilder documentBuilder;
-
-    public CEXml() {
-        try {
-            documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-    }
+    private static DocumentBuilder documentBuilder;
 
     public CEPerfab convertToObject(Node node) {
         try {
@@ -77,7 +69,7 @@ public class CEXml {
         return null;
     }
 
-    public Document convertToDocument(CEPerfab perfab) {
+    public static Document convertToDocument(CEPerfab perfab) {
         Document document = documentBuilder.newDocument();
         Node root = document.createElement(perfab.getClass().getName());
         perfab.convertToNode(document, root);
@@ -85,14 +77,14 @@ public class CEXml {
         return document;
     }
 
-    public Node convertToNode(Document document, CEPerfab perfab) {
+    public static Node convertToNode(Document document, CEPerfab perfab) {
         Element root = document.createElement(perfab.getClass().getName());
         perfab.convertToNode(document, root);
         document.appendChild(root);
         return root;
     }
 
-    public Node convertToNode(Document document, String name, Object object) {
+    public static Node convertToNode(Document document, String name, Object object) {
         Element root = null;
         if (object == null) {
             root = document.createElement("null");
@@ -107,7 +99,7 @@ public class CEXml {
         return root;
     }
 
-    public void write(Document document, File file) {
+    public static void write(Document document, File file) {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file));
@@ -124,4 +116,12 @@ public class CEXml {
             e.printStackTrace();
         }
     }
+
+	public static void Create() {
+        try {
+            documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+	}
 }

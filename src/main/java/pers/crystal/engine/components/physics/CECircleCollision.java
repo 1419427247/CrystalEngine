@@ -14,10 +14,10 @@ public class CECircleCollision extends CECollision {
 
         ((CircleShape) shape).setRadius(radius);
 
-        bufferedImage = new BufferedImage(radius, radius, BufferedImage.TYPE_INT_ARGB);
-        graphics = bufferedImage.getGraphics();
-        graphics.drawOval(radius / 2, radius / 2, radius, radius);
-        sprite.SetImage(bufferedImage);
+        // bufferedImage = new BufferedImage(radius, radius, BufferedImage.TYPE_INT_ARGB);
+        // graphics = bufferedImage.getGraphics();
+        // graphics.drawOval(radius / 2, radius / 2, radius, radius);
+        // sprite.SetImage(bufferedImage);
 
         super.Start();
     }

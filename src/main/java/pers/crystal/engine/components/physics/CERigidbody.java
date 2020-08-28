@@ -8,9 +8,11 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.World;
 
 import pers.crystal.engine.application.CEBehave;
 import pers.crystal.engine.application.CEComponent;
+import pers.crystal.engine.application.CEGameObject;
 import pers.crystal.engine.application.CEWorld;
 
 public class CERigidbody extends CEComponent {
@@ -24,7 +26,7 @@ public class CERigidbody extends CEComponent {
         bodyDef.position = new Vec2((float) gameObject.transform.position.getX(),
                 (float) gameObject.transform.position.getY());
         bodyDef.angle = gameObject.transform.angle;
-        body = CEWorld.physicalWorld.createBody(bodyDef);
+        body = CEGameObject.getWorld().physicalManage.CreateBody(bodyDef);
 
         ArrayList<CEBehave> components = gameObject.componentManager.GetComponentList();
         for (CEBehave behave : components) {
@@ -47,11 +49,15 @@ public class CERigidbody extends CEComponent {
 
     @Override
     public void Destroy() {
-        CEWorld.physicalWorld.destroyBody(body);
+        CEGameObject.getWorld().physicalManage.DestroyBody(body);
     }
 
     public void SetType(BodyType type) {
         body.setType(type);
+    }
+
+    public void ApplyForceToCenter(Vec2 force) {
+        body.applyForceToCenter(force);
     }
 
 }

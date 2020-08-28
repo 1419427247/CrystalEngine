@@ -15,7 +15,7 @@ public class CEClient extends CEComponent implements CEInstruction {
     public static final byte SIGNAL_CONNECT_RESULT = 1;
 
     private InetAddress inetAddress;
-    public int port = 4231;
+    public int port = 8;
     CESocket socket = new CESocket(port);
 
     private CEClientSync clientSync;
@@ -59,7 +59,7 @@ public class CEClient extends CEComponent implements CEInstruction {
     }
 
     public void DisConnect(InetAddress inetAddress, int port) {
-        socket.SendMessage(new CEMessage().AddInstruction("CEServer", CEServer.SIGNAL_DISCONNECT, this.port),
+        socket.SendMessage(new CEMessage().AddInstruction("CEServer", CEServer.SIGNAL_DISCONNECT,this.port),
                 inetAddress, port);
     }
 
@@ -78,7 +78,7 @@ public class CEClient extends CEComponent implements CEInstruction {
     }
 
     @Override
-    public synchronized void Do(InetAddress inetAddress, byte signal, Object... args) {
+    public void Do(InetAddress inetAddress, byte signal, Object... args) {
         switch (signal) {
             case SIGNAL_CONNECT_RESULT:
                 CONNECT_RESULT(inetAddress, args);

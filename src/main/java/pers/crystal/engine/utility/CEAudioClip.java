@@ -68,7 +68,7 @@ public class CEAudioClip {
 		this.Play();
 	}
 
-	public synchronized void Close(){
+	public void Close(){
 		clip.close();
 	}
 

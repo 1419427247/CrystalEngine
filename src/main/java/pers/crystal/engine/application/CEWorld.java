@@ -10,13 +10,16 @@ public class CEWorld extends CEBehave
 	public static final int RUNNING = 3;
 	public static final int ENDING = 4;
 
-	public static World physicalWorld = new World(new Vec2(0,9.8f));
-	public CEGameObjectManager gameObjectManager;
+	public static CEGameObjectManager gameObjectManager;
+	public static CEPhysicalManage physicalManage;
+	public static CEInputManager inputManager;
 
 	private int state = CEWorld.NONE;
 	public CEWorld()
 	{
 		gameObjectManager=new CEGameObjectManager(this);
+		physicalManage = new CEPhysicalManage();
+		inputManager = new CEInputManager();
 	}
 	
 	public int getState() {
@@ -24,27 +27,32 @@ public class CEWorld extends CEBehave
 	}
 
 	@Override
-	public void Start()
+	public synchronized void Start()
 	{
 		state = CEWorld.STARTING;
+		inputManager.Start();
+		physicalManage.Start();
 		gameObjectManager.Start();
 		state = CEWorld.NONE;
 	}
 
 	@Override
-	public void Update()
+	public synchronized void Update()
 	{
 		state = CEWorld.RUNNING;
 		gameObjectManager.Update();
-		physicalWorld.step(0.02f, 8, 3);
+		physicalManage.Update();
+		inputManager.Update();
 		state = CEWorld.NONE;
 	}
 
 	@Override
-	public void Destroy()
+	public synchronized void Destroy()
 	{
 		state = CEWorld.ENDING;
 		gameObjectManager.Destroy();
+		physicalManage.Destroy();
+		inputManager.Destroy();
 		state = CEWorld.NONE;
 	}
 	

@@ -8,9 +8,18 @@ import javax.management.RuntimeErrorException;
 
 public class CESocket implements Runnable {
 
-    public static final int DATA_MAX_LENGTH = 64;
+    public static final int DATA_MAX_LENGTH = 1024;
     private CECommand command = new CECommand();
     private DatagramSocket datagramSocket = null;
+
+    public CESocket() {
+        try {
+            datagramSocket = new DatagramSocket();
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        new Thread(this).start();
+    }
 
     public CESocket(int port) {
         try {

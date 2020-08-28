@@ -3,19 +3,19 @@ package pers.crystal.engine.components.sprite;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
 
 import pers.crystal.engine.application.CEComponent;
 
-public class CESprite extends CEComponent {
+public class CESprite extends CEComponent implements Comparable {
 
-    public static ArrayList<CESprite> sprites = new ArrayList<CESprite>();
+    public static TreeSet<CESprite> sprites = new TreeSet<CESprite>();
+
     public BufferedImage image;
-    
-    private ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
 
-    public void SetImage(File file){
+    public void SetImage(File file) {
         try {
             image = ImageIO.read(new FileInputStream(file));
         } catch (IOException e) {
@@ -23,18 +23,8 @@ public class CESprite extends CEComponent {
         }
     }
 
-    public void SetImage(BufferedImage bufferedImage){
+    public void SetImage(BufferedImage bufferedImage) {
         image = bufferedImage;
-    }
-
-    public void SetImages(File... files){
-        for (int i = 0; i < files.length; i++) {
-            try {
-                images.add(ImageIO.read(new FileInputStream(files[i])));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
@@ -50,5 +40,17 @@ public class CESprite extends CEComponent {
     @Override
     public void Destroy() {
         sprites.remove(this);
+    }
+
+    @Override
+    public int compareTo(Object object) {
+       CESprite sprite = (CESprite)object;
+        if (sprite == this) {
+            return 0;
+        }else if(sprite.gameObject.depth > gameObject.depth){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 }

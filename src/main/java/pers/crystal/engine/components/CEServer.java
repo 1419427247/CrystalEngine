@@ -20,7 +20,7 @@ public class CEServer extends CEComponent implements CEInstruction {
         }
     }
 
-    public static int port = 4232;
+    public static int port = 13501;
     private CESocket socket = new CESocket(port);
 
     private LinkedList<Client> clients = new LinkedList<Client>();
@@ -77,7 +77,7 @@ public class CEServer extends CEComponent implements CEInstruction {
     }
 
     @Override
-    public synchronized void Do(InetAddress inetAddress, byte signal, Object... args) {
+    public void Do(InetAddress inetAddress, byte signal, Object... args) {
         switch (signal) {
             case SIGNAL_CONNECT:
                 CONNECT(inetAddress, args);

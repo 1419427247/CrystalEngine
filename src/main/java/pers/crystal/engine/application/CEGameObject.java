@@ -16,6 +16,9 @@ public class CEGameObject extends CEBehave {
 	protected boolean isFrozen = false;
 	protected boolean isDestoryed = false;
 
+	public String tag = "none";
+    public int depth = 1;
+
 	protected CEGameObject parent;
 	protected ArrayList<CEGameObject> children;
 

@@ -15,10 +15,14 @@ public class CERectCollision extends CECollision {
         shape = new PolygonShape();
         ((PolygonShape) shape).setAsBox(width / 2, height / 2);
 
-        bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        graphics = bufferedImage.getGraphics();
-        graphics.drawRect(0, 0, width-1, height-1);
-        sprite.SetImage(bufferedImage);
+        // bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        // graphics = bufferedImage.getGraphics();
+        // graphics.drawRect(0, 0, width-1, height-1);
+
+
+        // gameObject.componentManager.add
+
+        // sprite.SetImage(bufferedImage);
 
         super.Start();
     }

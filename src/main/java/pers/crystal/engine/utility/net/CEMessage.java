@@ -13,9 +13,10 @@ public class CEMessage {
     public static final byte TYPE_DOUBLE = 4;
     public static final byte TYPE_CHARACTER = 5;
     public static final byte TYPE_BYTE = 6;
-    public static final byte TYPE_BOOLEAN = 7;
-    public static final byte TYPE_SHORT = 8;
-    public static final byte TYPE_LONG = 9;
+    public static final byte TYPE_BYTES = 7;
+    public static final byte TYPE_BOOLEAN = 8;
+    public static final byte TYPE_SHORT = 9;
+    public static final byte TYPE_LONG = 10;
 
     public int offset = 0;
 
@@ -56,6 +57,9 @@ public class CEMessage {
             } else if (value instanceof Byte) {
                 AddByte(TYPE_BYTE);
                 length += AddByte((byte) value) + 1;
+            } else if (value instanceof byte[]) {
+                AddByte(TYPE_BYTES);
+                length += AddBytes((byte[]) value) + 1;
             } else if (value instanceof Boolean) {
                 AddByte(TYPE_BOOLEAN);
                 length += AddBoolean((boolean) value) + 1;
@@ -94,6 +98,8 @@ public class CEMessage {
             return GetChar();
         } else if (type == TYPE_BYTE) {
             return GetByte();
+        } else if (type == TYPE_BYTES) {
+            return GetBytes();
         } else if (type == TYPE_BOOLEAN) {
             return GetBoolean();
         } else if (type == TYPE_SHORT) {
@@ -133,11 +139,6 @@ public class CEMessage {
         return 2;
     }
 
-    private void SetChar(int offset, int value) {
-        bytes.set(offset, (byte) ((value >> 8) & 0xFF));
-        bytes.set(offset + 1, (byte) (value & 0xFF));
-    }
-
     private char GetChar() {
         char value = (char) (((bytes.get(offset) & 0xFF) << 8) | (bytes.get(offset + 1) & 0xFF));
         offset += 2;
@@ -147,10 +148,6 @@ public class CEMessage {
     private int AddBoolean(boolean value) {
         bytes.add((byte) (value ? 1 : 0));
         return 1;
-    }
-
-    private void SetBoolean(int offset, boolean value) {
-        bytes.set(offset, (byte) (value ? 1 : 0));
     }
 
     private boolean GetBoolean() {
@@ -268,7 +265,7 @@ public class CEMessage {
         return bytes;
     }
 
-    public int size(){
+    public int size() {
         return bytes.size();
     }
 }
