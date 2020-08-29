@@ -65,15 +65,15 @@ public class Program {
 
 	public static CEWorld extracted() {
 		CEWorld world = new CEWorld();
-		CEWorld.gameObjectManager.AddGameObject(new CEGameObject("234"));
-		CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CESprite.class);
-		CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CEAudio.class);
-		CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CERectCollision.class);
-		CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CERigidbody.class);
-		CESprite sprite1 = (CESprite)
-		CEWorld.gameObjectManager.GetGameObject("234").componentManager
-		.GetComponent(CESprite.class);
-		sprite1.SetImage(CEAsset.GetFile("无标题.png"));
+		// CEWorld.gameObjectManager.AddGameObject(new CEGameObject("234"));
+		// CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CESprite.class);
+		// CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CEAudio.class);
+		// CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CERectCollision.class);
+		// CEWorld.gameObjectManager.GetGameObject("234").componentManager.AddComponent(CERigidbody.class);
+		// CESprite sprite1 = (CESprite)
+		// CEWorld.gameObjectManager.GetGameObject("234").componentManager
+		// .GetComponent(CESprite.class);
+		// sprite1.SetImage(CEAsset.GetFile("OIP.jpg"));
 
 		// CEAudio audio = (CEAudio)
 		// world.gameObjectManager.GetGameObject("234").componentManager

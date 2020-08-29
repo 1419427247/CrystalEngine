@@ -2,12 +2,9 @@ package pers.crystal.engine.components.gui;
 
 import javax.swing.JButton;
 
-import pers.crystal.engine.application.CEApplication;
-import pers.crystal.engine.application.CEComponent;
+import pers.crystal.engine.components.sprite.CEGraphics;
 
-public class CEButton extends CEComponent{
-    JButton button = new JButton();
-
+public class CEButton extends CEGraphics{
     @Override
     public void Start() {
         // TODO Auto-generated method stub

@@ -32,7 +32,7 @@ public class CECamera extends CEComponent {
 
 	@Override
 	public void Update() {
-		System.out.println((ScreenToWorldPoint()));
+
 	}
 
 	@Override
@@ -49,6 +49,8 @@ public class CECamera extends CEComponent {
 		double _x = x * Math.cos(angle) + y * Math.sin(angle);
 		double _y = -x * Math.sin(angle) + y * Math.cos(angle);
 
-		return new CEVector(position.getX() + _x, position.getY() + _y);
+
+		// return new CEVector((position.getX() + _x) / (CECamera.mainCamera.filedOfView / 90f),
+		// 		(position.getY() + _y) / (CECamera.mainCamera.filedOfView / 90f));
 	}
 }

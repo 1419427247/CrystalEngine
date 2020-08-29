@@ -87,6 +87,7 @@ public class CEBehaviorContainer extends CEBehave
 
 	public void New(CEBehave behave)
 	{
+		
 		listNew.add(behave);
 	}
 
